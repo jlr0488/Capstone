@@ -33,6 +33,10 @@ body {
     .carousel-caption {
         display: none;
     }
+	.dropdown-menu{
+		left:0;
+		right: 0;
+	}
 }
 
 /*Dev made*/

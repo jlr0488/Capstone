@@ -1,93 +1,81 @@
 ﻿<!DOCTYPE html>
 <html ng-app="gitRipped">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Git -Ripped</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Git -Ripped</title>
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/mdboostrap/MDB-Free_4.7.3/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/lib/mdboostrap/MDB-Free_4.7.3/css/mdb.min.css" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+	<link rel="stylesheet" href="~/lib/mdboostrap/MDB-Free_4.7.3/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/lib/mdboostrap/MDB-Free_4.7.3/css/mdb.min.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 
-        <link rel="stylesheet" href="~/css/site.css" />
-        <script src="~/lib/angularjs/angualr.min.js"></script>
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="~/lib/mdboostrap/MDB-Free_4.7.3/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/mdboostrap/MDB-Free_4.7.3/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-        <script src="~/lib/angularjs/angualr.min.js"></script>
-    </environment>
+	<link rel="stylesheet" href="~/css/site.css" />
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-route.js"></script>
+
+
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+	<!--Navbar -->
+	<nav class="mb-1 navbar navbar-expand-lg navbar-dark primary-color">
+		<a class="navbar-brand" href="#">Git -Ripped</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#gitNav"
+				aria-controls="gitNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="navbar-collapse collapse" id="gitNav">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">
+						Home
+						<span class="sr-only">(current)</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Stats</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Find A Plan</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Progress</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav ml-auto nav-flex-icons">
+				<li class="nav-item dropdown text-center">
+					<a class="nav-link dropdown-toggle" id="navProfile" data-toggle="dropdown" aria-haspopup="true"
+					   aria-expanded="false">
+						<i class="fas fa-user"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right  dropdown-default " aria-labelledby="navProfile">
+						<a class="dropdown-item" href="#">Action</a>
+						<a class="dropdown-item" href="#">Another action</a>
+						<a class="dropdown-item" href="#">Something else here</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<!--/.Navbar -->
 
-        <!-- Navbar brand -->
-        <a class="navbar-brand" href="#">Git -Ripped</a>
+	<div class="container body-content">
+		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; 2019 - git_ripped</p>
+		</footer>
+	</div>
 
-        <!-- Collapse button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar"
-                aria-controls="Navbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon">Git -R</span>
-        </button>
-
-        <!-- Collapsible content -->
-        <div class="collapse navbar-collapse" id="Navbar">
-
-            <!-- Links -->
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Workout
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Stats</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Find A Plan</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Progress</a>
-                </li>
-                
-
-            </ul>
-            <!-- Links -->
-        </div>
-        <!-- Collapsible content -->
-
-    </nav>
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2019 - git_ripped</p>
-        </footer>
-    </div>
-
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/lib/mdboostrap/MDB-Free_4.7.3/js/mdb.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery">
-        </script>
-        <script src="~/lib/mdboostrap/MDB-Free_4.7.3/js/bootstrap.min.js">
-        </script>
-        <script src="~/lib/mdboostrap/MDB-Free_4.7.3/js/mdb.min.js"></script>
-
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
-
-    @RenderSection("Scripts", required: false)
+	<script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://unpkg.com/popper.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="~/lib/mdboostrap/MDB-Free_4.7.3/js/bootstrap.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="~/lib/mdboostrap/MDB-Free_4.7.3/js/mdb.js"></script>
+	<script type="text/javascript" src="~/js/site.js"></script>
+	@RenderSection("Scripts", required: false)
 </body>
 </html>
