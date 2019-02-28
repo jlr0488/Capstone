@@ -11794,23 +11794,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jmwen\\.nuget\\packages\\": {},
+    "C:\\Users\\Zachery.Chambers\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\jmwen\\repos\\Capstone\\Capstone\\git-ripped\\git-ripped.csproj",
+      "projectUniqueName": "C:\\Users\\Zachery.Chambers\\Documents\\Capstone\\Capstone\\git-ripped\\git-ripped.csproj",
       "projectName": "git-ripped",
-      "projectPath": "D:\\jmwen\\repos\\Capstone\\Capstone\\git-ripped\\git-ripped.csproj",
-      "packagesPath": "C:\\Users\\jmwen\\.nuget\\packages\\",
-      "outputPath": "D:\\jmwen\\repos\\Capstone\\Capstone\\git-ripped\\obj\\",
+      "projectPath": "C:\\Users\\Zachery.Chambers\\Documents\\Capstone\\Capstone\\git-ripped\\git-ripped.csproj",
+      "packagesPath": "C:\\Users\\Zachery.Chambers\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Zachery.Chambers\\Documents\\Capstone\\Capstone\\git-ripped\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\jmwen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Zachery.Chambers\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
