@@ -64,7 +64,7 @@ using git_ripped.Models;
             WriteLiteral("<!DOCTYPE html>\r\n<html ng-app=\"gitRipped\">\r\n");
             EndContext();
             BeginContext(44, 678, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "edfc623494494bfcb919e46ede13a110", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "01d145a5ef464ea5a292487d7e6cbf11", async() => {
                 BeginContext(50, 112, true);
                 WriteLiteral("\r\n\t<meta charset=\"utf-8\" />\r\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n\t<title>");
                 EndContext();
@@ -79,7 +79,7 @@ using git_ripped.Models;
                 WriteLiteral(" - Git -Ripped</title>\r\n\r\n\t");
                 EndContext();
                 BeginContext(207, 86, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "50c683d3e56f4d2bb32a3b7305cf4cc7", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "350e7a53e8d84cbfaf2125315e330019", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -98,7 +98,7 @@ using git_ripped.Models;
                 WriteLiteral("\r\n\t");
                 EndContext();
                 BeginContext(296, 80, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a5ecef62eda7496d927f9939e73373f0", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "7578c6afc5fb4f7bba7fa9778540d249", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -117,7 +117,7 @@ using git_ripped.Models;
                 WriteLiteral("\r\n\t<link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.6.1/css/all.css\">\r\n\r\n\t");
                 EndContext();
                 BeginContext(470, 47, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "02cc094f92d848358338bbc8723b1545", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c7bbca35460a428ea740d69fd2d4bfca", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -151,7 +151,7 @@ using git_ripped.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(724, 2214, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "43b3677194ec4cf18160c2dbcd62e3d6", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f74b93a46324767aa2c8e95188a5d7a", async() => {
                 BeginContext(730, 1557, true);
                 WriteLiteral(@"
 	<!--Navbar -->
@@ -211,7 +211,7 @@ using git_ripped.Models;
                 WriteLiteral("\r\n\t\t<hr />\r\n\t\t<footer>\r\n\t\t\t<p>&copy; 2019 - git_ripped</p>\r\n\t\t</footer>\r\n\t</div>\r\n\r\n\t");
                 EndContext();
                 BeginContext(2385, 74, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2beff45ae6ed4150bbec353b1e9dddf8", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4075132963d14ceeab398bd791e77785", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -230,7 +230,7 @@ using git_ripped.Models;
                 WriteLiteral("\r\n\t<!-- Bootstrap tooltips -->\r\n\t<script type=\"text/javascript\" src=\"https://unpkg.com/popper.js\"></script>\r\n\t<!-- Bootstrap core JavaScript -->\r\n\t");
                 EndContext();
                 BeginContext(2606, 94, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cd2e1b882d254f58a2e7bed40cdda475", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e7055a5e43404adc88bbce1a5302bb7f", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -249,7 +249,7 @@ using git_ripped.Models;
                 WriteLiteral("\r\n\t<!-- MDB core JavaScript -->\r\n\t");
                 EndContext();
                 BeginContext(2734, 88, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f2fa1035bff4ae993763e87470504eb", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a233e1483fcc4e5aa8c65bb747ae8af2", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -268,7 +268,7 @@ using git_ripped.Models;
                 WriteLiteral("\r\n\t");
                 EndContext();
                 BeginContext(2825, 59, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dda36415f3504a7399b98c5fc58b471f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c20c0e0918a84ecdb1f2e4ff55c54b8e", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
