@@ -17,27 +17,27 @@
 
 
 </head>
-<body>
+<body ng-controller="LayoutCtrl">
 	<!--Navbar -->
 	<nav class="mb-1 navbar navbar-expand-lg navbar-dark primary-color">
-		<a class="navbar-brand" href="#">Git -Ripped</a>
+		<a class="navbar-brand" href="/">Git -Ripped</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#gitNav"
 				aria-controls="gitNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="navbar-collapse collapse" id="gitNav">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">
+				<li class="nav-item">
+					<a class="nav-link" href="/">
 						Home
-						<span class="sr-only">(current)</span>
+						
 					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Stats</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Find A Plan</a>
+					<a class="nav-link" href="/home/findplan">Find A Plan</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Progress</a>
@@ -50,7 +50,7 @@
 						<i class="fas fa-user"></i>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right  dropdown-default " aria-labelledby="navProfile">
-						<a class="dropdown-item" href="#">Action</a>
+						<a class="dropdown-item" href="/home/ViewAccount">View Account</a>
 						<a class="dropdown-item" href="#">Another action</a>
 						<a class="dropdown-item" href="#">Something else here</a>
 					</div>
@@ -60,7 +60,7 @@
 	</nav>
 	<!--/.Navbar -->
 
-	<div class="container body-content">
+	<div class="body-content">
 		@RenderBody()
 		<hr />
 		<footer>
