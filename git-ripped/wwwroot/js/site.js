@@ -58,7 +58,17 @@ app.controller('indexCtrl', function ($scope) {
 });
 
 app.controller('ViewAccountCtrl', function ($scope) {
+	$scope.basicInfo = {
+		firstName : "",
+		lastName : "",
+		email : "",
+		username : "",
+		password : ""
+	};
 
+	$scope.submitBasicInfoForm = function () {
+		//validate and send info through a post (after hashing password)
+	}
 });
 
 app.controller('LayoutCtrl', function ($scope) {
@@ -66,4 +76,6 @@ app.controller('LayoutCtrl', function ($scope) {
 		$("li.active").removeClass("active");
 		$('a[href="' + location.pathname + '"]').closest('li').addClass('active');
 	}());
+
+	$scope.loggedIn = false;
 });

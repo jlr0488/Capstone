@@ -26,6 +26,48 @@
 					<img alt="Profile Photo" src="~/images/Car.svg" class="img-circle img-responsive" width="120" height="120" />
 				</div>
 			</div>
+			<!-- Default form register -->
+			<form id="BasicInfoForm" class="text-center border border-light p-5">
+
+				<div class="form-row mb-4">
+					<div class="col">
+						<!-- First name -->
+						<input type="text" id="FirstName" ng-model="firstName" class="form-control" placeholder="First name">
+					</div>
+					<div class="col">
+						<!-- Last name -->
+						<input type="text" id="LastName" ng-model="lastName" class="form-control" placeholder="Last name">
+					</div>
+				</div>
+				<div class="form-row">
+					<!-- E-mail -->
+					<input type="email" id="Email" ng-model="email" class="form-control mb-4" placeholder="E-mail">
+				</div>
+
+				<div class="form-row mb-4">
+					<!--Username-->
+					<input type="text" id="Username" ng-model="username" class="form-control" placeholder="Username">
+				</div>
+
+				<div class="form-row mb-4">
+					<!-- Password -->
+					<input type="password" id="Password" ng-model="password" class="form-control" placeholder="Password" aria-describedby="dPasswordHelpBlock">
+					<small id="PasswordHelpBlock" class="form-text text-muted mb-4">
+						At least 8 characters and 1 digit
+					</small>
+				</div>
+
+
+
+				<!-- Sign up button -->
+				<button class="btn btn-info my-4 btn-block" ng-click="submitBasicInfoForm()" type="submit">Update Profile</button>
+
+
+
+
+
+			</form>
+			<!-- Default form register -->
 		</div>
 		<div class="tab-pane fade" id="mailSettings" role="tabpanel" aria-labelledby="MailSettings">
 			

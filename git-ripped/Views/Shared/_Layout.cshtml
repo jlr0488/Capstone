@@ -43,19 +43,20 @@
 					<a class="nav-link" href="#">Progress</a>
 				</li>
 			</ul>
-			<ul class="navbar-nav ml-auto nav-flex-icons">
+			<ul class="navbar-nav ml-auto nav-flex-icons" ng-if="loggedIn" ng-cloak>
 				<li class="nav-item dropdown text-center">
 					<a class="nav-link dropdown-toggle" id="navProfile" data-toggle="dropdown" aria-haspopup="true"
 					   aria-expanded="false">
 						<i class="fas fa-user"></i>
 					</a>
-					<div class="dropdown-menu dropdown-menu-right  dropdown-default " aria-labelledby="navProfile">
+					<div class="dropdown-menu dropdown-menu-right  dropdown-default"  aria-labelledby="navProfile">
 						<a class="dropdown-item" href="/home/ViewAccount">View Account</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<a class="dropdown-item" href="#">Something else here</a>
+						@*<a class="dropdown-item" href="#">Another action</a>*@
+						<a class="dropdown-item" href="#">Sign Out</a>
 					</div>
 				</li>
 			</ul>
+			<button class="btn blue-gradient" ng-if="!loggedIn">Sign In</button>
 		</div>
 	</nav>
 	<!--/.Navbar -->
