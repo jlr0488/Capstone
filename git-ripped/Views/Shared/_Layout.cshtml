@@ -18,6 +18,118 @@
 
 </head>
 <body ng-controller="LayoutCtrl">
+	<!--MODALS-->
+	<div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+		 aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header text-center">
+					<h4 class="modal-title w-100 font-weight-bold">Register</h4>
+					<button type="button" class="close" ng-click="clearBasicUserInfo()" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+
+				<!--We Need to get:
+					Username
+					HashedPass
+					First Name
+					last Name
+					Email
+					-->
+
+
+				<div class="modal-body mx-3">
+					<form id="registerForm" name="registerForm">
+
+						<div class="form-row pt-3">
+							<div class="col pb-3">
+								<div md-form>
+									<input type="text" name="registerFirstName"placeholder="First Name" ng-model="basicInfo.firstName" id="registerFirstName" required="required" autofocus />
+								</div>
+							</div>
+							<div class="col">
+								<div md-form>
+									<input type="text" class="w-100" name="registerLastName" placeholder="Last Name" ng-model="basicInfo.lastName" id="registerLastName" required="required" />
+								</div>
+							</div>
+						</div>
+						<div class="form-row pb-3">
+							<div class="col">
+								<input type="email" class="w-100" ng-model="basicInfo.email" name="registerEmail" placeholder="Email" required id="registerEmail" />
+							</div>
+						</div>
+						<div class="form-row pb-3">
+							<div class="col-12">
+								<input type="password" class="w-100" id="registerPassword" placeholder="Password (8 characters long)" ng-model="basicInfo.password" pattern=".{8,}" name="registerPassword" required />
+							</div>
+						</div>
+						<div class="form-row pb-3">
+							<div class="col-12">
+								<input type="password" class="w-100" placeholder="Confirm Password" id="registerPasswordConfirmation" name="registerPasswordConfirmation" ng-blur="doesPasswordMatch()" ng-model="basicInfo.password2" required>
+								<div class="alert alert-warning" ng-if="!doesPasswordMatch() && registerForm.registerPassword.$dirty && registerForm.registerPasswordConfirmation.$dirty">Passwords are not correct or don't match </div>
+							</div>
+						</div>
+						<div class="form-row pt-2">
+							<div class="col-12">
+								<button type="submit" value="submit" class="btn btn-primary w-100" ng-click="register()" ng-disabled="registerForm.$invalid || !doesPasswordMatch()">
+									Register
+								</button>
+							</div>
+						</div>
+
+						<div class="form-row pt-3">
+							<div class="col-12">
+								<div class="align-text-center">
+									<div class="form-group text-center">
+										<p class="font-medium">Already have a Git-Ripped Account? <a data-toggle="modal" data-dismiss="modal" data-target="#SigninModal" class="underline">Sign In</a>.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</form>
+							
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="SigninModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel"
+		 aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header text-center">
+					<h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+					<button type="button" class="close" ng-click="clearBasicUserInfo()" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body mx-3">
+					<form id="signInForm" name="signInForm">
+						<div class="md-form mb-5">
+							<i class="fas fa-envelope prefix grey-text"></i>
+							<input type="email" id="signInFormEmail" ng-model="basicInfo.email" class="form-control validate" required>
+							<label data-error="please enter a valid email" for="signInFormEmail">Your email</label>
+						</div>
+
+						<div class="md-form mb-4">
+							<i class="fas fa-lock prefix grey-text"></i>
+							<input type="password" id="signInFormPass" ng-model="basicInfo.password" class="form-control validate" required>
+							<label for="signInFormPass">Your password</label>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer d-flex justify-content-center">
+					<button class="btn btn-default" ng-click="signIn()" ng-disabled="signInForm.$invalid">Login</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--/MODALS-->
 	<!--Navbar -->
 	<nav class="mb-1 navbar navbar-expand-lg navbar-dark primary-color">
 		<a class="navbar-brand" href="/">Git -Ripped</a>
@@ -30,7 +142,7 @@
 				<li class="nav-item">
 					<a class="nav-link" href="/">
 						Home
-						
+
 					</a>
 				</li>
 				<li class="nav-item">
@@ -49,14 +161,17 @@
 					   aria-expanded="false">
 						<i class="fas fa-user"></i>
 					</a>
-					<div class="dropdown-menu dropdown-menu-right  dropdown-default"  aria-labelledby="navProfile">
+					<div class="dropdown-menu dropdown-menu-right  dropdown-default" aria-labelledby="navProfile">
 						<a class="dropdown-item" href="/home/ViewAccount">View Account</a>
 						@*<a class="dropdown-item" href="#">Another action</a>*@
 						<a class="dropdown-item" href="#">Sign Out</a>
 					</div>
 				</li>
 			</ul>
-			<button class="btn blue-gradient" ng-if="!loggedIn">Sign In</button>
+			<button class="btn blue-gradient " ng-if="loggedIn" ng-click="" ng-cloak>Sign Out</button>
+
+			<button class="btn blue-gradient " ng-if="!loggedIn" data-toggle="modal" data-target="#SigninModal">Sign In</button>
+			<button class="btn peach-gradient" ng-if="!loggedIn" data-toggle="modal" data-target="#RegisterModal">Register</button>
 		</div>
 	</nav>
 	<!--/.Navbar -->
@@ -68,6 +183,10 @@
 			<p>&copy; 2019 - git_ripped</p>
 		</footer>
 	</div>
+
+
+
+
 
 	<script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
 	<!-- Bootstrap tooltips -->

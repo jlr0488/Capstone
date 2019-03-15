@@ -63,12 +63,16 @@ app.controller('ViewAccountCtrl', function ($scope) {
 		lastName : "",
 		email : "",
 		username : "",
-		password : ""
+		password: "",
+		password2: ""
 	};
 
 	$scope.submitBasicInfoForm = function () {
 		//validate and send info through a post (after hashing password)
+
 	}
+
+	
 });
 
 app.controller('LayoutCtrl', function ($scope) {
@@ -76,6 +80,44 @@ app.controller('LayoutCtrl', function ($scope) {
 		$("li.active").removeClass("active");
 		$('a[href="' + location.pathname + '"]').closest('li').addClass('active');
 	}());
+	$scope.init = function () {
+		$scope.basicInfo = {
+			firstName: "",
+			lastName: "",
+			email: "",
+			username: "",
+			password: "",
+			password2: ""
+		};
+	}();
+	
 
 	$scope.loggedIn = false;
+
+	$scope.signIn = function(){
+		//need to salt the password
+		//send http post or something to the server useing basicInfo.pass and basicInfo.email
+		
+	}
+
+	$scope.clearBasicUserInfo = function () {
+		$scope.basicInfo = {
+			firstName: "",
+			lastName: "",
+			email: "",
+			username: "",
+			password: "",
+			password2: ""
+		};
+	}
+
+	$scope.register = function()	{
+		//need to salt pass
+		//send http post or something to the server using basicInfo, make sure the order is right with zac
+	}
+
+
+	$scope.doesPasswordMatch = function () {
+		return ($scope.basicInfo.password === $scope.basicInfo.password2 && $scope.basicInfo.password !== "" && $scope.basicInfo.password2 !== "");
+	}
 });
