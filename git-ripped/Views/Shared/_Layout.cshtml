@@ -29,49 +29,31 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-
-
-				<!--We Need to get:
-					Username
-					HashedPass
-					First Name
-					last Name
-					Email
-					-->
-
-
 				<div class="modal-body mx-3">
 					<form id="registerForm" name="registerForm">
+						<div class="md-form mb-3">
+							<input type="text" class="form-control validate" name="registerFirstName" ng-model="basicInfo.firstName" id="registerFirstName" required autofocus />
+							<label for="registerFirstName" data-error="Please enter your first name">First Name</label>
+						</div>
+						<div class="md-form mb-3">
+							<input type="text" class="form-control validate" name="registerLastName" ng-model="basicInfo.lastName" id="registerLastName" required="required" />
+							<label for="registerLastName" data-error="please enter your last name">Last Name</label>
+						</div>
 
-						<div class="form-row pt-3">
-							<div class="col pb-3">
-								<div md-form>
-									<input type="text" name="registerFirstName"placeholder="First Name" ng-model="basicInfo.firstName" id="registerFirstName" required="required" autofocus />
-								</div>
-							</div>
-							<div class="col">
-								<div md-form>
-									<input type="text" class="w-100" name="registerLastName" placeholder="Last Name" ng-model="basicInfo.lastName" id="registerLastName" required="required" />
-								</div>
-							</div>
+						<div class="md-form mb-3">
+							<input type="email" class="form-control validate" ng-model="basicInfo.email" name="registerEmail" required id="registerEmail" />
+							<label for="registerEmail" data-error="please enter a valid email">Email</label>
 						</div>
-						<div class="form-row pb-3">
-							<div class="col">
-								<input type="email" class="w-100" ng-model="basicInfo.email" name="registerEmail" placeholder="Email" required id="registerEmail" />
-							</div>
+						<div class="md-form mb-3">
+							<input type="password" class="form-control validate" id="registerPassword" ng-model="basicInfo.password" pattern=".{8,}" name="registerPassword" required />
+							<label for="registerPassword">Password (8 characters min)</label>
 						</div>
-						<div class="form-row pb-3">
-							<div class="col-12">
-								<input type="password" class="w-100" id="registerPassword" placeholder="Password (8 characters long)" ng-model="basicInfo.password" pattern=".{8,}" name="registerPassword" required />
-							</div>
-						</div>
-						<div class="form-row pb-3">
-							<div class="col-12">
-								<input type="password" class="w-100" placeholder="Confirm Password" id="registerPasswordConfirmation" name="registerPasswordConfirmation" ng-blur="doesPasswordMatch()" ng-model="basicInfo.password2" required>
+						<div class="md-form mb-3">
+								<input type="password" class="form-control validate" id="registerPasswordConfirmation" name="registerPasswordConfirmation" ng-blur="doesPasswordMatch()" ng-model="basicInfo.password2" required>
+								<label for="registerPasswordConfirmation">Confirm Password</label>
 								<div class="alert alert-warning" ng-if="!doesPasswordMatch() && registerForm.registerPassword.$dirty && registerForm.registerPasswordConfirmation.$dirty">Passwords are not correct or don't match </div>
-							</div>
 						</div>
-						<div class="form-row pt-2">
+						<div class="md-form mb-3">
 							<div class="col-12">
 								<button type="submit" value="submit" class="btn btn-primary w-100" ng-click="register()" ng-disabled="registerForm.$invalid || !doesPasswordMatch()">
 									Register
@@ -90,12 +72,11 @@
 						</div>
 
 					</form>
-							
+
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 	<div class="modal fade" id="SigninModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel"
 		 aria-hidden="true">
