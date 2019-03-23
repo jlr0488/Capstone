@@ -29,6 +29,16 @@ namespace git_ripped.Controllers
             return View();
         }
 
+		public IActionResult ViewAccount()
+		{
+			return View();
+		}
+
+		public IActionResult FindPlan()
+		{
+			return View();
+		}
+
         public IActionResult Privacy()
         {
             return View();

@@ -40,3 +40,12 @@ body {
 }
 
 /*Dev made*/
+.account-avatar{
+	background: lightgrey;
+	background-clip: content-box;
+}
+
+.underline{
+	text-decoration: underline !important;
+	color: blue !important;
+}

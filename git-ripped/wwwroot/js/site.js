@@ -7,7 +7,7 @@ var app = angular.module("gitRipped", []);
 
 app.controller('indexCtrl', function ($scope) {
 	//do stuff for index Page
-	$scope.pounds = 1250;
+	$scope.pounds = 125000;
 	brickWeight = 7.71618;
 	carWeight = 4009;
 	eighteenWheelerWeight = 80000;
@@ -55,4 +55,69 @@ app.controller('indexCtrl', function ($scope) {
 
 		$scope.numItems = $scope.numItems.toFixed(2);
 	}();
+});
+
+app.controller('ViewAccountCtrl', function ($scope) {
+	$scope.basicInfo = {
+		firstName : "",
+		lastName : "",
+		email : "",
+		username : "",
+		password: "",
+		password2: ""
+	};
+
+	$scope.submitBasicInfoForm = function () {
+		//validate and send info through a post (after hashing password)
+
+	}
+
+	
+});
+
+app.controller('LayoutCtrl', function ($scope) {
+	$(".nav .nav-link").on("click", function () {
+		$("li.active").removeClass("active");
+		$('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+	}());
+	$scope.init = function () {
+		$scope.basicInfo = {
+			firstName: "",
+			lastName: "",
+			email: "",
+			username: "",
+			password: "",
+			password2: ""
+		};
+	}();
+	
+
+	$scope.loggedIn = false;
+
+	$scope.signIn = function(){
+		//need to salt the password
+		//send http post or something to the server useing basicInfo.pass and basicInfo.email
+		
+	}
+
+	$scope.clearBasicUserInfo = function () {
+		$scope.basicInfo = {
+			firstName: "",
+			lastName: "",
+			email: "",
+			username: "",
+			password: "",
+			password2: ""
+		};
+	}
+
+	$scope.register = function()	{
+		//need to salt pass
+		//send http post or something to the server using basicInfo, make sure the order is right with zac
+	}
+
+
+	$scope.doesPasswordMatch = function () {
+		return ($scope.basicInfo.password === $scope.basicInfo.password2 && $scope.basicInfo.password !== "" && $scope.basicInfo.password2 !== "");
+	}
 });

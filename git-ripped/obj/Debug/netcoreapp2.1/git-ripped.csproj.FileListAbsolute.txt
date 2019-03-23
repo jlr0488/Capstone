@@ -62,3 +62,5 @@ D:\jmwen\repos\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.V
 D:\jmwen\repos\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.dll
 D:\jmwen\repos\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.pdb
 D:\jmwen\repos\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.csproj.CopyComplete
+D:\jmwen\repos\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\Razor\Views\Home\ViewAccount.g.cshtml.cs
+D:\jmwen\repos\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\Razor\Views\Home\FindPlan.g.cshtml.cs
