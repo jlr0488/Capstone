@@ -29,6 +29,11 @@ namespace git_ripped.Controllers
             return View();
         }
 
+		public IActionResult Workout()
+		{
+			return View();
+		}
+
 		public IActionResult ViewAccount()
 		{
 			return View();
