@@ -71,6 +71,23 @@ app.controller('ViewAccountCtrl', function ($scope) {
 	}
 });
 
+    	$scope.changePass = {
+       		email: "",
+        	username: "",
+        	oldPassword: "",
+        	newPassword: "",
+        	newPassword2: ""
+    	};
+
+    	$scope.submitChangePassForm = function () {
+        	//send validation info plus new password info that will need hashing
+    	}
+
+    	$scope.doesPasswordMatch = function () {
+        	return ($scope.changePass.newPassword === $scope.changePass.newPassword2 && $scope.changePass.newPassword !== "" && $scope.changePass.newPassword2 !== "");
+    	}
+});
+
 app.controller('LayoutCtrl', function ($scope) {
 	$(".nav .nav-link").on("click", function () {
 		$("li.active").removeClass("active");
