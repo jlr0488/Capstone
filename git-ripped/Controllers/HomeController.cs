@@ -22,7 +22,17 @@ namespace git_ripped.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+		public IActionResult Stats()
+		{
+			return View();
+		}
+
+		public IActionResult FindPlan()
+		{
+			return View();
+		}
+
+		public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
 
@@ -35,11 +45,6 @@ namespace git_ripped.Controllers
 		}
 
 		public IActionResult ViewAccount()
-		{
-			return View();
-		}
-
-		public IActionResult FindPlan()
 		{
 			return View();
 		}

@@ -18,7 +18,7 @@
 		<div ng-repeat="lift in workout.Lifts" ng-class="{show : $index==0, active : $index==0}" class="mx-3 tab-pane fade" id="lift{{lift.LiftID}}" role="tabpanel" aria-labelledby="lift{{lift.LiftID}}">
 			
 			<form>
-				<div class="md-form row" ng-repeat="set in lift.setList">
+				<div class="md-form row ml-1" ng-repeat="set in lift.setList">
 					<div class="col-3 px-0">
 						<input type="number" id="weight{{lift.LiftID}}:{{set.setID}}" ng-model="set.weight" class="form-control" />
 						<label for="weight{{lift.LiftID}}:{{set.setID}}">Weight</label>

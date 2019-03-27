@@ -78,7 +78,7 @@ using git_ripped.Models;
 			");
             EndContext();
             BeginContext(811, 618, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2e9a8db3ec0424eba1bfbbbcaa7cc9e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca78307e6a924c2f87b4d6388de02634", async() => {
                 BeginContext(817, 605, true);
                 WriteLiteral(@"
 				<div class=""md-form row"" ng-repeat=""set in lift.setList"">

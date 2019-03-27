@@ -17,35 +17,49 @@ body {
     line-height: 1.4;
 }
 
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
-}
-
-/* QR code generator */
-#qrCode {
-    margin: 15px;
-}
-
-/* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
-	.dropdown-menu{
-		left:0;
-		right: 0;
+	.single-stat {
+		box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.2);
+		padding: 10px;
+		margin-top: 60px;
+		margin-right: 80px;
 	}
 }
 
-/*Dev made*/
-.account-avatar{
-	background: lightgrey;
-	background-clip: content-box;
-}
+	/* Make .svg files in the carousel display properly in older browsers */
+	.carousel-inner .item img[src$=".svg"] {
+		width: 100%;
+	}
 
-.underline{
-	text-decoration: underline !important;
-	color: blue !important;
-}
+	/* QR code generator */
+	#qrCode {
+		margin: 15px;
+	}
+
+	/* Hide/rearrange for smaller screens */
+	@media screen and (max-width: 767px) {
+		/* Hide captions */
+		.carousel-caption {
+			display: none;
+		}
+
+		.dropdown-menu {
+			left: 0;
+			right: 0;
+		}
+
+		.single-stat {
+			margin-right: 15px;
+		}
+	}
+
+	/*Dev made*/
+	.account-avatar {
+		background: lightgrey;
+		background-clip: content-box;
+	}
+
+	.underline {
+		text-decoration: underline !important;
+		color: blue !important;
+	}

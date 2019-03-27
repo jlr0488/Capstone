@@ -100,3 +100,4 @@ D:\jmwen\repos\Capstone\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git
 D:\jmwen\repos\Capstone\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.dll
 D:\jmwen\repos\Capstone\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.pdb
 D:\jmwen\repos\Capstone\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.csproj.CopyComplete
+D:\jmwen\repos\Capstone\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\Razor\Views\Home\Stats.g.cshtml.cs
