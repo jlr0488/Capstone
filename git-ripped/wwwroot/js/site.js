@@ -72,6 +72,22 @@ app.controller('ViewAccountCtrl', function ($scope, $http) {
 
 	}
 
+	$scope.changePass = {
+		email: "",
+		username: "",
+		oldPassword: "",
+		newPassword: "",
+		newPassword2: ""
+	};
+
+	$scope.submitChangePassForm = function () {
+		//send validation info plus new password info that will need hashing 
+	}
+
+	$scope.doesPasswordMatch = function () {
+		return ($scope.changePass.newPassword === $scope.changePass.newPassword2 && $scope.changePass.newPassword !== "" && $scope.changePass.newPassword2 !== "");
+	} 
+
 	
 });
 
@@ -198,7 +214,7 @@ app.controller('LayoutCtrl', function ($scope, $http) {
 	}();
 	
 
-	$scope.loggedIn = false;
+	$scope.loggedIn = true;
 
 	$scope.signIn = function(){
 		//need to salt the password
@@ -216,6 +232,9 @@ app.controller('LayoutCtrl', function ($scope, $http) {
 			password2: ""
 		};
 	}
+
+
+
 
 	$scope.register = function()	{
 		//need to salt pass
