@@ -7,7 +7,7 @@ var app = angular.module("gitRipped", []);
 
 app.controller('indexCtrl', function ($scope) {
 	//do stuff for index Page
-	$scope.pounds = 1250;
+	$scope.pounds = 125000;
 	brickWeight = 7.71618;
 	carWeight = 4009;
 	eighteenWheelerWeight = 80000;
@@ -55,4 +55,44 @@ app.controller('indexCtrl', function ($scope) {
 
 		$scope.numItems = $scope.numItems.toFixed(2);
 	}();
+});
+
+app.controller('ViewAccountCtrl', function ($scope) {
+	$scope.basicInfo = {
+		firstName : "",
+		lastName : "",
+		email : "",
+		username : "",
+		password : ""
+	};
+
+	$scope.submitBasicInfoForm = function () {
+		//validate and send info through a post (after hashing password)
+	}
+});
+
+    	$scope.changePass = {
+       		email: "",
+        	username: "",
+        	oldPassword: "",
+        	newPassword: "",
+        	newPassword2: ""
+    	};
+
+    	$scope.submitChangePassForm = function () {
+        	//send validation info plus new password info that will need hashing
+    	}
+
+    	$scope.doesPasswordMatch = function () {
+        	return ($scope.changePass.newPassword === $scope.changePass.newPassword2 && $scope.changePass.newPassword !== "" && $scope.changePass.newPassword2 !== "");
+    	}
+});
+
+app.controller('LayoutCtrl', function ($scope) {
+	$(".nav .nav-link").on("click", function () {
+		$("li.active").removeClass("active");
+		$('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+	}());
+
+	$scope.loggedIn = false;
 });
