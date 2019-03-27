@@ -12538,11 +12538,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\jmwen\\repos\\Capstone\\Capstone\\git-ripped\\git-ripped.csproj",
+      "projectUniqueName": "D:\\jmwen\\repos\\Capstone\\Capstone\\Capstone\\git-ripped\\git-ripped.csproj",
       "projectName": "git-ripped",
-      "projectPath": "D:\\jmwen\\repos\\Capstone\\Capstone\\git-ripped\\git-ripped.csproj",
+      "projectPath": "D:\\jmwen\\repos\\Capstone\\Capstone\\Capstone\\git-ripped\\git-ripped.csproj",
       "packagesPath": "C:\\Users\\jmwen\\.nuget\\packages\\",
-      "outputPath": "D:\\jmwen\\repos\\Capstone\\Capstone\\git-ripped\\obj\\",
+      "outputPath": "D:\\jmwen\\repos\\Capstone\\Capstone\\Capstone\\git-ripped\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
