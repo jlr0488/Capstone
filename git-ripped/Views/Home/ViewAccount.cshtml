@@ -73,7 +73,52 @@
 			
 		</div>
 		<div class="tab-pane fade" id="changePass" role="tabpanel" aria-labelledby="ChangePassword">
-			
+            		<div class="row">
+                		<div class="text-center col-12 account-avatar">
+                    		<img alt="Profile Photo" src="~/images/Car.svg" class="img-circle img-responsive" width="120" height="120" />
+                		</div>
+            		</div>
+			<!-- Default form register -->
+			<form id="BasicInfoForm" class="text-center border border-light p-5">
+
+				<div class="form-row">
+					<!-- E-mail -->
+					<input type="email" id="ChangePassEmail" ng-model="changePass.email" class="form-control mb-4" placeholder="E-mail" required="required" />
+				</div>
+
+               		 	<div class="form-row mb-4">
+                    			<!--Username-->
+                    			<input type="text" id="ChangePassUsername" ng-model="changePass.username" class="form-control" placeholder="Username" required="required"/>
+                		</div>
+
+                		<div class="form-row mb-4">
+                    			<!-- Old Password -->
+                    			<input type="password" id="ChangePassOldPassword" ng-model="changePass.oldPassword" class="form-control" placeholder="Old Password" aria-describedby="dPasswordHelpBlock" required="required"/>
+                		</div>
+
+                		<div class="form-row mb-4">
+                    			<!-- New Password -->
+                    			<input type="password" id="ChangePassNewPassword" ng-model="changePass.newPassword" class="form-control" placeholder="New Password" aria-describedby="dPasswordHelpBlock" required="required"/>
+                    			<small id="PasswordHelpBlock" class="form-text text-muted mb-4">
+                        		At least 8 characters and 1 digit
+                    			</small>
+               				</div>
+
+                		<div class="form-row mb-4">
+                    			<!-- New Password Confirmation-->
+                    			<input type="password" id="ChangePassNewPassword2" ng-blur="doesPasswordMatch()" ng-model="changePass.newPassword2" class="form-control" placeholder="Confirm New Password" aria-describedby="dPasswordHelpBlock" required="required"/>
+                    			<div class="alert alert-warning" ng-if="!doesPasswordMatch() && changePass.NewPassword.$dirty && changePass.NewPassorwd2.$dirty">Passwords are not correct or don't match </div>
+                    			<small id="PasswordHelpBlock" class="form-text text-muted mb-4">
+                        		At least 8 characters and 1 digit
+                    			</small>
+                		</div>
+
+                		<!-- sign up button -->
+                		<button class="btn btn-info my-4 btn-block" ng-click="submitChangePassForm()" ng-disabled="changePass.$invalid || !doesPasswordMatch()" type="submit">Change Password</button>
+
+
+            		</form>
+            		<!-- Default form register -->
 		</div>
 	</div>
 
