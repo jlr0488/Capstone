@@ -5,7 +5,7 @@
 
 var app = angular.module("gitRipped", []);
 
-app.controller('indexCtrl', function ($scope) {
+app.controller('indexCtrl', function ($scope, $http) {
 	//do stuff for index Page
 	$scope.pounds = 125000;
 	brickWeight = 7.71618;
@@ -57,42 +57,173 @@ app.controller('indexCtrl', function ($scope) {
 	}();
 });
 
-app.controller('ViewAccountCtrl', function ($scope) {
+app.controller('ViewAccountCtrl', function ($scope, $http) {
 	$scope.basicInfo = {
 		firstName : "",
 		lastName : "",
 		email : "",
 		username : "",
-		password : ""
+		password: "",
+		password2: ""
 	};
 
 	$scope.submitBasicInfoForm = function () {
 		//validate and send info through a post (after hashing password)
+
 	}
+
+	
 });
 
-    	$scope.changePass = {
-       		email: "",
-        	username: "",
-        	oldPassword: "",
-        	newPassword: "",
-        	newPassword2: ""
-    	};
+app.controller('WorkoutCtrl', function ($scope, $http) {
+	//will eventually turn into, $scope.workout = getWorkout http stuff
 
-    	$scope.submitChangePassForm = function () {
-        	//send validation info plus new password info that will need hashing
-    	}
+	$scope.workout = {
+		id: "1",
+		userID: "1",
+		numberLifts: "2",
+		workoutComplete: "N",
+		StartDateTime: "",
+		CompleteDateTime: "",
+		Lifts: [
+			{
+				LiftID: "1",
+				WorkoutID: "1",
+				Sets: "3",
+				LiftOrderNumber: "1",
+				LiftNameID: "1",
+				LiftName: "Bench Press",
+				setList: [
+					{
+						setID: "1",
+						LiftID: "1",
+						reps: "",
+						weight: "",
+						setOrderNum: "1"
+					},
+					{
+						setID: "2",
+						LiftID: "1",
+						reps: "",
+						weight: "",
+						setOrderNum: "2"
+					},
+					{
+						setID: "3",
+						LiftID: "1",
+						reps: "",
+						weight: "",
+						setOrderNum: "3"
+					}
+				]
+			},
+			{
+				LiftID: "2",
+				WorkoutID: "1",
+				Sets: "3",
+				LiftOrderNumber: "2",
+				LiftNameID: "2",
+				LiftName: "Incline Press",
+				setList: [
+					{
+						setID: "1",
+						LiftID: "2",
+						reps: "",
+						weight: "",
+						setOrderNum: "1"
+					},
+					{
+						setID: "2",
+						LiftID: "2",
+						reps: "",
+						weight: "",
+						setOrderNum: "2"
+					},
+					{
+						setID: "3",
+						LiftID: "2",
+						reps: "",
+						weight: "",
+						setOrderNum: "3"
+					}
+				]
+			}
 
-    	$scope.doesPasswordMatch = function () {
-        	return ($scope.changePass.newPassword === $scope.changePass.newPassword2 && $scope.changePass.newPassword !== "" && $scope.changePass.newPassword2 !== "");
-    	}
-});
+		]
+	};
 
-app.controller('LayoutCtrl', function ($scope) {
+	$scope.addSet = function (liftID) {
+		$scope.workout.Lifts.forEach(function (element) {
+			if (element.LiftID === liftID) {
+				element.Sets = String(Number(element.Sets) + 1);
+				var newSet = {
+					setID: element.Sets,
+					LiftID: "2",
+					reps: "",
+					weight: "",
+					setOrderNum: "3"
+				}
+				element.setList.push(newSet);
+				
+			}
+		})
+	}
+
+	$scope.delSet = function (liftID) {
+		$scope.workout.Lifts.forEach(function (element) {
+			if (element.LiftID === liftID) {
+				element.Sets = String(Number(element.Sets) - 1);
+				element.setList.pop();
+			}
+		})
+	}
+
+
+})
+
+app.controller('LayoutCtrl', function ($scope, $http) {
 	$(".nav .nav-link").on("click", function () {
 		$("li.active").removeClass("active");
 		$('a[href="' + location.pathname + '"]').closest('li').addClass('active');
 	}());
+	$scope.init = function () {
+		$scope.basicInfo = {
+			firstName: "",
+			lastName: "",
+			email: "",
+			username: "",
+			password: "",
+			password2: ""
+		};
+	}();
+	
 
 	$scope.loggedIn = false;
+
+	$scope.signIn = function(){
+		//need to salt the password
+		//send http post or something to the server useing basicInfo.pass and basicInfo.email
+		
+	}
+
+	$scope.clearBasicUserInfo = function () {
+		$scope.basicInfo = {
+			firstName: "",
+			lastName: "",
+			email: "",
+			username: "",
+			password: "",
+			password2: ""
+		};
+	}
+
+	$scope.register = function()	{
+		//need to salt pass
+		//send http post or something to the server using basicInfo, make sure the order is right with zac
+	}
+
+
+	$scope.doesPasswordMatch = function () {
+		return ($scope.basicInfo.password === $scope.basicInfo.password2 && $scope.basicInfo.password !== "" && $scope.basicInfo.password2 !== "");
+	}
 });
