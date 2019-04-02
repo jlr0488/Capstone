@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div ng-controller="indexCtrl" ng-cloak>
+        <div class="text-center mt-5">
+            <button class="btn btn-primary btn-block mb-5">Start Your Workout!</button>
+        </div>
+
+        <div class="text-center">
+            <h4>You've Lifted {{pounds}} LBS! That's Equivilent to {{numItems}} {{item}}</h4>
+            <img class="img-circle img-fluid" src="{{imagePath}}"  />
+        </div>
+</div>
