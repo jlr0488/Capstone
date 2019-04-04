@@ -13,12 +13,12 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#line 1 "C:\Users\Juan Orta\Desktop\Orta-Cap\Capstone\git-ripped\Views\_ViewImports.cshtml"
+#line 1 "D:\jmwen\repos\Capstone\Capstone\Capstone\git-ripped\Views\_ViewImports.cshtml"
 using git_ripped;
 
 #line default
 #line hidden
-#line 2 "C:\Users\Juan Orta\Desktop\Orta-Cap\Capstone\git-ripped\Views\_ViewImports.cshtml"
+#line 2 "D:\jmwen\repos\Capstone\Capstone\Capstone\git-ripped\Views\_ViewImports.cshtml"
 using git_ripped.Models;
 
 #line default
@@ -51,7 +51,7 @@ using git_ripped.Models;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-#line 1 "C:\Users\Juan Orta\Desktop\Orta-Cap\Capstone\git-ripped\Views\Home\Stats.cshtml"
+#line 1 "D:\jmwen\repos\Capstone\Capstone\Capstone\git-ripped\Views\Home\Stats.cshtml"
   
 	ViewData["Title"] = "Stats";
 	Layout = "~/Views/Shared/_Layout.cshtml";
@@ -59,7 +59,7 @@ using git_ripped.Models;
 #line default
 #line hidden
             BeginContext(82, 54, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "518f61188ab943f0b35b18692d642758", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ae47a7662b4ae66963be2b8ed58b9fd7c179d1f83993", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
