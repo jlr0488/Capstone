@@ -93,93 +93,97 @@ app.controller('ViewAccountCtrl', function ($scope, $http) {
 
 app.controller('WorkoutCtrl', function ($scope, $http) {
 	//will eventually turn into, $scope.workout = getWorkout http stuff
-
 	$scope.workout = {
-		id: "1",
-		userID: "1",
-		numberLifts: "2",
-		workoutComplete: "N",
+		SessionToken: 1,
+		NumberLifts: 3,
+		WorkoutComplete: "Y",
 		StartDateTime: "",
 		CompleteDateTime: "",
 		Lifts: [
 			{
-				LiftID: "1",
-				WorkoutID: "1",
-				Sets: "3",
-				LiftOrderNumber: "1",
-				LiftNameID: "1",
+				Sets: 3,
+				LiftOrderNumber: 1,
+				LiftNameID: 1,
 				LiftName: "Bench Press",
-				setList: [
+				SetList: [
 					{
-						setID: "1",
-						LiftID: "1",
-						reps: "",
-						weight: "",
-						setOrderNum: "1"
+						Repetitions: 4,
+						Weight: 50,
+						SetOrderNumber: 1
 					},
 					{
-						setID: "2",
-						LiftID: "1",
-						reps: "",
-						weight: "",
-						setOrderNum: "2"
+						Repetitions: 4,
+						Weight: 50,
+						SetOrderNumber: 2
 					},
 					{
-						setID: "3",
-						LiftID: "1",
-						reps: "",
-						weight: "",
-						setOrderNum: "3"
+						Repetitions: 4,
+						Weight: 50,
+						SetOrderNumber: 3
 					}
 				]
 			},
 			{
-				LiftID: "2",
-				WorkoutID: "1",
-				Sets: "3",
-				LiftOrderNumber: "2",
-				LiftNameID: "2",
+				Sets: 2,
+				LiftOrderNumber: 2,
+				LiftNameID: 4,
 				LiftName: "Incline Press",
-				setList: [
+				SetList: [
 					{
-						setID: "1",
-						LiftID: "2",
-						reps: "",
-						weight: "",
-						setOrderNum: "1"
+						Repetitions: 4,
+						Weight: 50,
+						SetOrderNumber: 1
 					},
 					{
-						setID: "2",
-						LiftID: "2",
-						reps: "",
-						weight: "",
-						setOrderNum: "2"
-					},
+						Repetitions: 4,
+						Weight: 50,
+						SetOrderNumber: 2
+					}
+				]
+			},
+			{
+				Sets: 1,
+				LiftOrderNumber: 3,
+				LiftNameID: 2,
+				LiftName: "Overhead Press",
+				SetList: [
 					{
-						setID: "3",
-						LiftID: "2",
-						reps: "",
-						weight: "",
-						setOrderNum: "3"
+						Repetitions: 4,
+						Weight: 50,
+						SetOrderNumber: 1
 					}
 				]
 			}
-
 		]
 	};
+	$scope.init = function () {
+		$http.get("../api/Workout/1/2/")
+			.then(function (response) {
+				$scope.workout = angular.fromJson(response.data);
+
+			})
+			, function (response) {
+				alert("An error has occured getting workout 1");
+			}
+
+		console.log($scope.workout);
+	}();
+	
+	
+
 
 	$scope.addSet = function (liftID) {
 		$scope.workout.Lifts.forEach(function (element) {
 			if (element.LiftID === liftID) {
-				element.Sets = String(Number(element.Sets) + 1);
+				element.Sets = Number(element.Sets) + 1;
 				var newSet = {
 					setID: element.Sets,
-					LiftID: "2",
+					LiftID: liftID,
 					reps: "",
 					weight: "",
-					setOrderNum: "3"
+					setOrderNum: element.LiftOrderNumber + 1
 				}
-				element.setList.push(newSet);
+				element.SetList.push(newSet);
 				
 			}
 		})
@@ -188,8 +192,8 @@ app.controller('WorkoutCtrl', function ($scope, $http) {
 	$scope.delSet = function (liftID) {
 		$scope.workout.Lifts.forEach(function (element) {
 			if (element.LiftID === liftID) {
-				element.Sets = String(Number(element.Sets) - 1);
-				element.setList.pop();
+				element.Sets = Number(element.Sets) - 1;
+				element.SetList.pop();
 			}
 		})
 	}
