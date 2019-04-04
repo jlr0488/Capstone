@@ -16,17 +16,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace gitripped.API
 {
-    [Route("api/Workout")]
+    [Route("api/Workout/{tok}/{workID}")]
     public class GetWorkout : Controller
     {
         // GET api/Workout
         [HttpGet]
-        public IActionResult GET([FromBody]JObject json)
+        public IActionResult GET(int tok, int workID)
         {
             
-            dynamic jsonResponse = json;
-            int token = jsonResponse.Token;
-            int workoutID = jsonResponse.WorkoutID;
+            int token = tok;
+            int workoutID = workID;
 
             try
             {

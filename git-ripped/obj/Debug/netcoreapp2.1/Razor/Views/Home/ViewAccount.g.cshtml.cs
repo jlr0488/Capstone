@@ -92,7 +92,7 @@ using git_ripped.Models;
 					");
             EndContext();
             BeginContext(1083, 109, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a03332f7ceb44f26b2b65650fb595505", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ea04ae4d744c4f7685283684936a43a3", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -114,7 +114,7 @@ using git_ripped.Models;
             WriteLiteral("\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<!-- Default form register -->\r\n\t\t\t");
             EndContext();
             BeginContext(1255, 1316, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1aae6bc1c5444378978bda2bba7c7845", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e6b1cc95fb8945b987141e3c91517866", async() => {
                 BeginContext(1324, 1240, true);
                 WriteLiteral(@"
 
@@ -174,7 +174,7 @@ using git_ripped.Models;
                     		");
             EndContext();
             BeginContext(2947, 109, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "cb1316ed96464f1ea8fa7545a4ceee5a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "1ed86f8092024561a3341805aec5d3ba", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -196,7 +196,7 @@ using git_ripped.Models;
             WriteLiteral("\r\n                \t\t</div>\r\n            \t\t</div>\r\n\t\t\t<!-- Default form register -->\r\n\t\t\t");
             EndContext();
             BeginContext(3144, 2455, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1f86f96e4c5468db07164c4b243c41a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "648bc16fd6254fe6af275440c58b49f4", async() => {
                 BeginContext(3213, 2379, true);
                 WriteLiteral(@"
 

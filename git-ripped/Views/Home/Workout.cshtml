@@ -14,21 +14,21 @@
 		</li>
 
 	</ul>
-	<div class="tab-content" id="myTabContent">
+	<div class="tab-content" id="myTabContent" ng-cloak>
 		<div ng-repeat="lift in workout.Lifts" ng-class="{show : $index==0, active : $index==0}" class="mx-3 tab-pane fade" id="lift{{lift.LiftID}}" role="tabpanel" aria-labelledby="lift{{lift.LiftID}}">
 			
 			<form>
-				<div class="md-form row ml-1" ng-repeat="set in lift.setList">
+				<div class="md-form row ml-1" ng-repeat="set in lift.SetList">
 					<div class="col-3 px-0">
-						<input type="number" id="weight{{lift.LiftID}}:{{set.setID}}" ng-model="set.weight" class="form-control" />
-						<label for="weight{{lift.LiftID}}:{{set.setID}}">Weight</label>
+						<input type="number" id="weight{{lift.LiftID}}:{{set.SetID}}" ng-model="set.Weight" class="form-control" />
+						<label for="weight{{lift.LiftID}}:{{set.SetID}}">Weight</label>
 					</div>
 					<div class="col-1 text-center">
 						<p>&times;</p>
 					</div>
 					<div class="col-3 px-0">
-						<input type="number" id="reps{{lift.LiftID}}:{{set.setID}}" ng-model="set.reps" class="form-control" />
-						<label for="reps{{lift.LiftID}}:{{set.setID}}">Reps</label>
+						<input type="number" id="reps{{lift.LiftID}}:{{set.SetID}}" ng-model="set.Repetitions" class="form-control" />
+						<label for="reps{{lift.LiftID}}:{{set.SetID}}">Reps</label>
 					</div>
 				</div>
 			</form>
@@ -43,5 +43,7 @@
 	</div>
 	<br />
 	<button class="btn btn-dark-green col-12 w-100" ng-click="finishWorkout()">Finish Workout</button>
-
+	<p>
+		{{workout}}
+	</p>
 </div>
