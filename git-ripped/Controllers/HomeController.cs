@@ -32,6 +32,11 @@ namespace git_ripped.Controllers
 			return View();
 		}
 
+        public IActionResult Progress()
+        {
+            return View();
+        }
+
 		public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
