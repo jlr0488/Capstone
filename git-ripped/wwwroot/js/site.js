@@ -69,23 +69,32 @@ app.controller('ViewAccountCtrl', function ($scope) {
 	$scope.submitBasicInfoForm = function () {
 		//validate and send info through a post (after hashing password)
 	}
-});
 
-    	$scope.changePass = {
-       		email: "",
-        	username: "",
-        	oldPassword: "",
-        	newPassword: "",
-        	newPassword2: ""
-    	};
+    $scope.changePass = {
+     	email: "",
+       	username: "",
+       	oldPassword: "",
+       	newPassword: "",
+       	newPassword2: ""
+    };
 
-    	$scope.submitChangePassForm = function () {
-        	//send validation info plus new password info that will need hashing
-    	}
+    $scope.submitChangePassForm = function () {
+       	//send validation info plus new password info that will need hashing
+    }
 
-    	$scope.doesPasswordMatch = function () {
-        	return ($scope.changePass.newPassword === $scope.changePass.newPassword2 && $scope.changePass.newPassword !== "" && $scope.changePass.newPassword2 !== "");
-    	}
+    $scope.doesPasswordMatch = function () {
+       	return ($scope.changePass.newPassword === $scope.changePass.newPassword2 && $scope.changePass.newPassword !== "" && $scope.changePass.newPassword2 !== "");
+    }
+
+    $scope.mailSetting = {
+        oldEmail: "",
+        newEmail: "",
+        password: ""
+    };
+
+    $scope.submitMailSettingForm = function () {
+        //send validation info plus new password info that will need hashing
+    }
 });
 
 app.controller('LayoutCtrl', function ($scope) {
