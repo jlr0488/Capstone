@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace gitripped.API
 {
-    [Route("api/Workout/{tok}/{workID}")]
+    [Route("api/Workout")]
     public class GetWorkout : Controller
     {
         // GET api/Workout
@@ -108,48 +108,7 @@ namespace gitripped.API
             }
         }
 
-        [Route("api/GetWorkoutList/{tok}")]
-        // GET api/Workout
-        [HttpGet]
-        public IActionResult GET(int tok)
-        {
-            try
-            {
-                SqlConnection conn = Helper.OpenSqlConnection();
-                int UserID;
-                if ((UserID = Helper.CheckSessionToken(tok, conn)) != -1)
-                {
-                    SqlCommand command = new SqlCommand("SELECT * FROM lift.Workout WHERE UserID = @UserID;", conn);
-                    command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
-                    command.Parameters["@UserID"].Value = UserID;
-                    SqlDataReader reader = command.ExecuteReader();
-                    List<GWorkout> workoutList = new List<GWorkout>();
-                    while(reader.Read())
-                    {
-                        GWorkout workout = new GWorkout();
-                        workout.WorkoutID = (int)reader["WorkoutID"];
-                        workout.UserID = (int)reader["UserID"];
-                        workout.NumberLifts = (int)reader["NumberLifts"];
-                        workout.WorkoutComplete = reader["WorkoutComplete"].ToString();
-                        workout.StartDateTime = (DateTime)reader["StartDatetime"];
-                        workout.CompleteDateTime = (DateTime)reader["CompleteDatetime"];
-                        workoutList.Add(workout);
-                    }
-
-                    var message = JsonConvert.SerializeObject(workoutList);
-                    return StatusCode(200, message);
-                }
-                else
-                {
-                    string message = "{\"Error\":\"Session Token: " + tok + " Was Not Verified\"}";
-                    return StatusCode(403, message);
-                }
-            }
-            catch(Exception E)
-            {
-                return StatusCode(500, E.Message);
-            }
-        }
+        
 
 
 
