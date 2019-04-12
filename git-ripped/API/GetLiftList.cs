@@ -28,20 +28,32 @@ namespace gitripped.API
                     LiftListItem item = new LiftListItem();
                     item.LiftNameID = (int)reader["LiftNameID"];
                     item.LiftName = reader["LiftName"].ToString();
-                    item.PrimaryMuscleID = (int)reader["PrimaryMuscleID"];
-                    item.SecondaryMuscleID = (int)reader["SecondaryMuscleID"];
-                    item.PrimaryFatigueRating = (int)reader["PrimaryFatigueRating"];
-                    item.SecondaryFatigueRating = (int)reader["SecondaryFatigueRating"];
-                    liftList.Add(item);
+                    if (!DBNull.Value.Equals(reader["PrimaryMuscleID"]))
+                    {
+                        item.PrimaryMuscleID = (int)reader["PrimaryMuscleID"];
+                    }
+                    if (!DBNull.Value.Equals(reader["SecondaryMuscleID"]))
+                    {
+                        item.SecondaryMuscleID = (int)reader["SecondaryMuscleID"];
+                    }
+                    if (!DBNull.Value.Equals(reader["PrimaryFatigueRating"]))
+                    {
+                        item.PrimaryFatigueRating = (int)reader["PrimaryFatigueRating"];
+                    }
+                    if (!DBNull.Value.Equals(reader["SecondaryFatigueRating"]))
+                    {
+                        item.SecondaryFatigueRating = (int)reader["SecondaryFatigueRating"];
+                    }                    
+                               liftList.Add(item);
                 }
 
                 var message = JsonConvert.SerializeObject(liftList);
 
                 return StatusCode(200, message);
             }
-            catch
+            catch(Exception E)
             {
-                return StatusCode(400);
+                return StatusCode(400, E.Message);
             }
         }
     }

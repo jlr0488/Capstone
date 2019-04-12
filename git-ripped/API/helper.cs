@@ -194,5 +194,17 @@ namespace gitripped.API
 
     }
 
+    class MaxLiftItem
+    {
+        public int Max { get; set; }
+        public int LiftNameID { get; set; }
+        public string LiftName { get; set; }
+        
+        public MaxLiftItem()
+        {
+
+        }
+    }
+
 
 }
