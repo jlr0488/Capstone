@@ -23,17 +23,17 @@ namespace gitripped.API
         [HttpGet]
         public IActionResult GET(int tok, int workID)
         {
-            
+
             int token = tok;
             int workoutID = workID;
 
             try
             {
-                SqlConnection conn = OpenSqlConnection();
+                SqlConnection conn = Helper.OpenSqlConnection();
                 int UserID;
-                if ((UserID = CheckSessionToken(token, conn)) != -1)
+                if ((UserID = Helper.CheckSessionToken(token, conn)) != -1)
                 {
-                    Workout workout = new Workout();
+                    GWorkout workout = new GWorkout();
                     workout.WorkoutID = workoutID;
                     workout.UserID = UserID;
 
@@ -56,7 +56,7 @@ namespace gitripped.API
                         }
                         reader.Close();
 
-                        if(workout.NumberLifts != 0)
+                        if (workout.NumberLifts != 0)
                         {
                             command = new SqlCommand("SELECT * FROM lift.LiftWithName WHERE WorkoutID = @WorkoutID ORDER BY LiftOrderNumber", conn);
                             command.Parameters.Add("@WorkoutID", System.Data.SqlDbType.Int);
@@ -64,8 +64,8 @@ namespace gitripped.API
                             reader = command.ExecuteReader();
                             while (reader.Read())
                             {
-                                Lift lift = new Lift((int)reader["LiftID"], (int)reader["WorkoutID"], (int)reader["NumberSets"], (int)reader["LiftOrderNumber"], (int)reader["LiftNameID"], (string)reader["LiftName"]);
-                                if(lift.Sets != 0)
+                                GLift lift = new GLift((int)reader["LiftID"], (int)reader["WorkoutID"], (int)reader["NumberSets"], (int)reader["LiftOrderNumber"], (int)reader["LiftNameID"], (string)reader["LiftName"]);
+                                if (lift.Sets != 0)
                                 {
                                     SqlCommand command2 = new SqlCommand("SELECT * FROM lift.LiftSet WHERE LiftID = @LiftID", conn);
                                     command2.Parameters.Add("@LiftID", System.Data.SqlDbType.Int);
@@ -73,7 +73,7 @@ namespace gitripped.API
                                     SqlDataReader reader2 = command2.ExecuteReader();
                                     while (reader2.Read())
                                     {
-                                        Set set = new Set((int)reader2["SetID"], (int)reader2["LiftID"], (int)reader2["Repetitions"], (int)reader2["Weight"], (int)reader2["SetOrderNumber"]);
+                                        GSet set = new GSet((int)reader2["SetID"], (int)reader2["LiftID"], (int)reader2["Repetitions"], (int)reader2["Weight"], (int)reader2["SetOrderNumber"]);
                                         lift.SetList.Add(set);
                                     }
                                 }
@@ -90,7 +90,7 @@ namespace gitripped.API
                     }
                     else
                     {
-                        string error = ErrorCreator("Workout was not found in the database");
+                        string error = Helper.ErrorCreator("Workout was not found in the database");
                         reader.Close();
                         return StatusCode(404, error);
                     }
@@ -101,127 +101,61 @@ namespace gitripped.API
                     return StatusCode(403, message);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 string message = "{\"Error\":\"" + e.ToString() + "\"}";
-                return StatusCode(400, message);  
+                return StatusCode(400, message);
             }
         }
-        
-    
 
-        static SqlConnection OpenSqlConnection()
+        [Route("api/GetWorkoutList/{tok}")]
+        // GET api/Workout
+        [HttpGet]
+        public IActionResult GET(int tok)
         {
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = "Server=tcp:gitripped.database.windows.net,1433;Initial Catalog=gitripped;Persist Security Info=False;User ID=joshrobbins;Password=TempPass1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;MultipleActiveResultSets=True";
-            conn.Open();
-            return conn;
-        }
-
-        static int CheckSessionToken(int token, SqlConnection conn)
-        {
-            SqlCommand command = new SqlCommand("Select Active, UserID From usr.SessionToken WHERE SessionToken = @Token", conn);
-            command.Parameters.Add("@Token", System.Data.SqlDbType.Int);
-            command.Parameters["@Token"].Value = token;
-            SqlDataReader reader = command.ExecuteReader();
-            if(reader.HasRows)
+            try
             {
-                reader.Read();
-                bool Active = (bool)reader["Active"];
-                int UserID = (int)reader["UserID"];
-                if (!Active)
+                SqlConnection conn = Helper.OpenSqlConnection();
+                int UserID;
+                if ((UserID = Helper.CheckSessionToken(tok, conn)) != -1)
                 {
-                    reader.Close();
-                    return -1;
+                    SqlCommand command = new SqlCommand("SELECT * FROM lift.Workout WHERE UserID = @UserID;", conn);
+                    command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
+                    command.Parameters["@UserID"].Value = UserID;
+                    SqlDataReader reader = command.ExecuteReader();
+                    List<GWorkout> workoutList = new List<GWorkout>();
+                    while(reader.Read())
+                    {
+                        GWorkout workout = new GWorkout();
+                        workout.WorkoutID = (int)reader["WorkoutID"];
+                        workout.UserID = (int)reader["UserID"];
+                        workout.NumberLifts = (int)reader["NumberLifts"];
+                        workout.WorkoutComplete = reader["WorkoutComplete"].ToString();
+                        workout.StartDateTime = (DateTime)reader["StartDatetime"];
+                        workout.CompleteDateTime = (DateTime)reader["CompleteDatetime"];
+                        workoutList.Add(workout);
+                    }
+
+                    var message = JsonConvert.SerializeObject(workoutList);
+                    return StatusCode(200, message);
                 }
                 else
                 {
-                    reader.Close();
-                    return UserID;
+                    string message = "{\"Error\":\"Session Token: " + tok + " Was Not Verified\"}";
+                    return StatusCode(403, message);
                 }
             }
-            else
+            catch(Exception E)
             {
-                reader.Close();
-                return -1;
+                return StatusCode(500, E.Message);
             }
-
         }
 
-        static string ErrorCreator(string error)
-        {
-            string message = "{\"Error\":\"" + error + "\"}";
-            return message;
-        }
+
+
+        
     }
 }
 
-
-
-class Workout
-{
-    public int WorkoutID { get; set; }
-    public int UserID { get; set; }
-    public int NumberLifts { get; set; }
-    public string WorkoutComplete { get; set; }
-    public DateTime StartDateTime { get; set; }
-    public DateTime CompleteDateTime { get; set; }
-    public List<Lift> Lifts { get; set; }
-
-    public Workout()
-    {
-        Lifts = new List<Lift>();
-    }
-}
-
-class Lift
-{
-    public int LiftID { get; set; }
-    public int WorkoutID { get; set; }
-    public int Sets { get; set; }
-    public int LiftOrderNumber { get; set; }
-    public int LiftNameID { get; set; }
-    public string LiftName { get; set; }
-    public List<Set> SetList { get; set; }
-
-    public Lift()
-    {
-        SetList = new List<Set>();
-    }
-
-    public Lift(int liftID, int workoutID, int sets, int liftOrderNumber, int liftNameID, string liftName)
-    {
-        LiftID = liftID;
-        WorkoutID = workoutID;
-        Sets = sets;
-        LiftOrderNumber = liftOrderNumber;
-        LiftNameID = liftNameID;
-        LiftName = liftName;
-        SetList = new List<Set>();
-    }
-}
-
-class Set
-{
-    public int SetID { get; set; }
-    public int LiftID { get; set; }
-    public int Repetitions { get; set; }
-    public int Weight { get; set; }
-    public int SetOrderNumber { get; set; }
-
-    public Set()
-    {
-
-    }
-
-    public Set(int setID, int liftID, int repetitions, int weight, int setOrderNumber)
-    {
-        SetID = setID;
-        LiftID = liftID;
-        Repetitions = repetitions;
-        Weight = weight;
-        SetOrderNumber = setOrderNumber;
-    }
-}
 
 

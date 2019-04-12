@@ -25,10 +25,10 @@ public class CreateWorkout : Controller
         {
             try
             {
-                Workout workout = JsonConvert.DeserializeObject<Workout>(json.ToString());
-                SqlConnection conn = OpenSqlConnection();
+                SWorkout workout = JsonConvert.DeserializeObject<SWorkout>(json.ToString());
+                SqlConnection conn = Helper.OpenSqlConnection();
                 int UserID;
-                if ((UserID = CheckSessionToken(workout.SessionToken, conn)) != -1)
+                if ((UserID = Helper.CheckSessionToken(workout.SessionToken, conn)) != -1)
                 {
                     //Create the workout in the database with the max + 1 workoutid
                     SqlCommand command = new SqlCommand("INSERT INTO Lift.Workout VALUES (COALESCE((SELECT MAX(WorkoutID) + 1 FROM Lift.Workout), 1), @UserID, @NumberLifts, @WorkoutComplete, @StartDatetime, @CompleteDatetime);", conn);
@@ -97,7 +97,7 @@ public class CreateWorkout : Controller
                 }
                 else
                 {
-                    string error = ErrorCreator("Session Token: " + workout.SessionToken + " Was Not Verified");
+                    string error = Helper.ErrorCreator("Session Token: " + workout.SessionToken + " Was Not Verified");
                     return StatusCode(403, error);
                 }
 
@@ -109,107 +109,6 @@ public class CreateWorkout : Controller
                 return StatusCode(500, E.Message);
             }
         }
-
-    class Workout
-    {
-        public int SessionToken { get; set; }
-        public int NumberLifts { get; set; }
-        public string WorkoutComplete { get; set; }
-        public DateTime StartDateTime { get; set; }
-        public DateTime CompleteDateTime { get; set; }
-        public List<Lift> Lifts { get; set; }
-
-        public Workout()
-        {
-            Lifts = new List<Lift>();
-        }
-    }
-
-    class Lift
-    {
-        public int Sets { get; set; }
-        public int LiftOrderNumber { get; set; }
-        public int LiftNameID { get; set; }
-        public string LiftName { get; set; }
-        public List<Set> SetList { get; set; }
-
-        public Lift()
-        {
-            SetList = new List<Set>();
-        }
-
-        public Lift(int sets, int liftOrderNumber, int liftNameID, string liftName)
-        {
-            Sets = sets;
-            LiftOrderNumber = liftOrderNumber;
-            LiftNameID = liftNameID;
-            LiftName = liftName;
-            SetList = new List<Set>();
-        }
-    }
-
-    class Set
-    {
-        public int Repetitions { get; set; }
-        public int Weight { get; set; }
-        public int SetOrderNumber { get; set; }
-
-        public Set()
-        {
-
-        }
-
-        public Set(int repetitions, int weight, int setOrderNumber)
-        {
-            Repetitions = repetitions;
-            Weight = weight;
-            SetOrderNumber = setOrderNumber;
-        }
-    }
-
-    static SqlConnection OpenSqlConnection()
-    {
-        SqlConnection conn = new SqlConnection();
-        conn.ConnectionString = "Server=tcp:gitripped.database.windows.net,1433;Initial Catalog=gitripped;Persist Security Info=False;User ID=joshrobbins;Password=TempPass1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;MultipleActiveResultSets=True";
-        conn.Open();
-        return conn;
-    }
-
-    static int CheckSessionToken(int token, SqlConnection conn)
-    {
-        SqlCommand command = new SqlCommand("Select Active, UserID From usr.SessionToken WHERE SessionToken = @Token", conn);
-        command.Parameters.Add("@Token", System.Data.SqlDbType.Int);
-        command.Parameters["@Token"].Value = token;
-        SqlDataReader reader = command.ExecuteReader();
-        if (reader.HasRows)
-        {
-            reader.Read();
-            bool Active = (bool)reader["Active"];
-            int UserID = (int)reader["UserID"];
-            if (!Active)
-            {
-                reader.Close();
-                return -1;
-            }
-            else
-            {
-                reader.Close();
-                return UserID;
-            }
-        }
-        else
-        {
-            reader.Close();
-            return -1;
-        }
-
-    }
-
-    static string ErrorCreator(string error)
-    {
-        string message = "{\"Error\":\"" + error + "\"}";
-        return message;
-    }
 
     }
 }
