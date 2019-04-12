@@ -178,4 +178,21 @@ namespace gitripped.API
         }
     }
 
+    class LiftListItem
+    {
+        public int LiftNameID { get; set; }
+        public string LiftName { get; set; }
+        public int PrimaryMuscleID { get; set; }
+        public int SecondaryMuscleID { get; set; }
+        public int PrimaryFatigueRating { get; set; }
+        public int SecondaryFatigueRating { get; set; }
+
+        public LiftListItem()
+        {
+
+        }
+
+    }
+
+
 }
