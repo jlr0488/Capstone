@@ -7,11 +7,11 @@
 	<h2>Find Your Workout</h2>
 
 	<div class="card-columns">
-		<a ng-repeat="workout in workoutList" href="/home/workout?workoutID=1">
+		<a ng-repeat="workout in workoutList" href="/home/workout/1">
 			<div class="card mt-2 mb-3" >
 				<div class="card-body">
-					<h5 class="card-title">{{workout.WorkoutID}}</h5>
-					<p class="card-text">{{workout.CompleteDateTime}}</p>
+					<h5 class="card-title">{{workout.CompleteDateTime | date}}</h5>
+					<p class="card-text">{{workout.WorkoutID}}</p>
 				</div>
 			</div>
 		</a>

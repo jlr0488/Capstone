@@ -97,10 +97,10 @@ app.controller('WorkoutCtrl', function ($scope, $http, $location) {
 		
 	};
 	$scope.init = function () {
-		$scope.workoutID = $location.search().workoutID;
+		$scope.workoutID = window.location.pathname.split('/').pop();
 		console.log($scope.workoutID);
 
-		$http.get("../api/Workout?tok=1&workID=" + $scope.workoutID)
+		$http.get("../../api/Workout?tok=1&workID=" + $scope.workoutID)
 			.then(function (response) {
 				$scope.workout = angular.fromJson(response.data);
 
