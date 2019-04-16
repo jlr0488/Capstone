@@ -69,9 +69,39 @@
 			</form>
 			<!-- Default form register -->
 		</div>
-		<div class="tab-pane fade" id="mailSettings" role="tabpanel" aria-labelledby="MailSettings">
-			
-		</div>
+        <div class="tab-pane fade" id="mailSettings" role="tabpanel" aria-labelledby="MailSettings">
+            <div class="row">
+                <div class="text-center col-12 account-avatar">
+                    <img alt="Profile Photo" src="~/images/Car.svg" class="img-circle img-responsive" width="120" height="120" />
+                </div>
+            </div>
+            <!-- Default form register -->
+            <form id="MailSettingForm" class="text-center border border-light p-5">
+
+                <div class="form-row">
+                    <!-- E-mail -->
+                    <input type="email" id="MailSettingOldEmail" ng-model="mailSetting.oldEmail" class="form-control mb-4" placeholder="Old E-mail">
+                </div>
+
+                <div class="form-row">
+                    <!-- E-mail -->
+                    <input type="email" id="MailSettingNewEmail" ng-model="mailSetting.newEmail" class="form-control mb-4" placeholder="New E-mail">
+                </div>
+
+                <div class="form-row mb-4">
+                    <!-- Password -->
+                    <input type="password" id="Password" ng-model="password" class="form-control" placeholder="Password" aria-describedby="dPasswordHelpBlock">
+                    <small id="PasswordHelpBlock" class="form-text text-muted mb-4">
+                        At least 8 characters and 1 digit
+                    </small>
+                </div>
+
+                <!-- Sign up button -->
+                <button class="btn btn-info my-4 btn-block" ng-click="submitMailSettingForm()" type="submit">Update Email</button>
+
+            </form>
+            <!-- Default form register -->
+        </div>
 		<div class="tab-pane fade" id="changePass" role="tabpanel" aria-labelledby="ChangePassword">
             		<div class="row">
                 		<div class="text-center col-12 account-avatar">

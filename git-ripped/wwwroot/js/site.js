@@ -88,6 +88,15 @@ app.controller('ViewAccountCtrl', function ($scope, $http) {
 		return ($scope.changePass.newPassword === $scope.changePass.newPassword2 && $scope.changePass.newPassword !== "" && $scope.changePass.newPassword2 !== "");
 	} 
 
+    $scope.mailSetting = {
+        oldEmail: "",
+        newEmail: "",
+        password: ""
+    };
+
+    $scope.submitMailSettingForm = function () {
+        //send validation info plus new password info that will need hashing
+    }
 	
 });
 
