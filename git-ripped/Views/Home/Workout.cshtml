@@ -8,35 +8,47 @@
 
 	<ul class="nav nav-tabs" id="workoutTabs" role="tablist">
 		<li ng-repeat="lift in workout.Lifts" class="nav-item">
-			<a class="nav-link" ng-class="{show : $index==0, active : $index==0}" aria-selected="{{$index==0}}" id="{{lift.LiftID}}" data-toggle="tab" href="#lift{{lift.LiftID}}" role="tab" aria-controls="lift{{lift.LiftID}}">
+			<a class="nav-link" aria-selected="{{$index==0}}" id="{{lift.LiftID}}" data-toggle="tab" href="#lift{{$index}}" role="tab" aria-controls="lift{{$index}}">
 				{{lift.LiftName}}
+			</a>
+			
+		</li>
+		<li class="nav-item">
+			<a class="nav-link active" data-toggle="tab" href="#liftList" role="tab" aria-controls="liftList" >
+				<i class="fas fa-plus"></i>
 			</a>
 		</li>
 
 	</ul>
 	<div class="tab-content" id="myTabContent" ng-cloak>
-		<div ng-repeat="lift in workout.Lifts" ng-class="{show : $index==0, active : $index==0}" class="mx-3 tab-pane fade" id="lift{{lift.LiftID}}" role="tabpanel" aria-labelledby="lift{{lift.LiftID}}">
-			
+		<div ng-repeat="lift in workout.Lifts" class="mx-3 tab-pane fade" id="lift{{$index}}" role="tabpanel" aria-labelledby="lift{{$index}}">
 			<form>
 				<div class="md-form row ml-1" ng-repeat="set in lift.SetList">
 					<div class="col-3 px-0">
-						<input type="number" id="weight{{lift.LiftID}}:{{set.SetID}}" ng-model="set.Weight" class="form-control" />
-						<label for="weight{{lift.LiftID}}:{{set.SetID}}">Weight</label>
+						<input type="number" id="weight{{lift.LiftNameID}}:{{set.SetID}}" ng-model="set.Weight" class="form-control" />
+						<label for="weight{{lift.LiftNameID}}:{{set.SetID}}">Weight</label>
 					</div>
 					<div class="col-1 text-center">
 						<p>&times;</p>
 					</div>
 					<div class="col-3 px-0">
-						<input type="number" id="reps{{lift.LiftID}}:{{set.SetID}}" ng-model="set.Repetitions" class="form-control" />
-						<label for="reps{{lift.LiftID}}:{{set.SetID}}">Reps</label>
+						<input type="number" id="reps{{lift.LiftNameID}}:{{set.SetID}}" ng-model="set.Repetitions" class="form-control" />
+						<label for="reps{{lift.LiftNameID}}:{{set.SetID}}">Reps</label>
 					</div>
 				</div>
 			</form>
 			<div class="row">
-				<button class="ml-0 btn btn-primary" ng-click="addSet(lift.LiftID)">Add Set</button>
-				<button class="btn btn-red" ng-click="delSet(lift.LiftID)">Delete Set</button>
+				<button class="ml-0 btn btn-primary" ng-click="addSet(lift.LiftNameID)">Add Set</button>
+				<button class="btn btn-red" ng-click="delSet(lift.LiftNameID)">Delete Set</button>
 			</div>
 			
+		</div>
+		<div class="mx-3 tab-pane fade show active" id="liftList" role="tabpanel" aria-labelledby="liftList">
+			<ul>
+				<li ng-repeat="lift in LiftList">
+					<a ng-click="addLift(lift.LiftNameID)">{{lift.LiftName}}</a>
+				</li>
+			</ul>
 		</div>
 
 

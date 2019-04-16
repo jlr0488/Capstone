@@ -93,31 +93,61 @@ app.controller('ViewAccountCtrl', function ($scope, $http) {
 
 app.controller('WorkoutCtrl', function ($scope, $http, $location) {
 	//will eventually turn into, $scope.workout = getWorkout http stuff
+	var startDateTime = new Date().toJSON("yyyy/MM/dd HH:mm");
 	$scope.workout = {
-		
+		SessionToken: 1,
+			NumberLifts: 0,
+			WorkoutComplete: "N",
+			StartDateTime: startDateTime,
+						CompleteDateTime: "",
+							Lifts: []		
 	};
 	$scope.init = function () {
-		$scope.workoutID = window.location.pathname.split('/').pop();
-		console.log($scope.workoutID);
-
-		$http.get("../../api/Workout?tok=1&workID=" + $scope.workoutID)
-			.then(function (response) {
-				$scope.workout = angular.fromJson(response.data);
-
+		$http.get("../../api/GetLiftList")
+			.then(function(response){
+				$scope.LiftList = response.data;
+				console.log($scope.LiftList);
 			})
 			, function (response) {
-				alert("An error has occured getting workout 1");
+				alert("An error has occured getting Lift List" + response.data);
 			}
+		//$scope.workoutID = window.location.pathname.split('/').pop();
+		//console.log($scope.workoutID);
 
-		console.log($scope.workout);
+		//$http.get("../../api/Workout?tok=1&workID=" + $scope.workoutID)
+		//	.then(function (response) {
+		//		$scope.workout = angular.fromJson(response.data);
+
+		//	})
+		//	, function (response) {
+		//		alert("An error has occured getting workout 1");
+		//	}
+
+		//console.log($scope.workout);
 	}();
 	
-	
+	$scope.addLift = function (liftID) {
+		$scope.LiftList.forEach(function (element) {
+			if (element.LiftNameID === liftID) {
+				console.log(element);
+				var newLift = {
+					Sets: 0,
+					LiftOrderNumber: $scope.workout.NumberLifts,
+					LiftNameID: element.LiftNameID,
+					LiftName: element.LiftName,
+					SetList: []
+				}
+				$scope.workout.Lifts.push(newLift);
+				$scope.workout.NumberLifts++;
+			}
+		})
+		console.log($scope.workout);
+	}
 
 
 	$scope.addSet = function (liftID) {
 		$scope.workout.Lifts.forEach(function (element) {
-			if (element.LiftID === liftID) {
+			if (element.LiftNameID === liftID) {
 				element.Sets = Number(element.Sets) + 1;
 				var newSet = {
 					setID: element.Sets,
@@ -134,7 +164,7 @@ app.controller('WorkoutCtrl', function ($scope, $http, $location) {
 
 	$scope.delSet = function (liftID) {
 		$scope.workout.Lifts.forEach(function (element) {
-			if (element.LiftID === liftID) {
+			if (element.LiftNameID === liftID) {
 				element.Sets = Number(element.Sets) - 1;
 				element.SetList.pop();
 			}
