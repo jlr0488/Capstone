@@ -49,6 +49,11 @@ namespace git_ripped.Controllers
 			return View();
 		}
 
+		public IActionResult FindWorkout()
+		{
+			return View();
+		}
+
 		public IActionResult ViewAccount()
 		{
 			return View();
