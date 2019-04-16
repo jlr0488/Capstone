@@ -6,7 +6,7 @@
 <div ng-controller="FindWorkoutCtrl" ng-cloak>
 	<h2>See Your Past Workouts</h2>
 
-	<div class="card-columns">
+	<div class="card-deck">
 		<a ng-repeat="workout in workoutList" href="/home/workout/{{workout.WorkoutID}}">
 			<div class="card mt-2 mb-3" >
 				<div class="card-body">

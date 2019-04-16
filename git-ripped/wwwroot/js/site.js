@@ -103,6 +103,7 @@ app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 							Lifts: []		
 	};
 	$scope.init = function () {
+		$scope.finishWorkoutProcessing = false;
 		$http.get("../../api/GetLiftList")
 			.then(function(response){
 				$scope.LiftList = response.data;
@@ -123,7 +124,7 @@ app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 					alert("An error has occured getting workout 1");
 				}
 		}
-		
+		$scope.activeTab = 'addLift';
 
 		
 	}();
@@ -141,9 +142,15 @@ app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 				}
 				$scope.workout.Lifts.push(newLift);
 				$scope.workout.NumberLifts++;
+				$scope.addSet(liftID);
+				var indexToRemove = $scope.LiftList.indexOf(element);
+				$scope.LiftList.splice(indexToRemove, 1);
 			}
 		})
 		console.log($scope.workout);
+		$scope.activeTab = liftID;
+		console.log($scope.activeTab);
+
 	}
 
 
@@ -171,18 +178,43 @@ app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 		})
 	}
 
+	$scope.setActiveTab = function (LiftNameID) {
+		if (!isNaN(LiftNameID)) {
+			$scope.activeTab = LiftNameID;
+		}
+		else {
+			$scope.activeTab = "addLift";
+		}
+		
+	}
+
 	$scope.finishWorkout = function () {
+		$scope.finishWorkoutProcessing = true;
 		var completeDateTime = new Date().toJSON("yyyy/MM/dd HH:mm");
 		$scope.workout.CompleteDateTime = completeDateTime;
 		console.log(JSON.stringify($scope.workout));
 		$http.post("../../api/CreateWorkout", JSON.stringify($scope.workout))
 			.then(function () {
+				$scope.finishWorkoutProcessing = false;
+
 				alert("Your workout has been saved, you can see it when you View Past Workouts!");
 				$window.location.href = "/home";
-			}, function () {
-				alert("Your workout failed to save. Please try again.");
+			}, function (error) {
+				$scope.finishWorkoutProcessing = false;
+
+				$scope.error = error.data;
+				$scope.errorWords = $scope.error.split(" ");
+				if ($scope.errorWords[0] == "Index") {
+					alert("Please choose at least one workout")
+				}
+				else {
+					alert("Please enter a repetition and weight amount.")
+				}
+				//alert($scope.error);
+				//alert("Your workout failed to save. Please try again.");
 			}
-			)
+		)
+
 
 	}
 

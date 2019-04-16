@@ -8,51 +8,55 @@
 
 	<ul class="nav nav-tabs" id="workoutTabs" role="tablist">
 		<li ng-repeat="lift in workout.Lifts" class="nav-item">
-			<a class="nav-link" aria-selected="{{$index==0}}" id="{{lift.LiftID}}" data-toggle="tab" href="#lift{{$index}}" role="tab" aria-controls="lift{{$index}}">
+			<a class="nav-link" ng-class="{active : activeTab == lift.LiftNameID}" ng-click="setActiveTab(lift.LiftNameID)" aria-selected="{{$index==0}}" id="{{lift.LiftID}}" data-toggle="tab" href="#lift{{$index}}" role="tab" aria-controls="lift{{$index}}">
 				{{lift.LiftName}}
 			</a>
-			
+
 		</li>
 		<li class="nav-item">
-			<a class="nav-link active" data-toggle="tab" href="#liftList" role="tab" aria-controls="liftList" >
+			<a class="nav-link" ng-class="{active : activeTab === 'addLift'}" ng-click="setActiveTab('addLift')" data-toggle="tab" href="#liftList" role="tab" aria-controls="liftList">
 				<i class="fas fa-plus"></i>
 			</a>
 		</li>
 
 	</ul>
-	<div class="tab-content" id="myTabContent" ng-cloak>
-		<div ng-repeat="lift in workout.Lifts" class="mx-3 tab-pane fade" id="lift{{$index}}" role="tabpanel" aria-labelledby="lift{{$index}}">
-			<form>
-				<div class="md-form row ml-1" ng-repeat="set in lift.SetList">
-					<div class="col-3 px-0">
-						<input type="number" id="weight{{lift.LiftNameID}}:{{set.SetID}}" ng-model="set.Weight" class="form-control" />
-						<label for="weight{{lift.LiftNameID}}:{{set.SetID}}">Weight</label>
+	<div ng-form="workoutForm">
+		<div class="tab-content" id="myTabContent" ng-cloak>
+
+			<div ng-repeat="lift in workout.Lifts" ng-class="{active : activeTab == lift.LiftNameID , show : activeTab == lift.LiftNameID}" class="mx-3 tab-pane fade" id="lift{{$index}}" role="tabpanel" aria-labelledby="lift{{$index}}">
+				<form>
+					<div class="md-form row ml-1" ng-repeat="set in lift.SetList">
+						<div class="col-3 px-0">
+							<input type="number" id="weight{{lift.LiftNameID}}:{{set.SetID}}" ng-model="set.Weight" class="form-control" required />
+							<label for="weight{{lift.LiftNameID}}:{{set.SetID}}">Weight</label>
+						</div>
+						<div class="col-1 text-center">
+							<p>&times;</p>
+						</div>
+						<div class="col-3 px-0">
+							<input type="number" id="reps{{lift.LiftNameID}}:{{set.SetID}}" ng-model="set.Repetitions" class="form-control" required />
+							<label for="reps{{lift.LiftNameID}}:{{set.SetID}}">Reps</label>
+						</div>
 					</div>
-					<div class="col-1 text-center">
-						<p>&times;</p>
-					</div>
-					<div class="col-3 px-0">
-						<input type="number" id="reps{{lift.LiftNameID}}:{{set.SetID}}" ng-model="set.Repetitions" class="form-control" />
-						<label for="reps{{lift.LiftNameID}}:{{set.SetID}}">Reps</label>
-					</div>
+				</form>
+				<div class="row">
+					<button class="ml-0 btn btn-primary" ng-click="addSet(lift.LiftNameID)">Add Set</button>
+					<button class="btn btn-red" ng-click="delSet(lift.LiftNameID)">Delete Set</button>
 				</div>
-			</form>
-			<div class="row">
-				<button class="ml-0 btn btn-primary" ng-click="addSet(lift.LiftNameID)">Add Set</button>
-				<button class="btn btn-red" ng-click="delSet(lift.LiftNameID)">Delete Set</button>
+
+
 			</div>
-			
-		</div>
-		<div class="mx-3 tab-pane fade show active" id="liftList" role="tabpanel" aria-labelledby="liftList">
-			<ul>
-				<li ng-repeat="lift in LiftList">
-					<a ng-click="addLift(lift.LiftNameID)">{{lift.LiftName}}</a>
-				</li>
-			</ul>
-		</div>
+			<div class="mx-3 tab-pane fade" ng-class="{active : activeTab == 'addLift' , show : activeTab == 'addLift'}" id="liftList" role="tabpanel" aria-labelledby="liftList">
+				<ul>
+					<li ng-repeat="lift in LiftList">
+						<a ng-click="addLift(lift.LiftNameID)">{{lift.LiftName}}</a>
+					</li>
+				</ul>
+			</div>
 
 
+		</div>
 	</div>
 	<br />
-	<button class="btn btn-dark-green col-12 w-100" ng-click="finishWorkout()">Finish Workout</button>
+	<button class="btn btn-dark-green col-12 w-100" ng-disabled="workoutForm.$invalid || finishWorkoutProcessing || workout.Lifts.length == 0" ng-click="finishWorkout()"> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ng-if="finishWorkoutProcessing"></span> Workout</button>
 </div>
