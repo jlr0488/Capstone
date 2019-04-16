@@ -91,7 +91,7 @@ app.controller('ViewAccountCtrl', function ($scope, $http) {
 	
 });
 
-app.controller('WorkoutCtrl', function ($scope, $http, $location) {
+app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 	//will eventually turn into, $scope.workout = getWorkout http stuff
 	var startDateTime = new Date().toJSON("yyyy/MM/dd HH:mm");
 	$scope.workout = {
@@ -111,19 +111,21 @@ app.controller('WorkoutCtrl', function ($scope, $http, $location) {
 			, function (response) {
 				alert("An error has occured getting Lift List" + response.data);
 			}
-		//$scope.workoutID = window.location.pathname.split('/').pop();
-		//console.log($scope.workoutID);
+		$scope.workoutID = window.location.pathname.split('/').pop();
+		console.log($scope.workoutID);
+		if (!isNaN($scope.workoutID)) {
+			$http.get("../../api/Workout?tok=1&workID=" + $scope.workoutID)
+				.then(function (response) {
+					$scope.workout = angular.fromJson(response.data);
+					console.log($scope.workout);
+				})
+				, function (response) {
+					alert("An error has occured getting workout 1");
+				}
+		}
+		
 
-		//$http.get("../../api/Workout?tok=1&workID=" + $scope.workoutID)
-		//	.then(function (response) {
-		//		$scope.workout = angular.fromJson(response.data);
-
-		//	})
-		//	, function (response) {
-		//		alert("An error has occured getting workout 1");
-		//	}
-
-		//console.log($scope.workout);
+		
 	}();
 	
 	$scope.addLift = function (liftID) {
@@ -132,7 +134,7 @@ app.controller('WorkoutCtrl', function ($scope, $http, $location) {
 				console.log(element);
 				var newLift = {
 					Sets: 0,
-					LiftOrderNumber: $scope.workout.NumberLifts,
+					LiftOrderNumber: $scope.workout.NumberLifts + 1,
 					LiftNameID: element.LiftNameID,
 					LiftName: element.LiftName,
 					SetList: []
@@ -150,11 +152,9 @@ app.controller('WorkoutCtrl', function ($scope, $http, $location) {
 			if (element.LiftNameID === liftID) {
 				element.Sets = Number(element.Sets) + 1;
 				var newSet = {
-					setID: element.Sets,
-					LiftID: liftID,
-					reps: "",
-					weight: "",
-					setOrderNum: element.LiftOrderNumber + 1
+					Repetitions: "",
+					Weight: "",
+					SetOrderNumber: element.LiftOrderNumber + 1
 				}
 				element.SetList.push(newSet);
 				
@@ -169,6 +169,21 @@ app.controller('WorkoutCtrl', function ($scope, $http, $location) {
 				element.SetList.pop();
 			}
 		})
+	}
+
+	$scope.finishWorkout = function () {
+		var completeDateTime = new Date().toJSON("yyyy/MM/dd HH:mm");
+		$scope.workout.CompleteDateTime = completeDateTime;
+		console.log(JSON.stringify($scope.workout));
+		$http.post("../../api/CreateWorkout", JSON.stringify($scope.workout))
+			.then(function () {
+				alert("Your workout has been saved, you can see it when you View Past Workouts!");
+				$window.location.href = "/home";
+			}, function () {
+				alert("Your workout failed to save. Please try again.");
+			}
+			)
+
 	}
 
 
