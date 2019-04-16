@@ -3,6 +3,17 @@
     ViewData["Title"] = "FindWorkout";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div ng-controller="FindWorkoutCtrl" ng-cloak>
+	<h2>Find Your Workout</h2>
 
-<h2>FindWorkout</h2>
-
+	<div class="card-columns">
+		<a ng-repeat="workout in workoutList" href="/home/workout?workoutID=1">
+			<div class="card mt-2 mb-3" >
+				<div class="card-body">
+					<h5 class="card-title">{{workout.WorkoutID}}</h5>
+					<p class="card-text">{{workout.CompleteDateTime}}</p>
+				</div>
+			</div>
+		</a>
+		</div>
+	</div>

@@ -91,73 +91,16 @@ app.controller('ViewAccountCtrl', function ($scope, $http) {
 	
 });
 
-app.controller('WorkoutCtrl', function ($scope, $http) {
+app.controller('WorkoutCtrl', function ($scope, $http, $location) {
 	//will eventually turn into, $scope.workout = getWorkout http stuff
 	$scope.workout = {
-		SessionToken: 1,
-		NumberLifts: 3,
-		WorkoutComplete: "Y",
-		StartDateTime: "",
-		CompleteDateTime: "",
-		Lifts: [
-			{
-				Sets: 3,
-				LiftOrderNumber: 1,
-				LiftNameID: 1,
-				LiftName: "Bench Press",
-				SetList: [
-					{
-						Repetitions: 4,
-						Weight: 50,
-						SetOrderNumber: 1
-					},
-					{
-						Repetitions: 4,
-						Weight: 50,
-						SetOrderNumber: 2
-					},
-					{
-						Repetitions: 4,
-						Weight: 50,
-						SetOrderNumber: 3
-					}
-				]
-			},
-			{
-				Sets: 2,
-				LiftOrderNumber: 2,
-				LiftNameID: 4,
-				LiftName: "Incline Press",
-				SetList: [
-					{
-						Repetitions: 4,
-						Weight: 50,
-						SetOrderNumber: 1
-					},
-					{
-						Repetitions: 4,
-						Weight: 50,
-						SetOrderNumber: 2
-					}
-				]
-			},
-			{
-				Sets: 1,
-				LiftOrderNumber: 3,
-				LiftNameID: 2,
-				LiftName: "Overhead Press",
-				SetList: [
-					{
-						Repetitions: 4,
-						Weight: 50,
-						SetOrderNumber: 1
-					}
-				]
-			}
-		]
+		
 	};
 	$scope.init = function () {
-		$http.get("../api/Workout/1/2/")
+		$scope.workoutID = $location.search().workoutID;
+		console.log($scope.workoutID);
+
+		$http.get("../api/Workout?tok=1&workID=" + $scope.workoutID)
 			.then(function (response) {
 				$scope.workout = angular.fromJson(response.data);
 
@@ -199,6 +142,24 @@ app.controller('WorkoutCtrl', function ($scope, $http) {
 	}
 
 
+})
+
+app.controller('FindWorkoutCtrl', function ($scope, $http) {
+	$scope.init = function () {
+		$scope.workoutList = [{}];
+		$http.get("../api/getWorkoutList?tok=1")
+			.then(function (response) {
+				$scope.workoutList = response.data;
+
+			})
+			, function (response) {
+				alert("An error has occured getting workoutList");
+			}
+
+		
+
+
+	}();
 })
 
 app.controller('LayoutCtrl', function ($scope, $http) {
