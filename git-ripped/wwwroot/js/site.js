@@ -248,6 +248,111 @@ app.controller('FindWorkoutCtrl', function ($scope, $http) {
 	}();
 })
 
+app.controller('StatsCtrl', function ($scope, $http, $location) {
+
+    //git records card connected to back end
+    $scope.initRecords = function () {
+        $http.get("../api/LiftRecords?tok=1")
+            .then(function (response) {
+                $scope.recordList = response.data;
+                console.log($scope.recordList);
+                $scope.benchMax = $scope.recordList[0].Max;
+                console.log($scope.benchMax);
+                $scope.mPressMax = $scope.recordList[1].Max;
+                console.log($scope.mPressMax);
+                $scope.inclinePressMax = $scope.recordList[2].Max;
+                console.log($scope.inclinePressMax);
+                $scope.squatMax = $scope.recordList[3].Max;
+                console.log($scope.squatMax);
+
+            })
+            , function (response) {
+                alert("An error has occured getting Lift Records");
+            }
+    }();
+
+})
+
+app.controller('ProgressCtrl', function ($scope, $http, $location) {
+    //filling graph with dummy data in order to show in demo
+    var myChart = document.getElementById('myChart').getContext('2d');
+    var benchChart = new Chart(myChart, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April'],
+            datasets: [{
+                label: 'Bench Press',
+                data: [
+                    0,
+                    95,
+                    105,
+                    165,
+                ],
+                borderColor: 'rgb(102, 178, 255)',
+                backgroundColor: 'rgb(102,178,255)',
+                fill: false,
+                lineTension: 0,
+
+
+            },
+               {
+                   label: 'Military Press',
+                   data: [
+                       20,
+                       45,
+                       85,
+                       95,
+                       135,
+                   
+                   ],
+                   borderColor: 'rgb(0, 204, 102)',
+                   backgroundColor: 'rgb(0,204,12)',
+                   fill: false,
+                   lineTension: 0,
+
+                },
+                {
+                    label: 'Incline Press',
+                    data: [
+                        45,
+                        65,
+                        95,
+                        115,
+                        135,
+                        165,
+
+                    ],
+                    borderColor: 'rgb(255,178,102)',
+                    backgroundColor: 'rgb(255,178,102)',
+                    fill: false,
+                    lineTension: 0,
+
+                },
+
+                {
+                    label: 'Squat',
+                    data: [
+                        45, 
+                        95,
+                        135,
+                        185,
+                        225,
+
+                    ],
+                    borderColor: 'rgb(204,153,255)',
+                    backgroundColor: 'rgb(204,153,255)',
+                    fill: false,
+                    lineTension: 0,
+
+                }]
+        },
+        options: {}
+    });
+
+
+
+})
+
 app.controller('LayoutCtrl', function ($scope, $http) {
 	$(".nav .nav-link").on("click", function () {
 		$("li.active").removeClass("active");

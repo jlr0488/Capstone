@@ -177,3 +177,4 @@ C:\Users\Juan Orta\Desktop\nc\Capstone\git-ripped\obj\Debug\netcoreapp2.1\Razor\
 D:\jmwen\repos\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\Razor\Views\Home\Progress.g.cshtml.cs
 D:\jmwen\repos\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\Razor\Views\Home\Stats.g.cshtml.cs
 D:\jmwen\repos\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\Razor\Views\Home\FindWorkout.g.cshtml.cs
+C:\Users\Juan Orta\Desktop\nc\Capstone\git-ripped\obj\Debug\netcoreapp2.1\Razor\Views\Home\FindWorkout.g.cshtml.cs

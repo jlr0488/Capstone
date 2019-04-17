@@ -4,7 +4,7 @@
 }
 <link href="~/css/StyleSheet1.css" rel="stylesheet" />
 
-<div class="container">
+<div ng-controller="StatsCtrl" class="container" ng-cloak>
 
     <div class="alert alert-warning">
         <strong>Oops!</strong> Sign in to view your stats.
@@ -38,10 +38,10 @@
             <div class="single-stat" id="records">
                 <h2 align="center">Git Records</h2>
                 <center><i class="fas fa-dumbbell fa-5x"></i></center>
-                <h4>Best Bench:</h4>
-                <h4>Best Deadlift:</h4>
-                <h4>Best Squat: </h4>
-                <h4>Best OHP:</h4>
+                <h4>Best Bench: {{benchMax}} lbs</h4>
+                <h4>Best Military Press: {{mPressMax}} lbs</h4>
+                <h4>Best Incline Press: {{inclinePressMax}} lbs</h4>
+                <h4>Best Squat: {{squatMax}}</h4>
 
 
 
@@ -50,5 +50,5 @@
 
     </div>
 
-    <a type ="button" class="btn btn-primary" href="/home/progress"> View your progress</a>
+    <a type ="button" class="btn btn-primary" href="/home/progress" id="progButton"> View your progress</a>
 </div>

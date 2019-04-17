@@ -1,5 +1,4 @@
 ﻿body {
- 
 	line-height: 1.4;
 }
 
@@ -32,7 +31,7 @@ h4 {
 }
 
 .single-stat:hover{
-    transform: scale(1.15);
+    transform: scale(1.05);
 }
 
 #gitstats{

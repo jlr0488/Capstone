@@ -7,46 +7,13 @@
 }
 
 
-    <div class="container">
+    <div ng-controller="ProgressCtrl" class="container" ng-cloak>
         <h1 class="text-center">Progress</h1>
 
-        <div class="dropdown">
-            <button align="right" class="btn btn-red" dropdown-toggle" type="button" data-toggle="dropdown">
-                Click to change exercise
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="#">Bench Press</a></li>
-                <li><a href="#">Squat</a></li>
-                <li><a href="#">Deadlift</a></li>
-            </ul>
-        </div>
 
 
-        <canvas id="myChart" width="300" height="150"></canvas>
-        <script>
-            var myChart = document.getElementById('myChart').getContext('2d');
-            var benchChart = new Chart(myChart, {
-                type: 'line',
-                data: {
-                    labels: ['January', 'February', 'March', 'April'],
-                    datasets: [{
-
-                        data: [
-                            0,
-                            95,
-                            105,
-                            165,
-                        ],
-                        backgroundColor: 'rgb(102,178,255)',
-                        label: 'Bench Press'
-                    }]
-                },
-                options: {}
-            });
-
-        </script>
-
-        <a type="button" class="btn btn-primary" href="/home/stats"> View your stats</a>
+        <canvas id="myChart" width="325" height="200"></canvas>
+   
+        <a type="button" class="btn btn-primary btn-block mb-5" id ="prog" href="/home/stats"> View your stats</a>
 
     </div>
