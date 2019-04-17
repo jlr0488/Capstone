@@ -27,7 +27,7 @@ namespace gitripped.API
                 Account account = JsonConvert.DeserializeObject<Account>(json.ToString());
                 SqlConnection conn = OpenSqlConnection();
                     //Create the workout in the database with the max + 1 workoutid
-                    SqlCommand command = new SqlCommand("INSERT INTO usr.Account(username, email, firstname, lastname, createdatetime) VALUES (@UserName, @Email, @FirstName, @LastName, GetDate());", conn);
+                    SqlCommand command = new SqlCommand("INSERT INTO usr.Account(username, email, firstname, lastname, createdatetime, password) VALUES (@UserName, @Email, @FirstName, @LastName, GetDate(), @Password);", conn);
                     command.Parameters.Add("@UserName", System.Data.SqlDbType.Char);
                     command.Parameters["@UserName"].Value = account.UserName;
                     command.Parameters.Add("@Email", System.Data.SqlDbType.Char);
@@ -36,6 +36,8 @@ namespace gitripped.API
                     command.Parameters["@FirstName"].Value = account.FirstName;
                     command.Parameters.Add("@LastName", System.Data.SqlDbType.Char);
                     command.Parameters["@LastName"].Value = account.LastName;
+                    command.Parameters.Add("@Password", System.Data.SqlDbType.Char);
+                    command.Parameters["@Password"].Value = account.Password;
                     SqlDataReader reader = command.ExecuteReader();
                     reader.Close();
 
@@ -54,6 +56,7 @@ namespace gitripped.API
             public string Email { get; set; }
             public string FirstName { get; set;}
             public string LastName { get; set; }
+            public string Password { get; set; }
             //public DateTime CreateDateTime { get; set; }
         }
 
