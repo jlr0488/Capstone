@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -19,9 +19,9 @@ namespace gitripped.API
     [Route("api/GetLogin")]
     public class GetLogin : Controller
     {
-        // GET api/Workout
-        [HttpGet]
-        public IActionResult GET([FromBody]JObject json)
+        // POST api/Workout
+        [HttpPost]
+        public IActionResult Post([FromBody]JObject json)
         {
 
             dynamic jsonResponse = json;
@@ -35,7 +35,48 @@ namespace gitripped.API
                 if ((UserID = CheckLogin(username, password, conn)) != -1)
                 {
 
-                        return StatusCode(200);
+                    // deletes old token if it exists
+                    SqlCommand command = new SqlCommand("SELECT * FROM usr.SessionToken WHERE UserID = @UserID",conn);
+                    command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
+                    command.Parameters["@UserID"].Value = UserID;
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+
+                        command = new SqlCommand("DELETE FROM usr.SessionToken WHERE UserID = @UserID", conn);
+                        command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
+                        command.Parameters["@UserID"].Value = UserID;
+                        reader = command.ExecuteReader();
+                    }
+
+                    // creates and assigns the new token
+                    command = new SqlCommand("INSERT INTO usr.SessionToken(SessionToken, UserID, Active, CreatedOn) VALUES((SELECT MAX(SessionToken) + 1 FROM usr.SessionToken), @UserID, 1, GetDate());", conn);
+                    command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
+                    command.Parameters["@UserID"].Value = UserID;
+                    reader = command.ExecuteReader();
+
+                    // gets the token
+                    command = new SqlCommand("Select SessionToken From usr.SessionToken WHERE UserID = @UserID", conn);
+                    command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
+                    command.Parameters["@UserID"].Value = UserID;
+                    reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        int token = (int)reader["SessionToken"];
+                        reader.Close();
+
+                        var message = JsonConvert.SerializeObject(token);
+                        return StatusCode(200, message);
+
+                    }
+                    else
+                    {
+                        string error = ErrorCreator("Session token was not created for this session");
+                        reader.Close();
+                        return StatusCode(404, error);
+                    }
                 }
                 else
                 {
