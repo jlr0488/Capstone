@@ -27,7 +27,7 @@
 				<form>
 					<div class="md-form row ml-1" ng-repeat="set in lift.SetList">
 						<div class="col-3 px-0">
-							<input type="number" id="weight{{lift.LiftNameID}}:{{set.SetID}}" ng-model="set.Weight" class="form-control" required />
+							<input type="number" step="5" id="weight{{lift.LiftNameID}}:{{set.SetID}}" ng-model="set.Weight" class="form-control" required />
 							<label for="weight{{lift.LiftNameID}}:{{set.SetID}}">Weight</label>
 						</div>
 						<div class="col-1 text-center">
@@ -51,7 +51,17 @@
 					<li ng-repeat="lift in LiftList">
 						<a ng-click="addLift(lift.LiftNameID)">{{lift.LiftName}}</a>
 					</li>
+
 				</ul>
+				<form>
+					<div class="md-form ml-4">
+						<input type="text" id="newLift" ng-model="newLift.LiftName" class="form-control" required />
+						<label for="newLift">Add New Lift Name</label>
+						<button type="submit" class="btn btn-green"  ng-click="addNewLift()">Add New Lift</button>
+					</div>
+
+				</form>
+
 			</div>
 
 

@@ -7,7 +7,7 @@
 	<h2>See Your Past Workouts</h2>
 
 	<div class="card-deck">
-		<a ng-repeat="workout in workoutList" href="/home/workout/{{workout.WorkoutID}}">
+		<a ng-repeat="workout in workoutList | orderBy : '-CompleteDateTime'" href="/home/workout/{{workout.WorkoutID}}">
 			<div class="card mt-2 mb-3" >
 				<div class="card-body">
 					<h5 class="card-title">{{workout.CompleteDateTime | date}}</h5>

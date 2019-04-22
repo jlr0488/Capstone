@@ -122,6 +122,13 @@ app.controller('ViewAccountCtrl', function ($scope, $http) {
 app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 	//will eventually turn into, $scope.workout = getWorkout http stuff
 	var startDateTime = new Date().toJSON("yyyy/MM/dd HH:mm");
+	$scope.newLift = {
+		SessionToken: 1,
+		LiftName: ""
+		
+		//turn into get token, that we will get at the beggining
+	};
+
 	$scope.workout = {
 		SessionToken: 1,
 			NumberLifts: 0,
@@ -130,16 +137,22 @@ app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 						CompleteDateTime: "",
 							Lifts: []		
 	};
-	$scope.init = function () {
-		$scope.finishWorkoutProcessing = false;
+
+
+	$scope.getLiftList = function () {
 		$http.get("../../api/GetLiftList")
-			.then(function(response){
+			.then(function (response) {
 				$scope.LiftList = response.data;
 				console.log($scope.LiftList);
 			})
 			, function (response) {
 				alert("An error has occured getting Lift List" + response.data);
 			}
+	}
+
+	$scope.init = function () {
+		$scope.finishWorkoutProcessing = false;
+		$scope.getLiftList();
 		$scope.workoutID = window.location.pathname.split('/').pop();
 		console.log($scope.workoutID);
 		if (!isNaN($scope.workoutID)) {
@@ -179,6 +192,17 @@ app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 		$scope.activeTab = liftID;
 		console.log($scope.activeTab);
 
+	}
+
+	$scope.addNewLift = function () {
+		$http.post("../../api/CreateLift", JSON.stringify($scope.newLift))
+			.then(function (response) {
+				$scope.newLift.name = "";
+				$scope.getLiftList();
+			}
+			, function (response) {
+				alert("Creating new lift was unsuccessful, Please try again.")
+			})
 	}
 
 
