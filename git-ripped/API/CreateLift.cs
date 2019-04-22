@@ -26,7 +26,7 @@ public class CreateLift : Controller
                 if ((UserID = Helper.CheckSessionToken(lift.SessionToken, conn)) != -1)
                 {
                     //Create the workout in the database with the max + 1 workoutid
-                    SqlCommand command = new SqlCommand("INSERT INTO Lift.LiftList VALUES (COALESCE((SELECT MAX(WorkoutID) + 1 FROM Lift.Workout), 1), @LiftName);", conn);
+                    SqlCommand command = new SqlCommand("INSERT INTO Lift.LiftList (LiftNameID, LiftName) VALUES (COALESCE((SELECT MAX(LiftNameID) + 1 FROM Lift.LiftList), 1), @LiftName);", conn);
                     command.Parameters.Add("@LiftName", System.Data.SqlDbType.VarChar);
                     command.Parameters["@LiftName"].Value = lift.LiftName;
                     SqlDataReader reader = command.ExecuteReader();
