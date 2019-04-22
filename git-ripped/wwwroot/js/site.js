@@ -70,7 +70,26 @@ app.controller('ViewAccountCtrl', function ($scope, $http) {
 	$scope.submitBasicInfoForm = function () {
 		//validate and send info through a post (after hashing password)
 
-	}
+    }
+
+    $scope.attributes = {
+        height: "",
+        startingWeight: "",
+        currentWeight: "",
+        goalWeight: "",
+        gender: "",
+        birthday: "",
+        waistMeasure: "",
+        armMeasure: "",
+        chestMeasure: "",
+        backMeasure: "",
+        legMeasure: "",
+        
+    }
+
+    $scope.submitAttributesForm = function () {
+
+    }
 
 	$scope.changePass = {
 		email: "",
