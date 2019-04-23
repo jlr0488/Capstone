@@ -143,6 +143,7 @@ app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 		$http.get("../../api/GetLiftList")
 			.then(function (response) {
 				$scope.LiftList = response.data;
+				$scope.OrigionalLiftList = response.data;
 				console.log($scope.LiftList);
 			})
 			, function (response) {
@@ -194,15 +195,33 @@ app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 
 	}
 
+	function titleCase(str) {
+		str = str.toLowerCase().split(' ');
+		for (var i = 0; i < str.length; i++) {
+			str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+		}
+		return str.join(' ');
+	}
+
 	$scope.addNewLift = function () {
-		$http.post("../../api/CreateLift", JSON.stringify($scope.newLift))
-			.then(function (response) {
-				$scope.newLift.name = "";
-				$scope.getLiftList();
+		var isInLiftList = false;
+		$scope.newLift.LiftName = titleCase($scope.newLift.LiftName);
+		$scope.OrigionalLiftList.forEach(function (element) {
+			if (element.LiftName == $scope.newLift.LiftName) {
+				isInLiftList = true;
 			}
-			, function (response) {
-				alert("Creating new lift was unsuccessful, Please try again.")
-			})
+		})
+		if (!isInLiftList && $scope.newLift.LiftName != "") {
+			$http.post("../../api/CreateLift", JSON.stringify($scope.newLift))
+				.then(function (response) {
+					$scope.newLift.LiftName = "";
+					$scope.getLiftList();
+				}
+					, function (response) {
+						alert("Creating new lift was unsuccessful, Please try again.")
+					})
+		}
+		
 	}
 
 
@@ -436,8 +455,31 @@ app.controller('LayoutCtrl', function ($scope, $http) {
 
 
 	$scope.register = function()	{
-		//need to salt pass
-		//send http post or something to the server using basicInfo, make sure the order is right with zac
+        //need to salt pass
+        //send http post or something to the server using basicInfo, make sure the order is right with zac
+
+        //this is for getting variables in correct order for api
+        $scope.basicInfoStr = {
+            //add username to register UI
+            //username: $scope.basicInfo.username,
+            UserName: "brayberg",
+            Mail: $scope.basicInfo.email,
+            FirstName: $scope.basicInfo.firstName,
+            LastName: $scope.basicInfo.lastName,
+            Password: $scope.basicInfo.password
+        };
+        console.log(JSON.stringify($scope.basicInfoStr));
+        $http.post("../../api/CreateUser", JSON.stringify($scope.basicInfoStr))
+            .then(function () {
+                $scope.loggedIn = true;
+                alert("Your account has been created.");
+                $window.location.href = "/home";
+                //need to add in token response and save to token var
+
+            }, function (error) {
+
+            }
+        )
 	}
 
 
