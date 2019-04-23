@@ -436,8 +436,31 @@ app.controller('LayoutCtrl', function ($scope, $http) {
 
 
 	$scope.register = function()	{
-		//need to salt pass
-		//send http post or something to the server using basicInfo, make sure the order is right with zac
+        //need to salt pass
+        //send http post or something to the server using basicInfo, make sure the order is right with zac
+
+        //this is for getting variables in correct order for api
+        $scope.basicInfoStr = {
+            //add username to register UI
+            //username: $scope.basicInfo.username,
+            UserName: "brayberg",
+            Mail: $scope.basicInfo.email,
+            FirstName: $scope.basicInfo.firstName,
+            LastName: $scope.basicInfo.lastName,
+            Password: $scope.basicInfo.password
+        };
+        console.log(JSON.stringify($scope.basicInfoStr));
+        $http.post("../../api/CreateUser", JSON.stringify($scope.basicInfoStr))
+            .then(function () {
+                $scope.loggedIn = true;
+                alert("Your account has been created.");
+                $window.location.href = "/home";
+                //need to add in token response and save to token var
+
+            }, function (error) {
+
+            }
+        )
 	}
 
 
