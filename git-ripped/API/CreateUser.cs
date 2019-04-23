@@ -26,21 +26,26 @@ namespace gitripped.API
             {
                 Account account = JsonConvert.DeserializeObject<Account>(json.ToString());
                 SqlConnection conn = OpenSqlConnection();
-                    //Create the workout in the database with the max + 1 workoutid
-                    SqlCommand command = new SqlCommand("INSERT INTO usr.Account(username, email, firstname, lastname, createdatetime, password) VALUES (@UserName, @Email, @FirstName, @LastName, GetDate(), @Password);", conn);
-                    command.Parameters.Add("@UserName", System.Data.SqlDbType.Char);
-                    command.Parameters["@UserName"].Value = account.UserName;
-                    command.Parameters.Add("@Email", System.Data.SqlDbType.Char);
-                    command.Parameters["@Email"].Value = account.Email;
-                    command.Parameters.Add("@FirstName", System.Data.SqlDbType.Char);
-                    command.Parameters["@FirstName"].Value = account.FirstName;
-                    command.Parameters.Add("@LastName", System.Data.SqlDbType.Char);
-                    command.Parameters["@LastName"].Value = account.LastName;
-                    command.Parameters.Add("@Password", System.Data.SqlDbType.Char);
-                    command.Parameters["@Password"].Value = account.Password;
-                    SqlDataReader reader = command.ExecuteReader();
-                    reader.Close();
+                //Create the workout in the database with the max + 1 workoutid
+                SqlCommand command = new SqlCommand("INSERT INTO usr.Account(username, email, firstname, lastname, createdatetime) VALUES (@UserName, @Email, @FirstName, @LastName, GetDate());", conn);
+                command.Parameters.Add("@UserName", System.Data.SqlDbType.Char);
+                command.Parameters["@UserName"].Value = account.UserName;
+                command.Parameters.Add("@Email", System.Data.SqlDbType.Char);
+                command.Parameters["@Email"].Value = account.Email;
+                command.Parameters.Add("@FirstName", System.Data.SqlDbType.Char);
+                command.Parameters["@FirstName"].Value = account.FirstName;
+                command.Parameters.Add("@LastName", System.Data.SqlDbType.Char);
+                command.Parameters["@LastName"].Value = account.LastName;
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Close();
 
+                command = new SqlCommand("INSERT INTO usr.Password (userID, HashedPassword) VALUES ((SELECT UserID FROM usr.Account WHERE username = @UserName), @Password)", conn);
+                command.Parameters.Add("@Password", System.Data.SqlDbType.Char);
+                command.Parameters["@Password"].Value = account.Password;
+                command.Parameters.Add("@UserName", System.Data.SqlDbType.Char);
+                command.Parameters["@UserName"].Value = account.UserName;
+                reader = command.ExecuteReader();
+                reader.Close();
 
                 return StatusCode(201);
             }
