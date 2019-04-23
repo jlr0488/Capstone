@@ -7,13 +7,35 @@ var app = angular.module("gitRipped", []);
 
 app.controller('indexCtrl', function ($scope, $http) {
 	//do stuff for index Page
-	$scope.pounds = 125000;
+	$scope.pounds = 0;
 	brickWeight = 7.71618;
 	carWeight = 4009;
 	eighteenWheelerWeight = 80000;
-	planeWeight = 735000
+	planeWeight = 735000;
+
+	$scope.token = 1;
+	$scope.getTotalWeight = function () {
+		$http.get("../../api/totalWeightByWeek?tok=" + $scope.token)
+			.then(function (results) {
+				$scope.recordsList = results.data;
+				$scope.recordsList.forEach(function (element) {
+					$scope.pounds += element.TotalWeight;
+					
+				})
+				$scope.getItemAmount();
+			}, function () {
+				alert("GET Lift Records failed")
+			})
+	}();
+	
+
+
+
 
 	$scope.getItemAmount = function () {
+
+		
+		console.log("$scope.pounds = " + $scope.pounds);
 		if ($scope.pounds <= carWeight) {
 			if ($scope.pounds / brickWeight == 1) {
 				$scope.item = "Brick";
@@ -54,7 +76,7 @@ app.controller('indexCtrl', function ($scope, $http) {
 		}
 
 		$scope.numItems = $scope.numItems.toFixed(2);
-	}();
+	};
 });
 
 app.controller('ViewAccountCtrl', function ($scope, $http) {
@@ -432,7 +454,7 @@ app.controller('LayoutCtrl', function ($scope, $http) {
 	}();
 	
 
-	$scope.loggedIn = true;
+	$scope.loggedIn = false;
 
 	$scope.signIn = function(){
 		//need to salt the password
@@ -462,8 +484,8 @@ app.controller('LayoutCtrl', function ($scope, $http) {
         $scope.basicInfoStr = {
             //add username to register UI
             //username: $scope.basicInfo.username,
-            UserName: "brayberg",
-            Mail: $scope.basicInfo.email,
+			UserName: $scope.basicInfo.email.split("@")[0],
+            Email: $scope.basicInfo.email,
             FirstName: $scope.basicInfo.firstName,
             LastName: $scope.basicInfo.lastName,
             Password: $scope.basicInfo.password
