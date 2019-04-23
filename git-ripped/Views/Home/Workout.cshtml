@@ -24,7 +24,9 @@
 		<div class="tab-content" id="myTabContent" ng-cloak>
 
 			<div ng-repeat="lift in workout.Lifts" ng-class="{active : activeTab == lift.LiftNameID , show : activeTab == lift.LiftNameID}" class="mx-3 tab-pane fade" id="lift{{$index}}" role="tabpanel" aria-labelledby="lift{{$index}}">
+
 				<form>
+
 					<div class="md-form row ml-1" ng-repeat="set in lift.SetList">
 						<div class="col-3 px-0">
 							<input type="number" step="5" id="weight{{lift.LiftNameID}}:{{set.SetID}}" ng-model="set.Weight" class="form-control" required />
@@ -46,18 +48,24 @@
 
 
 			</div>
-			<div class="mx-3 tab-pane fade" ng-class="{active : activeTab == 'addLift' , show : activeTab == 'addLift'}" id="liftList" role="tabpanel" aria-labelledby="liftList">
-				<ul>
-					<li ng-repeat="lift in LiftList">
-						<a ng-click="addLift(lift.LiftNameID)">{{lift.LiftName}}</a>
-					</li>
 
-				</ul>
+			<div class="mx-3 tab-pane fade" ng-class="{active : activeTab == 'addLift' , show : activeTab == 'addLift'}" id="liftList" role="tabpanel" aria-labelledby="liftList">
 				<form>
 					<div class="md-form ml-4">
-						<input type="text" id="newLift" ng-model="newLift.LiftName" class="form-control" required />
+						<input type="text" class="form-control" ng-model="searchText" id="searchText" />
+						<label for="searchText">Search for a Workout</label>
+						<ul>
+							<li ng-repeat="lift in LiftList | filter:searchText">
+								<a ng-click="addLift(lift.LiftNameID)">{{lift.LiftName}}</a>
+							</li>
+
+						</ul>
+					</div>
+
+					<div class="md-form ml-4">
+						<input type="text" id="newLift" ng-model="newLift.LiftName" class="form-control" />
 						<label for="newLift">Add New Lift Name</label>
-						<button type="submit" class="btn btn-green"  ng-click="addNewLift()">Add New Lift</button>
+						<button type="submit" class="btn btn-green" ng-click="addNewLift()">Add New Lift</button>
 					</div>
 
 				</form>
@@ -66,7 +74,8 @@
 
 
 		</div>
-	</div>
+		</div>
+	
 	<br />
 	<button class="btn btn-dark-green col-12 w-100" ng-disabled="workoutForm.$invalid || finishWorkoutProcessing || workout.Lifts.length == 0" ng-click="finishWorkout()"> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ng-if="finishWorkoutProcessing"></span> Workout</button>
 </div>
