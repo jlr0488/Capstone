@@ -432,12 +432,23 @@ app.controller('LayoutCtrl', function ($scope, $http) {
 	}();
 	
 
-	$scope.loggedIn = true;
+	$scope.loggedIn = false;
 
 	$scope.signIn = function(){
 		//need to salt the password
-		//send http post or something to the server useing basicInfo.pass and basicInfo.email
-		
+		//send http post or something to the server using basicInfo.username and basicInfo.password
+        $scope.loginInfo = {
+            Username: $scope.basicInfo.username,
+            Password: $scope.basicInfo.password
+        };
+        $http.post("../../api/GetLogin", JSON.stringify($scope.loginInfo))
+            .then(function (response) {
+                $scope.loggedIn = true;
+                console.log($response.data);
+            }) , function (response) {
+                //error stuff
+            }
+
 	}
 
 	$scope.clearBasicUserInfo = function () {
@@ -460,10 +471,9 @@ app.controller('LayoutCtrl', function ($scope, $http) {
 
         //this is for getting variables in correct order for api
         $scope.basicInfoStr = {
-            //add username to register UI
             //username: $scope.basicInfo.username,
-            UserName: "brayberg",
-            Mail: $scope.basicInfo.email,
+            UserName: $scope.basicInfo.firstName,
+            Email: $scope.basicInfo.email,
             FirstName: $scope.basicInfo.firstName,
             LastName: $scope.basicInfo.lastName,
             Password: $scope.basicInfo.password
@@ -471,10 +481,8 @@ app.controller('LayoutCtrl', function ($scope, $http) {
         console.log(JSON.stringify($scope.basicInfoStr));
         $http.post("../../api/CreateUser", JSON.stringify($scope.basicInfoStr))
             .then(function () {
-                $scope.loggedIn = true;
                 alert("Your account has been created.");
-                $window.location.href = "/home";
-                //need to add in token response and save to token var
+                //$window.location.href = "/home"; doesn't like this
 
             }, function (error) {
 
