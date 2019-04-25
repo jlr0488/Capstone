@@ -31,7 +31,7 @@ public class CreateWorkout : Controller
                 if ((UserID = CheckSessionToken(workout.SessionToken, conn)) != -1)
                 {
                     //Create the workout in the database with the max + 1 workoutid
-                    SqlCommand command = new SqlCommand("INSERT INTO Lift.Workout VALUES (COALESCE((SELECT MAX(WorkoutID) + 1 FROM Lift.Workout), 1), @UserID, @NumberLifts, @WorkoutComplete, @StartDatetime, @CompleteDatetime);", conn);
+                    SqlCommand command = new SqlCommand("INSERT INTO Lift.Workout VALUES (COALESCE((SELECT MAX(WorkoutID) + 1 FROM Lift.Workout), 1), @UserID, @NumberLifts, @WorkoutComplete, @StartDatetime, @CompleteDatetime, DATEPART(yyyy, @CompleteDatetime), DATEPART(wk, @CompleteDatetime));", conn);
                     command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
                     command.Parameters["@UserID"].Value = UserID;
                     command.Parameters.Add("@NumberLifts", System.Data.SqlDbType.Int);

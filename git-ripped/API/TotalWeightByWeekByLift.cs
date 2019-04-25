@@ -10,11 +10,11 @@ using Newtonsoft.Json;
 
 namespace gitripped.API
 {
-    [Route("api/TotalWeightByWeek")]
-    public class TotalWeightByWeek : Controller
+    [Route("api/TotalWeightByWeekByLift")]
+    public class TotalWeightByWeekByLift : Controller
     {
         // GET: api/<controller>
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult GET(int tok)
         {
             try
@@ -27,17 +27,18 @@ namespace gitripped.API
                     command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
                     command.Parameters["@UserID"].Value = UserID;
                     SqlDataReader reader = command.ExecuteReader();
-                    List<WeightByWeekObj> wbwList = new List<WeightByWeekObj>();
+                    List<WeekObj> weekList = new List<WeekObj>();
+                    int i = 0;
                     while (reader.Read())
                     {
-                        WeightByWeekObj wbw = new WeightByWeekObj();
-                        wbw.UserID = (int)reader["UserID"];
-                        wbw.TotalWeight = (int)reader["TotalWeight"];
+                        TotalWeightLift twl = new TotalWeightLift();
+                        twl.TotalWeight = (int)reader["TotalWeight"];
                         DateTime tempWS = (DateTime)reader["WeekStart"];
                         DateTime tempWE = (DateTime)reader["WeekEnd"];
-                        wbw.WeekStart = tempWS.ToString("MM/dd/yyyy");
-                        wbw.WeekEnd = tempWE.ToString("MM/dd/yyyy");
-                        wbwList.Add(wbw);
+                        weekList[i].WeekStart = tempWS.ToString("MM/dd/yyyy");
+                        weekList[i].WeekEnd = tempWE.ToString("MM/dd/yyyy");
+                        weekList[i].Add(wbw);
+                        i++;
                     }
 
                     var message = JsonConvert.SerializeObject(wbwList);
@@ -53,14 +54,24 @@ namespace gitripped.API
             {
                 return StatusCode(500, E.Message);
             }
-        }
+        }*/
     }
 
-    class WeightByWeekObj
+    class TotalWeightLift
     {
-        public int UserID { get; set; }
+        public string LiftName { get; set; }
         public int TotalWeight { get; set; }
+    }
+
+class WeekObj
+    {
         public string WeekStart { get; set; }
         public string WeekEnd { get; set; }
+        public List<TotalWeightLift> liftList;
+
+        public WeekObj()
+        {
+            liftList = new List<TotalWeightLift>();
+        }
     }
 }
