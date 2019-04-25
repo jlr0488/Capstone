@@ -480,7 +480,7 @@ app.controller('ProgressCtrl', function ($scope, $http, $location) {
 
 })
 
-app.controller('LayoutCtrl', function ($scope, $http, $cookies, $location) {
+app.controller('LayoutCtrl', function ($scope, $http, $cookies, $location, $window) {
 	$(".nav .nav-link").on("click", function () {
 		$("li.active").removeClass("active");
 		$('a[href="' + location.pathname + '"]').closest('li').addClass('active');
@@ -496,7 +496,10 @@ app.controller('LayoutCtrl', function ($scope, $http, $cookies, $location) {
         };
 
         if (typeof ($cookies.get("GRsessionToken")) === 'undefined') {
-            $scope.loggedIn = false;
+			$scope.loggedIn = false;
+			if ($window.location.pathname != "/home" && $window.location.pathname != "/") {
+				$window.location.href = "/home";
+			}
         }
         else {
             $scope.loggedIn = true;
