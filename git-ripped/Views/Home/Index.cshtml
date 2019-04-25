@@ -1,13 +1,29 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<div ng-controller="indexCtrl">
-        <div class="text-center mt-5">
+<div ng-controller="indexCtrl" ng-cloak>
+	<div ng-if="loggedIn">
+		<div class="text-center mt-5">
 			<a href="/home/workout"><button class="btn btn-primary btn-block mb-5">Start Your Workout!</button></a>
-        </div>
+		</div>
 
-        <div class="text-center" ng-cloak>
-            <h4>You've Lifted {{pounds}} LBS! That's Equivilent to {{numItems}} {{item}}</h4>
-            <img class="img-circle img-fluid" src="{{imagePath}}" height="500" width="500" />
-        </div>
+		<div class="text-center" ng-cloak>
+			<h4>You've Lifted {{pounds}} LBS! That's Equivilent to {{numItems}} {{item}}</h4>
+			<img class="img-circle img-fluid" src="{{imagePath}}" height="500" width="500" />
+		</div>
+	</div>
+	<div ng-if="!loggedIn" class="container">
+		<div class="mt-5">
+			<h5>This is Git -Ripped a site where you can log your workouts. This site was made by 5 college students:</h5>
+			<ul>
+				<li>Jon Wendt</li>
+				<li>Zac Chambers</li>
+				<li>Juan Orta</li>
+				<li>Josh Robbins</li>
+				<li>&</li>
+				<li>Brayden Burglund</li>
+			</ul>
+			<p>To use this workout logger, Please <a style="color:blue" data-toggle="modal" data-target="#RegisterModal">Register</a> for an account or <a style="color:blue" data-toggle="modal" data-target="#SigninModal">Log in</a> if you already have an account.</p>
+		</div>
+	</div>
 </div>

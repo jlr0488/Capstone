@@ -13,9 +13,20 @@ app.controller('indexCtrl', function ($scope, $http) {
 	eighteenWheelerWeight = 80000;
 	planeWeight = 735000;
 
-	$scope.token = 1;
+
+	$scope.init = function () {
+		if ($scope.loggedIn == true) {
+			getTotalWeight();
+		}
+		else {
+
+		}
+	}
+
+
+
 	$scope.getTotalWeight = function () {
-		$http.get("../../api/totalWeightByWeek?tok=" + $scope.token)
+		$http.get("../../api/totalWeightByWeek?tok=" + $scope.SessionToken)
 			.then(function (results) {
 				$scope.recordsList = results.data;
 				$scope.recordsList.forEach(function (element) {
@@ -26,7 +37,7 @@ app.controller('indexCtrl', function ($scope, $http) {
 			}, function () {
 				alert("GET Lift Records failed")
 			})
-	}();
+	};
 	
 
 
@@ -179,7 +190,7 @@ app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 		$scope.workoutID = window.location.pathname.split('/').pop();
 		console.log($scope.workoutID);
 		if (!isNaN($scope.workoutID)) {
-			$http.get("../../api/Workout?tok=1&workID=" + $scope.workoutID)
+			$http.get("../../api/Workout?tok=" + $scope.SessionToken + "&workID=" + $scope.workoutID)
 				.then(function (response) {
 					$scope.workout = angular.fromJson(response.data);
 					console.log($scope.workout);
