@@ -121,7 +121,29 @@ app.controller('ViewAccountCtrl', function ($scope, $http) {
     }
 
     $scope.submitAttributesForm = function () {
-
+        //populate the attributes 
+        $scope.attributesStr = {
+            SessionToken: $scope.SessionToken,
+            Height: $scope.attributes.height,
+            StartingWeight: $scope.attributes.startingWeight,
+            CurrentWeight: $scope.attributes.currentWeight,
+            GoalWeight: $scope.attributes.goalWeight,
+            Gender: $scope.attributes.gender,
+            Birthday: $scope.attributes.birthday,
+            WaistMeasure: $scope.attributes.waistMeasure,
+            ArmMeasure: $scope.attributes.armMeasure,
+            ChestMeasure: $scope.attributes.chestMeasure,
+            BackMeasure: $scope.attributes.backMeasure,
+            LegMeasure: $scope.attributes.legMeasure
+        };
+        console.log($scope.attributesStr);
+        $http.post("../../api/CreateUserAttributes", JSON.stringify($scope.attributesStr))
+            .then(function (response) {
+                alert("Your attributes have beeen saved.");
+            })
+            , function (response) {
+                //error 
+            } 
     }
 
 	$scope.changePass = {
