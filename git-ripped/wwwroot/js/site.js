@@ -147,15 +147,21 @@ app.controller('ViewAccountCtrl', function ($scope, $http) {
     }
 
 	$scope.changePass = {
-		email: "",
 		username: "",
-		oldPassword: "",
+		password: "",
 		newPassword: "",
-		newPassword2: ""
 	};
 
 	$scope.submitChangePassForm = function () {
-		//send validation info plus new password info that will need hashing 
+		//send validation info plus new password info that will need hashing
+        console.log($scope.changePass.username);
+        $http.post("../../api/ChangePassword", JSON.stringify($scope.changePass))
+            .then(function (response) {
+                alert("Your password has been changed.");
+            })
+            , function (response) {
+                //error 
+            } 
 	}
 
 	$scope.doesPasswordMatch = function () {

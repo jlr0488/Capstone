@@ -14,7 +14,7 @@ namespace gitripped.API
     public class TotalWeightByWeekByLift : Controller
     {
         // GET: api/<controller>
-        /*[HttpGet]
+        [HttpGet]
         public IActionResult GET(int tok)
         {
             try
@@ -23,7 +23,7 @@ namespace gitripped.API
                 int UserID;
                 if ((UserID = Helper.CheckSessionToken(tok, conn)) != -1)
                 {
-                    SqlCommand command = new SqlCommand("SELECT * FROM lift.TotalWeightByWeek WHERE UserID = @UserID;", conn);
+                    SqlCommand command = new SqlCommand("SELECT * FROM lift.TotalWeightByWeekAndLift WHERE UserID = @UserID;", conn);
                     command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
                     command.Parameters["@UserID"].Value = UserID;
                     SqlDataReader reader = command.ExecuteReader();
@@ -31,17 +31,16 @@ namespace gitripped.API
                     int i = 0;
                     while (reader.Read())
                     {
-                        TotalWeightLift twl = new TotalWeightLift();
-                        twl.TotalWeight = (int)reader["TotalWeight"];
+                        weekList[i].TotalWeight = (int)reader["TotalWeight"];
                         DateTime tempWS = (DateTime)reader["WeekStart"];
                         DateTime tempWE = (DateTime)reader["WeekEnd"];
                         weekList[i].WeekStart = tempWS.ToString("MM/dd/yyyy");
                         weekList[i].WeekEnd = tempWE.ToString("MM/dd/yyyy");
-                        weekList[i].Add(wbw);
+                        weekList[i].LiftName = reader["LiftName"].ToString();
                         i++;
                     }
 
-                    var message = JsonConvert.SerializeObject(wbwList);
+                    var message = JsonConvert.SerializeObject(weekList);
                     return StatusCode(200, message);
                 }
                 else
@@ -54,24 +53,20 @@ namespace gitripped.API
             {
                 return StatusCode(500, E.Message);
             }
-        }*/
-    }
-
-    class TotalWeightLift
-    {
-        public string LiftName { get; set; }
-        public int TotalWeight { get; set; }
+        }
     }
 
 class WeekObj
     {
         public string WeekStart { get; set; }
         public string WeekEnd { get; set; }
-        public List<TotalWeightLift> liftList;
+        public string LiftName { get; set; }
+        public int TotalWeight { get; set; }
+
 
         public WeekObj()
         {
-            liftList = new List<TotalWeightLift>();
+            
         }
     }
 }
