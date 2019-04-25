@@ -588,8 +588,8 @@ app.controller('LayoutCtrl', function ($scope, $http, $cookies, $location, $wind
         //$scope.basicInfo.username = $scope.basicInfo.email.split('@')[0];
         //this is for getting variables in correct order for api
         $scope.basicInfoStr = {
-            //username: $scope.basicInfo.username,
-			UserName: $scope.basicInfo.email.split("@")[0],
+			//username: $scope.basicInfo.username,
+			UserName: $scope.basicInfo.username,
             Email: $scope.basicInfo.email,
             FirstName: $scope.basicInfo.firstName,
             LastName: $scope.basicInfo.lastName,
