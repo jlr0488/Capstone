@@ -111,7 +111,7 @@ app.controller('ViewAccountCtrl', function ($scope, $http, $cookies, $window) {
         currentWeight: "",
         goalWeight: "",
         gender: "",
-        birthday: "",
+        birthday: new Date(),
         waistMeasure: "",
         armMeasure: "",
         chestMeasure: "",
