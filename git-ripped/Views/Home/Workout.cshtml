@@ -30,7 +30,7 @@
 
 					<div class="md-form row ml-1" ng-repeat="set in lift.SetList">
 						<div class="col-3 px-0">
-							<input type="number" step="5" id="weight{{lift.LiftNameID}}:{{set.SetID}}" ng-model="set.Weight" class="form-control" required />
+							<input mdbInput type="number" step="5" ng-class="ng-touched : lift.LiftNameId != '' " id="weight{{lift.LiftNameID}}:{{set.SetID}}" ng-model="set.Weight" class="form-control" required />
 							<label for="weight{{lift.LiftNameID}}:{{set.SetID}}">Weight</label>
 						</div>
 						<div class="col-1 text-center">

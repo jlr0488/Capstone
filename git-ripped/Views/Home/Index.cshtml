@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 <div ng-controller="indexCtrl" ng-cloak>
-	<div ng-if="loggedIn">
+	<div ng-if="loggedIn && pounds > 0" class="container">
 		<div class="text-center mt-5">
 			<a href="/home/workout"><button class="btn btn-primary btn-block mb-5">Start Your Workout!</button></a>
 		</div>
@@ -11,6 +11,15 @@
 			<h4>You've Lifted {{pounds}} LBS! That's Equivilent to {{numItems}} {{item}}</h4>
 			<img class="img-circle img-fluid" src="{{imagePath}}" height="500" width="500" />
 		</div>
+	</div>
+	<div ng-if="loggedIn && pounds <= 0" class="container">
+		<h3>
+			Thank you for joining Git -Ripped, I hope you like it, Click the button below to start recording your first workout.
+		</h3>
+		<div class="text-center mt-5">
+			<a href="/home/workout"><button class="btn btn-primary btn-block mb-5">Start Your Workout!</button></a>
+		</div>
+
 	</div>
 	<div ng-if="!loggedIn" class="container">
 		<div class="mt-5">
