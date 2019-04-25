@@ -14,14 +14,6 @@ app.controller('indexCtrl', function ($scope, $http) {
 	planeWeight = 735000;
 
 
-	$scope.init = function () {
-		if ($scope.loggedIn == true) {
-			getTotalWeight();
-		}
-		else {
-
-		}
-	}
 
 
 
@@ -40,6 +32,14 @@ app.controller('indexCtrl', function ($scope, $http) {
 	};
 	
 
+	$scope.init = function () {
+		if ($scope.loggedIn == true) {
+			getTotalWeight();
+		}
+		else {
+
+		}
+	}
 
 
 
