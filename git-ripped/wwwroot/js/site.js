@@ -3,7 +3,7 @@
 
 // Write your JavaScript code.
 
-var app = angular.module("gitRipped", []);
+var app = angular.module("gitRipped", ['ngCookies']);
 
 app.controller('indexCtrl', function ($scope, $http) {
 	//do stuff for index Page
@@ -415,7 +415,7 @@ app.controller('ProgressCtrl', function ($scope, $http, $location) {
 
 })
 
-app.controller('LayoutCtrl', function ($scope, $http) {
+app.controller('LayoutCtrl', function ($scope, $http, $cookies, $location) {
 	$(".nav .nav-link").on("click", function () {
 		$("li.active").removeClass("active");
 		$('a[href="' + location.pathname + '"]').closest('li').addClass('active');
@@ -444,7 +444,11 @@ app.controller('LayoutCtrl', function ($scope, $http) {
         $http.post("../../api/GetLogin", JSON.stringify($scope.loginInfo))
             .then(function (response) {
                 $scope.loggedIn = true;
-                console.log($response.data);
+                console.log(response.data);
+                $cookies.GRsessionToken = response.data;
+                $cookies.GRsessionUsername = $scope.basicInfo.username;
+                //$location.path('/ViewAccount.cshtml'); not working
+
             }) , function (response) {
                 //error stuff
             }
@@ -468,11 +472,11 @@ app.controller('LayoutCtrl', function ($scope, $http) {
 	$scope.register = function()	{
         //need to salt pass
         //send http post or something to the server using basicInfo, make sure the order is right with zac
-
+        $scope.basicInfo.username = $scope.basicInfo.email.split('@')[0];
         //this is for getting variables in correct order for api
         $scope.basicInfoStr = {
             //username: $scope.basicInfo.username,
-            UserName: $scope.basicInfo.firstName,
+            UserName: $scope.basicInfo.username,
             Email: $scope.basicInfo.email,
             FirstName: $scope.basicInfo.firstName,
             LastName: $scope.basicInfo.lastName,
@@ -483,7 +487,7 @@ app.controller('LayoutCtrl', function ($scope, $http) {
             .then(function () {
                 alert("Your account has been created.");
                 //$window.location.href = "/home"; doesn't like this
-
+                $scope.signIn();
             }, function (error) {
 
             }
