@@ -66,18 +66,26 @@ using git_ripped.Models;
         {
             BeginContext(0, 224, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("environment", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0ab5698cbe6247f5a9f45a91a14c5ac5", async() => {
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("environment", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e880843c8f5d4ce1b00864d4cf075880", async() => {
+>>>>>>> front-end
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("environment", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "921b11b610414b89aad4271d2203bfef", async() => {
 >>>>>>> front-end
                 BeginContext(35, 6, true);
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(41, 71, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f2667cbe697245cb9d176ba1e63ea621", async() => {
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "162c9a3d5c4b47ef94962e28ce25f345", async() => {
+>>>>>>> front-end
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4c6322c6a300486d98ea12bf2e24beeb", async() => {
 >>>>>>> front-end
                 }
                 );
@@ -97,9 +105,13 @@ using git_ripped.Models;
                 EndContext();
                 BeginContext(118, 90, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "97552c34cefd468a9503867658a66cf6", async() => {
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a40e2b988877467b8a3d0f25e71f8834", async() => {
+>>>>>>> front-end
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ac7344dd35454bbeba2d0230e80f48cc", async() => {
 >>>>>>> front-end
                 }
                 );
@@ -136,18 +148,26 @@ using git_ripped.Models;
             EndContext();
             BeginContext(226, 944, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("environment", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aedfd816c87a49a5aa957ae11dff455c", async() => {
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("environment", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a99be59543e4720867346db8b9c84a8", async() => {
+>>>>>>> front-end
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("environment", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "24d31a441a7b4f18972a58b8e4d5ab08", async() => {
 >>>>>>> front-end
                 BeginContext(261, 6, true);
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(267, 399, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2dc08542e9d74a60bab5ac2b1b774f85", async() => {
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "26f9a0f8de974e1c938b57b0a3697687", async() => {
+>>>>>>> front-end
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89fecc606c0042e3b127930e9c44c245", async() => {
 >>>>>>> front-end
                     BeginContext(651, 6, true);
                     WriteLiteral("\r\n    ");
@@ -177,9 +197,13 @@ using git_ripped.Models;
                 EndContext();
                 BeginContext(672, 482, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c4d9f93234a7435ab4b5632496d87f98", async() => {
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bbac75a57b444ec8ac571f00c73f73cb", async() => {
+>>>>>>> front-end
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "49795c4f9c5244d1a63b2d33ef320eb3", async() => {
 >>>>>>> front-end
                     BeginContext(1139, 6, true);
                     WriteLiteral("\r\n    ");

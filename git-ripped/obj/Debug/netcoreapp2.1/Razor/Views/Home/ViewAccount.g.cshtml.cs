@@ -104,9 +104,13 @@ using git_ripped.Models;
             EndContext();
             BeginContext(1447, 109, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "0abaf7cd1bb34b2cbf197e67183e6aae", async() => {
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "71ba17a17b1940f6a15f6bae24a7d224", async() => {
+>>>>>>> front-end
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f3a1464724bb46ecbf3901fd39226fdd", async() => {
 >>>>>>> front-end
             }
             );
@@ -130,9 +134,13 @@ using git_ripped.Models;
             EndContext();
             BeginContext(1658, 1715, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f301ddb4401f48d9a8cc7b38dc5f0658", async() => {
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4db10a755dfd4ad28c553d246eedb5cd", async() => {
+>>>>>>> front-end
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "97c51b42433c4ea4bf9d80d9cbbd3e4f", async() => {
 >>>>>>> front-end
                 BeginContext(1727, 1639, true);
                 WriteLiteral(@"
@@ -204,9 +212,13 @@ using git_ripped.Models;
             EndContext();
             BeginContext(3649, 109, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b2d35dd2658c4570966d668f8b0b3754", async() => {
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e4de0be36c2b4f818d86117ecefdcfb7", async() => {
+>>>>>>> front-end
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "385f29c0ecae4d029edea780c2e8f9fc", async() => {
 >>>>>>> front-end
             }
             );
@@ -230,9 +242,13 @@ using git_ripped.Models;
             EndContext();
             BeginContext(3860, 2626, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ae52bf214b0f45f4aac409674373d5fa", async() => {
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ba68881f73444b49b0558f1e8ce42ef", async() => {
+>>>>>>> front-end
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eafdc99b842b4e6ca3375acb1de3fee7", async() => {
 >>>>>>> front-end
                 BeginContext(3930, 921, true);
                 WriteLiteral(@"
@@ -253,9 +269,13 @@ using git_ripped.Models;
                 EndContext();
                 BeginContext(4851, 39, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a7a0a935e7b74c07b2f4ee5fe603c2a4", async() => {
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f749fbf7ac494dc68100ae225d03066f", async() => {
+>>>>>>> front-end
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3eb15d9c8cab4481aa0a6a34c62d430c", async() => {
 >>>>>>> front-end
                     BeginContext(4868, 13, true);
                     WriteLiteral("Choose gender");
@@ -279,9 +299,13 @@ using git_ripped.Models;
                 EndContext();
                 BeginContext(4916, 34, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bf886f3c3f214d97ad8b2bf18c9435a7", async() => {
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4abaa7d0eed74039896a25bd80bc4845", async() => {
+>>>>>>> front-end
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "053251d75f804faeb352e4455b4e4528", async() => {
 >>>>>>> front-end
                     BeginContext(4937, 4, true);
                     WriteLiteral("Male");
@@ -305,9 +329,13 @@ using git_ripped.Models;
                 EndContext();
                 BeginContext(4976, 38, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fcd9ad2820574e4fb3c7171200269447", async() => {
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a3bbee5f0c0149ca840bfd5eecc80c3e", async() => {
+>>>>>>> front-end
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3ba986051b254d4bac29791b3538e7ce", async() => {
 >>>>>>> front-end
                     BeginContext(4999, 6, true);
                     WriteLiteral("Female");
@@ -385,9 +413,13 @@ using git_ripped.Models;
             EndContext();
             BeginContext(6766, 109, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b096771696ce4983a81f101e753439b9", async() => {
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "444eb91e65b74d2cb48bce531298ee70", async() => {
+>>>>>>> front-end
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e340f69adf0646d18f4453d3678da3bf", async() => {
 >>>>>>> front-end
             }
             );
@@ -411,9 +443,13 @@ using git_ripped.Models;
             EndContext();
             BeginContext(6977, 1221, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "879a6e433e304ce5a3c12702ea96f048", async() => {
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "210f8327c0104772a634bd1a2cccb8c7", async() => {
+>>>>>>> front-end
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a5aacc70b6474d28bd200d5a7352c60a", async() => {
 >>>>>>> front-end
                 BeginContext(7048, 1143, true);
                 WriteLiteral(@"
@@ -467,9 +503,13 @@ using git_ripped.Models;
             EndContext();
             BeginContext(8478, 109, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "81b23932523247d2835d78e7c761b151", async() => {
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "d6721368d38a4e1bbb08de7f5d8702ab", async() => {
+>>>>>>> front-end
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "903883d825a64449abd8ad6214737b04", async() => {
 >>>>>>> front-end
             }
             );
@@ -493,9 +533,13 @@ using git_ripped.Models;
             EndContext();
             BeginContext(8689, 2444, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d93c5971ab4e457391bdcad771aa59db", async() => {
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3d7ddf0c6dc7499da5b14eb40c7c2f69", async() => {
+>>>>>>> front-end
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4b0f4773a6b4c86a6918037fdc46652", async() => {
 >>>>>>> front-end
                 BeginContext(8758, 2368, true);
                 WriteLiteral(@"

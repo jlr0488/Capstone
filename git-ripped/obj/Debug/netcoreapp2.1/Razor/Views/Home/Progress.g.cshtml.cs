@@ -69,7 +69,11 @@ using git_ripped.Models;
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ea67ffc81d3f4d50880693d0fa021c5e", async() => {
 =======
             BeginContext(94, 56, false);
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "2d68484e9f38484485723c263dd2e8ea", async() => {
+>>>>>>> front-end
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "352606a309d340809c9a015fb596e160", async() => {
 >>>>>>> front-end
             }
             );

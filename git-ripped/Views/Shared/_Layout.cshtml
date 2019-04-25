@@ -1,19 +1,20 @@
 ﻿<!DOCTYPE html>
 <html ng-app="gitRipped">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>@ViewData["Title"] - Git -Ripped</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Git -Ripped</title>
 
-	<link rel="stylesheet" href="~/lib/mdboostrap/MDB-Free_4.7.3/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="~/lib/mdboostrap/MDB-Free_4.7.3/css/mdb.min.css" />
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <link rel="stylesheet" href="~/lib/mdboostrap/MDB-Free_4.7.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/mdboostrap/MDB-Free_4.7.3/css/mdb.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 
-	<link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-cookies.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-route.js"></script>
 
 
 </head>
@@ -30,48 +31,51 @@
 					</button>
 				</div>
 				<div class="modal-body mx-3">
-					<form id="registerForm" name="registerForm">
-						<div class="md-form mb-3">
-							<input type="text" class="form-control validate" name="registerFirstName" ng-model="basicInfo.firstName" id="registerFirstName" required autofocus />
-							<label for="registerFirstName" data-error="Please enter your first name">First Name</label>
-						</div>
-						<div class="md-form mb-3">
-							<input type="text" class="form-control validate" name="registerLastName" ng-model="basicInfo.lastName" id="registerLastName" required="required" />
-							<label for="registerLastName" data-error="please enter your last name">Last Name</label>
-						</div>
+                    <form id="registerForm" name="registerForm">
+                        <div class="md-form mb-3">
+                            <input type="text" class="form-control validate" name="registerFirstName" ng-model="basicInfo.firstName" id="registerFirstName" required autofocus />
+                            <label for="registerFirstName" data-error="Please enter your first name">First Name</label>
+                        </div>
+                        <div class="md-form mb-3">
+                            <input type="text" class="form-control validate" name="registerLastName" ng-model="basicInfo.lastName" id="registerLastName" required="required" />
+                            <label for="registerLastName" data-error="please enter your last name">Last Name</label>
+                        </div>
+                        <div class="md-form mb-3">
+                            <input type="text" class="form-control validate" name="registerUsername" ng-model="basicInfo.username" id="registerUsername" required="required" />
+                            <label for="registerUsername" data-error="please enter your username">Username</label>
+                        </div>
+                        <div class="md-form mb-3">
+                            <input type="email" class="form-control validate" ng-model="basicInfo.email" name="registerEmail" required id="registerEmail" />
+                            <label for="registerEmail" data-error="please enter a valid email">Email</label>
+                        </div>
+                        <div class="md-form mb-3">
+                            <input type="password" class="form-control validate" id="registerPassword" ng-model="basicInfo.password" pattern=".{8,}" name="registerPassword" required />
+                            <label for="registerPassword">Password (8 characters min)</label>
+                        </div>
+                        <div class="md-form mb-3">
+                            <input type="password" class="form-control validate" id="registerPasswordConfirmation" name="registerPasswordConfirmation" ng-blur="doesPasswordMatch()" ng-model="basicInfo.password2" required>
+                            <label for="registerPasswordConfirmation">Confirm Password</label>
+                            <div class="alert alert-warning" ng-if="!doesPasswordMatch() && registerForm.registerPassword.$dirty && registerForm.registerPasswordConfirmation.$dirty">Passwords are not correct or don't match </div>
+                        </div>
+                        <div class="md-form mb-3">
+                            <div class="col-12">
+                                <button type="submit" value="submit" class="btn btn-primary w-100" ng-click="register()" ng-disabled="registerForm.$invalid || !doesPasswordMatch()">
+                                    Register
+                                </button>
+                            </div>
+                        </div>
 
-						<div class="md-form mb-3">
-							<input type="email" class="form-control validate" ng-model="basicInfo.email" name="registerEmail" required id="registerEmail" />
-							<label for="registerEmail" data-error="please enter a valid email">Email</label>
-						</div>
-						<div class="md-form mb-3">
-							<input type="password" class="form-control validate" id="registerPassword" ng-model="basicInfo.password" pattern=".{8,}" name="registerPassword" required />
-							<label for="registerPassword">Password (8 characters min)</label>
-						</div>
-						<div class="md-form mb-3">
-								<input type="password" class="form-control validate" id="registerPasswordConfirmation" name="registerPasswordConfirmation" ng-blur="doesPasswordMatch()" ng-model="basicInfo.password2" required>
-								<label for="registerPasswordConfirmation">Confirm Password</label>
-								<div class="alert alert-warning" ng-if="!doesPasswordMatch() && registerForm.registerPassword.$dirty && registerForm.registerPasswordConfirmation.$dirty">Passwords are not correct or don't match </div>
-						</div>
-						<div class="md-form mb-3">
-							<div class="col-12">
-								<button type="submit" value="submit" class="btn btn-primary w-100" ng-click="register()" ng-disabled="registerForm.$invalid || !doesPasswordMatch()">
-									Register
-								</button>
-							</div>
-						</div>
+                        <div class="form-row pt-3">
+                            <div class="col-12">
+                                <div class="align-text-center">
+                                    <div class="form-group text-center">
+                                        <p class="font-medium">Already have a Git-Ripped Account? <a data-toggle="modal" data-dismiss="modal" data-target="#SigninModal" class="underline">Sign In</a>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-						<div class="form-row pt-3">
-							<div class="col-12">
-								<div class="align-text-center">
-									<div class="form-group text-center">
-										<p class="font-medium">Already have a Git-Ripped Account? <a data-toggle="modal" data-dismiss="modal" data-target="#SigninModal" class="underline">Sign In</a>.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</form>
+                    </form>
 
 				</div>
 			</div>
@@ -91,9 +95,9 @@
 				<div class="modal-body mx-3">
 					<form id="signInForm" name="signInForm">
 						<div class="md-form mb-5">
-							<i class="fas fa-envelope prefix grey-text"></i>
-							<input type="email" id="signInFormEmail" ng-model="basicInfo.email" class="form-control validate" required>
-							<label data-error="please enter a valid email" for="signInFormEmail">Your email</label>
+							<i class="fas fa-user prefix grey-text"></i>
+							<input type="text" id="signInFormUsername" ng-model="basicInfo.username" class="form-control validate" required>
+							<label data-error="please enter a valid username" for="signInFormUsername">Your Username</label>
 						</div>
 
 						<div class="md-form mb-4">

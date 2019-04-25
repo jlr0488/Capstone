@@ -90,9 +90,13 @@ using git_ripped.Models;
             EndContext();
             BeginContext(1168, 689, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "814f3a0e9bc64ef99a59858406a59347", async() => {
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d4ed938e5b5646339fbef2b8b1196df6", async() => {
+>>>>>>> front-end
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "18def7896695431c9cc088a156608d09", async() => {
 >>>>>>> front-end
                 BeginContext(1174, 676, true);
                 WriteLiteral(@"
@@ -141,9 +145,13 @@ using git_ripped.Models;
             EndContext();
             BeginContext(2270, 678, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "60a438a07a954a5e86dbfe757968b54b", async() => {
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c39a37e5a93f493fa281fc2c01c0fc7e", async() => {
+>>>>>>> front-end
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aba4ae52a78a4b809dd4428ec1f17a2f", async() => {
 >>>>>>> front-end
                 BeginContext(2276, 665, true);
                 WriteLiteral(@"

@@ -21,18 +21,13 @@ namespace gitripped.API
     {
         // GET api/Workout
         [HttpGet]
-        public IActionResult GET([FromBody]JObject json)
+        public IActionResult GET(int tok)
         {
-
-            dynamic jsonResponse = json;
-            string username = jsonResponse.Username;
-            string password = jsonResponse.Password;
-
             try
             {
                 SqlConnection conn = OpenSqlConnection();
                 int UserID;
-                if ((UserID = CheckLogin(username, password, conn)) != -1)
+                if ((UserID = Helper.CheckSessionToken(tok, conn)) != -1)
                 {
                     Account account = new Account();
                     account.UserID = UserID;

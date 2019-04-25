@@ -3,7 +3,7 @@
 
 // Write your JavaScript code.
 
-var app = angular.module("gitRipped", []);
+var app = angular.module("gitRipped", ['ngCookies']);
 
 app.controller('indexCtrl', function ($scope, $http) {
 	//do stuff for index Page
@@ -317,7 +317,7 @@ app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 app.controller('FindWorkoutCtrl', function ($scope, $http) {
 	$scope.init = function () {
 		$scope.workoutList = [{}];
-		$http.get("../api/getWorkoutList?tok=1")
+        $http.get("../api/getWorkoutList?tok=" + $scope.SessionToken)
 			.then(function (response) {
 				$scope.workoutList = response.data;
 
@@ -336,23 +336,51 @@ app.controller('StatsCtrl', function ($scope, $http, $location) {
 
     //git records card connected to back end
     $scope.initRecords = function () {
-        $http.get("../api/LiftRecords?tok=1")
-            .then(function (response) {
-                $scope.recordList = response.data;
-                console.log($scope.recordList);
-                $scope.benchMax = $scope.recordList[0].Max;
-                console.log($scope.benchMax);
-                $scope.mPressMax = $scope.recordList[1].Max;
-                console.log($scope.mPressMax);
-                $scope.inclinePressMax = $scope.recordList[2].Max;
-                console.log($scope.inclinePressMax);
-                $scope.squatMax = $scope.recordList[3].Max;
-                console.log($scope.squatMax);
+        if ($scope.loggedIn) {
+            $http.get("../api/LiftRecords?tok=" + $scope.SessionToken)
+                .then(function (response) {
+                    $scope.recordList = response.data;
+                    console.log($scope.recordList);
+                    try {
+                        $scope.max1 = $scope.recordList[0].Max;
+                        $scope.max1Name = $scope.recordList[0].LiftName;
+                        $scope.max1Avail = true;
+                    }
+                    catch{
+                        $scope.max1Avail = false;
+                    }
+                    try {
+                        $scope.max2 = $scope.recordList[1].Max;
+                        $scope.max2Name = $scope.recordList[1].LiftName;
+                        $scope.max2Avail = true;
+                    }
+                    catch{
+                        $scope.Max2Avail = false;
+                    }
+                    try {
+                        $scope.max3 = $scope.recordList[2].Max;
+                        $scope.max3Name = $scope.recordList[2].LiftName;
+                        $scope.max3Avail = true;
+                    }
+                    catch
+                    {
+                        $scope.max3Avail = false;
+                    }
+                    try {
+                        $scope.max4 = $scope.recordList[3].Max;
+                        $scope.max4Name = $scope.recordList[3].LiftName;
+                        $scope.max4Avail = true;
+                    }
+                    catch{
+                        $scope.Max4Avail = false;
+                    }
+                    
 
-            })
-            , function (response) {
-                alert("An error has occured getting Lift Records");
-            }
+                })
+                , function (response) {
+                    alert("An error has occured getting Lift Records");
+                }
+        }
     }();
 
 })
@@ -437,7 +465,7 @@ app.controller('ProgressCtrl', function ($scope, $http, $location) {
 
 })
 
-app.controller('LayoutCtrl', function ($scope, $http) {
+app.controller('LayoutCtrl', function ($scope, $http, $cookies, $location) {
 	$(".nav .nav-link").on("click", function () {
 		$("li.active").removeClass("active");
 		$('a[href="' + location.pathname + '"]').closest('li').addClass('active');
@@ -450,16 +478,39 @@ app.controller('LayoutCtrl', function ($scope, $http) {
 			username: "",
 			password: "",
 			password2: ""
-		};
+        };
+
+        if (typeof ($cookies.get("GRsessionToken")) === 'undefined') {
+            $scope.loggedIn = false;
+        }
+        else {
+            $scope.loggedIn = true;
+            $scope.SessionToken = $cookies.get("GRsessionToken");
+        }
 	}();
 	
 
-	$scope.loggedIn = false;
+
 
 	$scope.signIn = function(){
 		//need to salt the password
-		//send http post or something to the server useing basicInfo.pass and basicInfo.email
-		
+		//send http post or something to the server using basicInfo.username and basicInfo.password
+        $scope.loginInfo = {
+            Username: $scope.basicInfo.username,
+            Password: $scope.basicInfo.password
+        };
+        $http.post("../../api/GetLogin", JSON.stringify($scope.loginInfo))
+            .then(function (response) {
+                $scope.loggedIn = true;
+                console.log(response.data);
+                $cookies.put("GRsessionToken", response.data);
+                //$cookies.GRsessionUsername = $scope.basicInfo.username;
+                //$location.path('/ViewAccount.cshtml'); not working
+
+            }) , function (response) {
+                //error stuff
+            }
+
 	}
 
 	$scope.clearBasicUserInfo = function () {
@@ -479,10 +530,9 @@ app.controller('LayoutCtrl', function ($scope, $http) {
 	$scope.register = function()	{
         //need to salt pass
         //send http post or something to the server using basicInfo, make sure the order is right with zac
-
+        //$scope.basicInfo.username = $scope.basicInfo.email.split('@')[0];
         //this is for getting variables in correct order for api
         $scope.basicInfoStr = {
-            //add username to register UI
             //username: $scope.basicInfo.username,
 			UserName: $scope.basicInfo.email.split("@")[0],
             Email: $scope.basicInfo.email,
@@ -493,11 +543,9 @@ app.controller('LayoutCtrl', function ($scope, $http) {
         console.log(JSON.stringify($scope.basicInfoStr));
         $http.post("../../api/CreateUser", JSON.stringify($scope.basicInfoStr))
             .then(function () {
-                $scope.loggedIn = true;
                 alert("Your account has been created.");
-                $window.location.href = "/home";
-                //need to add in token response and save to token var
-
+                //$window.location.href = "/home"; doesn't like this
+                $scope.signIn();
             }, function (error) {
 
             }

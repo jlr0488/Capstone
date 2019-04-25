@@ -6,7 +6,7 @@
 
 <div ng-controller="StatsCtrl" class="container" ng-cloak>
 
-    <div class="alert alert-warning">
+    <div class="alert alert-warning" ng-cloak ng-if={{loggedIn}}>
         <strong>Oops!</strong> Sign in to view your stats.
     </div>
 
@@ -38,10 +38,11 @@
             <div class="single-stat" id="records">
                 <h2 align="center">Git Records</h2>
                 <center><i class="fas fa-dumbbell fa-5x"></i></center>
-                <h4>Best Bench: {{benchMax}} lbs</h4>
-                <h4>Best Military Press: {{mPressMax}} lbs</h4>
-                <h4>Best Incline Press: {{inclinePressMax}} lbs</h4>
-                <h4>Best Squat: {{squatMax}}</h4>
+                <h4 align="center" ng-if="max1Avail==false">No Bests Recorded Yet!</h4>
+                <h4 ng-if="max1Avail">Best {{max1Name}}: {{max1}} lbs</h4>
+                <h4 ng-if="max2Avail">Best {{max2Name}}: {{max2}} lbs</h4>
+                <h4 ng-if="max3Avail">Best {{max3Name}}: {{max3}} lbs</h4>
+                <h4 ng-if="max4Avail">Best {{max4Name}}: {{max4}} lbs</h4>
 
 
 

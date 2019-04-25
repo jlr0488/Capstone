@@ -23,7 +23,7 @@ namespace gitripped.API
 				SqlConnection conn = Helper.OpenSqlConnection();
 				if ((UserID = Helper.CheckSessionToken(tok, conn)) != -1)
 				{
-					SqlCommand command = new SqlCommand("SELECT * FROM lift.LiftMax WHERE UserID = @UserID;", conn);
+					SqlCommand command = new SqlCommand("SELECT * FROM lift.LiftMax WHERE UserID = @UserID ORDER BY Max DESC;", conn);
 					command.Parameters.Add("UserID", System.Data.SqlDbType.Int);
 					command.Parameters["UserID"].Value = UserID;
 					SqlDataReader reader = command.ExecuteReader();
