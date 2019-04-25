@@ -526,7 +526,12 @@ app.controller('LayoutCtrl', function ($scope, $http, $cookies, $location, $wind
                 alert("Username and Password Combination Incorrect.")
             })
         var test = 2 + 3;
-	}
+    }
+
+    $scope.signOut = function () {
+        $cookies.remove("GRsessionToken");
+        $window.location.href = "/home";
+    }
 
 	$scope.clearBasicUserInfo = function () {
 		$scope.basicInfo = {
