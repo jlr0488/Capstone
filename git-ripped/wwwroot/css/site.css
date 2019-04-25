@@ -17,6 +17,7 @@ body {
     line-height: 1.4;
 }
 
+
 @media screen and (max-width: 767px) {
 	.single-stat {
 		box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.2);

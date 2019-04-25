@@ -16,43 +16,112 @@
     </p>
 
     <div class="row">
-        <div class="col-md-4">
-            <div class="single-stat" id="vitals">
-                <h2 align="center">Git Vitals</h2>
-                <center><i class="fas fa-weight fa-5x"></i></center>
-                <h4>Height:</h4>
-                <h4>Weight:</h4>
-                <h4>Age:</h4>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="single-stat" id="gitstats">
-                <h2 align="center">Git Stats</h2>
-                <center><i class="fas fa-pen-square fa-5x"></i></center>
-                <h4>Workouts Completed:</h4>
-                <h4>Goal Streak:</h4>
-                <h4>Record Breaks:</h4>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="single-stat" id="records">
-                <h2 align="center">Git Records</h2>
-                <center><i class="fas fa-dumbbell fa-5x"></i></center>
-                <h4 align="center" ng-if="max1Avail==false">No Bests Recorded Yet!</h4>
-                <div class="text-nowrap">
-                    <h4 ng-if="max1Avail">Best {{max1Name}}: {{max1}} lbs</h4>
-                </div>
-                <div class="text-nowrap">
-                    <h4 ng-if="max2Avail">Best {{max2Name}}: {{max2}} lbs</h4>
-                </div>
-                <div class="text-nowrap">
-                    <h4 ng-if="max3Avail">Best {{max3Name}}: {{max3}} lbs</h4>
-                </div>
-                <div class="text-nowrap">
-                    <h4 ng-if="max4Avail">Best {{max4Name}}: {{max4}} lbs</h4>
-                </div>
-            </div>
-        </div>
+		<div class="col-md-4">
+			@*<div class="single-stat" id="vitals">
+				<h2 align="center">Git Vitals</h2>
+				<center><i class="fas fa-weight fa-5x"></i></center>
+				<h4>Height:</h4>
+				<h4>Weight:</h4>
+				<h4>Age:</h4>
+			</div>*@
+			<!-- Card -->
+			<div class="card">
+
+				<!-- Card image -->
+				@*<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">*@
+				<center><i class="fas fa-weight fa-5x card-img-top"></i></center>
+				<!-- Card content -->
+				<div class="card-body">
+
+					<!-- Title -->
+					<h4 class="card-title"><a>Git Vitals</a></h4>
+					<!-- Text -->
+					<h4>Height:</h4>
+					<h4>Weight:</h4>
+					<h4>Age:</h4>
+
+
+				</div>
+
+			</div>
+			<!-- Card -->
+		</div>
+		<div class="col-md-4">
+			@*<div class="single-stat" id="gitstats">
+				<h2 align="center">Git Stats</h2>
+				<center><i class="fas fa-pen-square fa-5x"></i></center>
+				<h4>Workouts Completed:</h4>
+				<h4>Goal Streak:</h4>
+				<h4>Record Breaks:</h4>
+			</div>*@
+			<!-- Card -->
+			<div class="card">
+
+				<!-- Card image -->
+				@*<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">*@
+				<center><i class="fas fa-pen-square fa-5x card-img-top"></i></center>
+				<!-- Card content -->
+				<div class="card-body">
+
+					<!-- Title -->
+					<h4 class="card-title"><a>Git Stats</a></h4>
+					<!-- Text -->
+					<h4>Workouts Completed:</h4>
+					<h4>Goal Streak:</h4>
+					<h4>Record Breaks:</h4>
+
+
+				</div>
+
+			</div>
+			<!-- Card -->
+		</div>
+		<div class="col-md-4">
+			@*<div class="single-stat" id="records">
+				<h2 align="center">Git Records</h2>
+				<center><i class="fas fa-dumbbell fa-5x"></i></center>
+				<h4 align="center" ng-if="max1Avail==false">No Bests Recorded Yet!</h4>
+				<div class="text-nowrap">
+					<h4 ng-if="max1Avail">Best {{max1Name}}: {{max1}} lbs</h4>
+				</div>
+				<div class="text-nowrap">
+					<h4 ng-if="max2Avail">Best {{max2Name}}: {{max2}} lbs</h4>
+				</div>
+				<div class="text-nowrap">
+					<h4 ng-if="max3Avail">Best {{max3Name}}: {{max3}} lbs</h4>
+				</div>
+				<div class="text-nowrap">
+					<h4 ng-if="max4Avail">Best {{max4Name}}: {{max4}} lbs</h4>
+				</div>
+			</div>*@
+			<!-- Card -->
+			<div class="card">
+
+				<!-- Card image -->
+				@*<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">*@
+				<center><i class="fas fa-dumbbell fa-5x card-img-top"></i></center>
+				<!-- Card content -->
+				<div class="card-body">
+
+					<!-- Title -->
+					<h4 class="card-title"><a>Git Records</a></h4>
+					<!-- Text -->
+					
+						<h4 ng-if="max1Avail">Best {{max1Name}}: {{max1}} lbs</h4>
+
+						<h4 ng-if="max2Avail">Best {{max2Name}}: {{max2}} lbs</h4>
+
+						<h4 ng-if="max3Avail">Best {{max3Name}}: {{max3}} lbs</h4>
+
+						<h4 ng-if="max4Avail">Best {{max4Name}}: {{max4}} lbs</h4>
+
+
+
+				</div>
+
+			</div>
+			<!-- Card -->
+		</div>
 
     </div>
 
