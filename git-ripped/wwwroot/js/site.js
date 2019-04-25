@@ -1,4 +1,4 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
@@ -521,7 +521,8 @@ app.controller('LayoutCtrl', function ($scope, $http, $cookies, $location, $wind
                 console.log(response.data);
                 $cookies.put("GRsessionToken", response.data);
                 //$cookies.GRsessionUsername = $scope.basicInfo.username;
-                $('#SigninModal').modal('hide');
+				$('#SigninModal').modal('hide');
+				$window.location.href = "/"
             } , function (error) {
                 alert("Username and Password Combination Incorrect.")
             })
