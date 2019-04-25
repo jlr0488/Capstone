@@ -137,7 +137,7 @@ app.controller('ViewAccountCtrl', function ($scope, $http) {
             LegMeasure: $scope.attributes.legMeasure
         };
         console.log($scope.attributesStr);
-        $http.post("../../api/CreateUserAttributes", JSON.stringify($scope.attributesStr))
+        $http.post("../../api/CreateAttributes", JSON.stringify($scope.attributesStr))
             .then(function (response) {
                 alert("Your attributes have beeen saved.");
             })
