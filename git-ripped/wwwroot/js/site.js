@@ -34,12 +34,12 @@ app.controller('indexCtrl', function ($scope, $http) {
 
 	$scope.init = function () {
 		if ($scope.loggedIn == true) {
-			getTotalWeight();
+			$scope.getTotalWeight();
 		}
 		else {
 
 		}
-	}
+	}();
 
 
 
