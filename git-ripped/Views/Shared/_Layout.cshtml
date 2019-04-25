@@ -18,7 +18,7 @@
 
 
 </head>
-<body ng-controller="LayoutCtrl">
+<body ng-controller="LayoutCtrl" ng-cloak>
 	<!--MODALS-->
 	<div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
 		 aria-hidden="true">
@@ -131,13 +131,13 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/home/stats">Stats</a>
+					<a class="nav-link" ng-if="loggedIn" href="/home/stats">Stats</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/home/findworkout">Find A Plan</a>
+					<a class="nav-link" ng-if="loggedIn" href="/home/findworkout">Find A Plan</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/home/progress">Progress</a>
+					<a class="nav-link" ng-if="loggedIn" href="/home/progress">Progress</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav ml-auto nav-flex-icons" ng-if="loggedIn" ng-cloak>
