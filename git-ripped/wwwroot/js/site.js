@@ -157,7 +157,8 @@ app.controller('ViewAccountCtrl', function ($scope, $http) {
         console.log($scope.changePass.username);
         $http.post("../../api/ChangePassword", JSON.stringify($scope.changePass))
             .then(function (response) {
-                alert("Your password has been changed.");
+                alert("Your password has been changed.\nYou must sign back in with your new password.");
+                $scope.signOut();
             })
             , function (response) {
                 //error 

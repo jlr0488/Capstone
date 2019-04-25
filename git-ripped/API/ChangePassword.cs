@@ -20,9 +20,9 @@ namespace gitripped.API
         {
 
             dynamic jsonResponse = json;
-            string username = jsonResponse.Username;
-            string password = jsonResponse.Password;
-            string newPassword = jsonResponse.NewPassword;
+            string username = jsonResponse.username;
+            string password = jsonResponse.password;
+            string newPassword = jsonResponse.newPassword;
 
             try
             {
