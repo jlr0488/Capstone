@@ -216,3 +216,5 @@ C:\Users\Zachery.Chambers\Documents\Capstone\Capstone\git-ripped\obj\Debug\netco
 C:\Users\Zachery.Chambers\Documents\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.Views.pdb
 C:\Users\Zachery.Chambers\Documents\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.csproj.CopyComplete
 C:\Users\Zachery.Chambers\Documents\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.csprojAssemblyReference.cache
+D:\jmwen\repos\Capstone\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\Razor\Views\Home\FindWorkout.g.cshtml.cs
+D:\jmwen\repos\Capstone\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\Razor\Views\Home\Progress.g.cshtml.cs
