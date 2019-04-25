@@ -2,3 +2,27 @@
 \.vs/git-ripped/v15/Server/sqlite3/storage\.ide-wal
 
 \.vs/git-ripped/v15/\.suo
+
+\.vs/git-ripped/v15/Server/sqlite3/storage\.ide-shm
+
+git-ripped/bin/Debug/netcoreapp2\.1/git-ripped\.Views\.dll
+
+git-ripped/bin/Debug/netcoreapp2\.1/git-ripped\.Views\.pdb
+
+git-ripped/obj/Debug/netcoreapp2\.1/git-ripped\.Views\.dll
+
+git-ripped/obj/Debug/netcoreapp2\.1/git-ripped\.Views\.pdb
+
+git-ripped/obj/Debug/netcoreapp2\.1/Razor/Views/Home/Progress\.g\.cshtml\.cs
+
+git-ripped/obj/Debug/netcoreapp2\.1/Razor/Views/Home/Stats\.g\.cshtml\.cs
+
+git-ripped/obj/Debug/netcoreapp2\.1/Razor/Views/Home/ViewAccount\.g\.cshtml\.cs
+
+git-ripped/obj/Debug/netcoreapp2\.1/Razor/Views/Home/Workout\.g\.cshtml\.cs
+
+git-ripped/obj/Debug/netcoreapp2\.1/Razor/Views/Shared/_CookieConsentPartial\.g\.cshtml\.cs
+
+git-ripped/obj/Debug/netcoreapp2\.1/Razor/Views/Shared/_Layout\.g\.cshtml\.cs
+
+git-ripped/obj/Debug/netcoreapp2\.1/Razor/Views/Shared/_ValidationScriptsPartial\.g\.cshtml\.cs

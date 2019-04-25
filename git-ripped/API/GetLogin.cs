@@ -112,15 +112,15 @@ namespace gitripped.API
                 int UserID_a = (int)reader["UserID"];
                 reader.Close();
 
-                command = new SqlCommand("Select UserID From usr.Password WHERE HashedPassword = @Password", conn);
-                command.Parameters.Add("@Password", System.Data.SqlDbType.Char);
-                command.Parameters["@Password"].Value = password;
+                command = new SqlCommand("Select HashedPassword From usr.Password WHERE UserID = @UserID", conn);
+                command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
+                command.Parameters["@UserID"].Value = UserID_a;
                 reader = command.ExecuteReader();
                 reader.Read();
-                int UserID_b = (int)reader["UserID"];
+                string testPass = (string)reader["HashedPassword"];
                 reader.Close();
 
-                if (UserID_a == UserID_b)
+                if (testPass == password)
                 {
                     return UserID_a;
                 }

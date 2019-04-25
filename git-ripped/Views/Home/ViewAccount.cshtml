@@ -100,6 +100,7 @@
                         <option value="">Choose gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
                 <div class="form-row mb-4">
@@ -172,18 +173,13 @@
             <!-- Default form register -->
             <form id="BasicInfoForm" class="text-center border border-light p-5">
 
-                <div class="form-row">
-                    <!-- E-mail -->
-                    <input type="email" id="ChangePassEmail" ng-model="changePass.email" class="form-control mb-4" placeholder="E-mail" required="required" />
-                </div>
-
                 <div class="form-row mb-4">
                     <!--Username-->
                     <input type="text" id="ChangePassUsername" ng-model="changePass.username" class="form-control" placeholder="Username" required="required" />
                 </div>
                 <div class="form-row mb-4">
                     <!-- Old Password -->
-                    <input type="password" id="ChangePassOldPassword" ng-model="changePass.oldPassword" class="form-control" placeholder="Old Password" aria-describedby="dPasswordHelpBlock" required="required" />
+                    <input type="password" id="ChangePassOldPassword" ng-model="changePass.password" class="form-control" placeholder="Old Password" aria-describedby="dPasswordHelpBlock" required="required" />
                 </div>
 
                 <div class="form-row mb-4">
