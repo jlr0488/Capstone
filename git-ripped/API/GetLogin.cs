@@ -42,7 +42,6 @@ namespace gitripped.API
                     SqlDataReader reader = command.ExecuteReader();
                     if (reader.HasRows)
                     {
-
                         command = new SqlCommand("DELETE FROM usr.SessionToken WHERE UserID = @UserID", conn);
                         command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
                         command.Parameters["@UserID"].Value = UserID;

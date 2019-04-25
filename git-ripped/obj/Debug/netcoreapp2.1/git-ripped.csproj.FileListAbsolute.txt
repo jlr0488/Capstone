@@ -178,7 +178,6 @@ D:\jmwen\repos\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\Razor\Views\
 D:\jmwen\repos\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\Razor\Views\Home\Stats.g.cshtml.cs
 D:\jmwen\repos\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\Razor\Views\Home\FindWorkout.g.cshtml.cs
 C:\Users\Juan Orta\Desktop\nc\Capstone\git-ripped\obj\Debug\netcoreapp2.1\Razor\Views\Home\FindWorkout.g.cshtml.cs
-C:\Users\Zachery.Chambers\Documents\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.csprojAssemblyReference.cache
 C:\Users\Zachery.Chambers\Documents\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.csproj.CoreCompileInputs.cache
 C:\Users\Zachery.Chambers\Documents\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.RazorAssemblyInfo.cache
 C:\Users\Zachery.Chambers\Documents\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.RazorAssemblyInfo.cs
@@ -216,3 +215,4 @@ C:\Users\Zachery.Chambers\Documents\Capstone\Capstone\git-ripped\obj\Debug\netco
 C:\Users\Zachery.Chambers\Documents\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.RazorTargetAssemblyInfo.cs
 C:\Users\Zachery.Chambers\Documents\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.Views.pdb
 C:\Users\Zachery.Chambers\Documents\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.csproj.CopyComplete
+C:\Users\Zachery.Chambers\Documents\Capstone\Capstone\git-ripped\obj\Debug\netcoreapp2.1\git-ripped.csprojAssemblyReference.cache

@@ -292,7 +292,7 @@ app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 				$scope.finishWorkoutProcessing = false;
 
 				alert("Your workout has been saved, you can see it when you View Past Workouts!");
-				$window.location.href = "/home";
+				$window.location.href = "/home/findworkout";
 			}, function (error) {
 				$scope.finishWorkoutProcessing = false;
 
@@ -378,7 +378,7 @@ app.controller('StatsCtrl', function ($scope, $http, $location) {
 
 
                 })
-                , function (response) {
+                , function (error) {
                     alert("An error has occured getting Lift Records");
                 }
         }
@@ -474,14 +474,14 @@ app.controller('LayoutCtrl', function ($scope, $http, $cookies, $location) {
 		$("li.active").removeClass("active");
 		$('a[href="' + location.pathname + '"]').closest('li').addClass('active');
 	}());
-	$scope.init = function () {
-		$scope.basicInfo = {
-			firstName: "",
-			lastName: "",
-			email: "",
-			username: "",
-			password: "",
-			password2: ""
+    $scope.init = function () {
+        $scope.basicInfo = {
+            firstName: "",
+            lastName: "",
+            email: "",
+            username: "",
+            password: "",
+            password2: ""
         };
 
         if (typeof ($cookies.get("GRsessionToken")) === 'undefined') {
@@ -491,9 +491,7 @@ app.controller('LayoutCtrl', function ($scope, $http, $cookies, $location) {
             $scope.loggedIn = true;
             $scope.SessionToken = $cookies.get("GRsessionToken");
         }
-	}();
-	
-
+    }();
 
 
 	$scope.signIn = function(){
@@ -509,12 +507,11 @@ app.controller('LayoutCtrl', function ($scope, $http, $cookies, $location) {
                 console.log(response.data);
                 $cookies.put("GRsessionToken", response.data);
                 //$cookies.GRsessionUsername = $scope.basicInfo.username;
-                //$location.path('/ViewAccount.cshtml'); not working
-
-            }) , function (response) {
-                //error stuff
-            }
-
+                $('#SigninModal').modal('hide');
+            } , function (error) {
+                alert("Username and Password Combination Incorrect.")
+            })
+        var test = 2 + 3;
 	}
 
 	$scope.clearBasicUserInfo = function () {
