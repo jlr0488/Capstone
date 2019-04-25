@@ -39,7 +39,19 @@ namespace gitripped.API
 						workout.WorkoutComplete = reader["WorkoutComplete"].ToString();
 						workout.StartDateTime = (DateTime)reader["StartDatetime"];
 						workout.CompleteDateTime = (DateTime)reader["CompleteDatetime"];
-						workoutList.Add(workout);
+                        if (workout.NumberLifts != 0)
+                        {
+                            SqlCommand command2 = new SqlCommand("SELECT * FROM lift.LiftWithName WHERE WorkoutID = @WorkoutID ORDER BY LiftOrderNumber", conn);
+                            command2.Parameters.Add("@WorkoutID", System.Data.SqlDbType.Int);
+                            command2.Parameters["@WorkoutID"].Value = workout.WorkoutID;
+                            SqlDataReader reader2 = command2.ExecuteReader();
+                            while (reader2.Read())
+                            {
+                                GLift lift = new GLift((int)reader2["LiftID"], (int)reader2["WorkoutID"], (int)reader2["NumberSets"], (int)reader2["LiftOrderNumber"], (int)reader2["LiftNameID"], (string)reader2["LiftName"]);
+                                workout.Lifts.Add(lift);
+                            }
+                        }
+                        workoutList.Add(workout);
 					}
 
 					var message = JsonConvert.SerializeObject(workoutList);

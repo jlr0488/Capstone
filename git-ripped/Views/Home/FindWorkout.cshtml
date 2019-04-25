@@ -11,7 +11,7 @@
 			<div class="card mt-2 mb-3" >
 				<div class="card-body">
 					<h5 class="card-title">{{workout.CompleteDateTime | date}}</h5>
-					<p class="card-text">{{workout.WorkoutID}}</p>
+					<p ng-repeat="lift in workout.Lifts" class="card-text">{{lift.LiftName}}</p>
 				</div>
 			</div>
 		</a>

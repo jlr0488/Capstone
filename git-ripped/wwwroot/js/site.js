@@ -123,14 +123,14 @@ app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 	//will eventually turn into, $scope.workout = getWorkout http stuff
 	var startDateTime = new Date().toJSON("yyyy/MM/dd HH:mm");
 	$scope.newLift = {
-		SessionToken: 1,
+        SessionToken: $scope.SessionToken,
 		LiftName: ""
 		
 		//turn into get token, that we will get at the beggining
 	};
 
 	$scope.workout = {
-		SessionToken: 1,
+		SessionToken: $scope.SessionToken,
 			NumberLifts: 0,
 			WorkoutComplete: "N",
 			StartDateTime: startDateTime,
@@ -262,7 +262,8 @@ app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 	$scope.finishWorkout = function () {
 		$scope.finishWorkoutProcessing = true;
 		var completeDateTime = new Date().toJSON("yyyy/MM/dd HH:mm");
-		$scope.workout.CompleteDateTime = completeDateTime;
+        $scope.workout.CompleteDateTime = completeDateTime;
+        $scope.workout.WorkoutComplete = "Y";
 		console.log(JSON.stringify($scope.workout));
 		$http.post("../../api/CreateWorkout", JSON.stringify($scope.workout))
 			.then(function () {
@@ -298,7 +299,7 @@ app.controller('FindWorkoutCtrl', function ($scope, $http) {
         $http.get("../api/getWorkoutList?tok=" + $scope.SessionToken)
 			.then(function (response) {
 				$scope.workoutList = response.data;
-
+                var test = 2;
 			})
 			, function (response) {
 				alert("An error has occured getting workoutList");
@@ -352,12 +353,15 @@ app.controller('StatsCtrl', function ($scope, $http, $location) {
                     catch{
                         $scope.Max4Avail = false;
                     }
-                    
+
 
                 })
                 , function (response) {
                     alert("An error has occured getting Lift Records");
                 }
+        }
+        else {
+            $scope.max1Avail = false;
         }
     }();
 
