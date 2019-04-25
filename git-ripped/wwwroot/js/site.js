@@ -90,7 +90,7 @@ app.controller('indexCtrl', function ($scope, $http) {
 	};
 });
 
-app.controller('ViewAccountCtrl', function ($scope, $http) {
+app.controller('ViewAccountCtrl', function ($scope, $http, $cookies, $window) {
 	$scope.basicInfo = {
 		firstName : "",
 		lastName : "",
@@ -158,11 +158,17 @@ app.controller('ViewAccountCtrl', function ($scope, $http) {
         $http.post("../../api/ChangePassword", JSON.stringify($scope.changePass))
             .then(function (response) {
                 alert("Your password has been changed.\nYou must sign back in with your new password.");
-                $scope.signOut();
-            })
+                try {
+                    $cookies.remove("GRsessionToken", { path: '/' });                
+                    $window.location.href = "/home";
+                }
+                catch (error) {
+                    console.log(error);
+                }
+            }
             , function (response) {
-                //error 
-            } 
+                alert("Password Change Error!")
+            })
 	}
 
 	$scope.doesPasswordMatch = function () {
@@ -361,7 +367,6 @@ app.controller('FindWorkoutCtrl', function ($scope, $http) {
         $http.get("../api/getWorkoutList?tok=" + $scope.SessionToken)
 			.then(function (response) {
 				$scope.workoutList = response.data;
-                var test = 2;
 			})
 			, function (response) {
 				alert("An error has occured getting workoutList");
@@ -548,7 +553,7 @@ app.controller('LayoutCtrl', function ($scope, $http, $cookies, $location, $wind
             .then(function (response) {
                 $scope.loggedIn = true;
                 console.log(response.data);
-                $cookies.put("GRsessionToken", response.data);
+                $cookies.put("GRsessionToken", response.data, { path: '/' });
                 //$cookies.GRsessionUsername = $scope.basicInfo.username;
 				$('#SigninModal').modal('hide');
 				$window.location.href = "/"
@@ -559,7 +564,7 @@ app.controller('LayoutCtrl', function ($scope, $http, $cookies, $location, $wind
     }
 
     $scope.signOut = function () {
-        $cookies.remove("GRsessionToken");
+        $cookies.remove("GRsessionToken", { path: '/' });
         $window.location.href = "/home";
     }
 
