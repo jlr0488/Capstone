@@ -75,7 +75,7 @@ namespace gitripped.API
                     }
                     else
                     {
-                        SqlCommand command = new SqlCommand("UPDATE usr.Attributes SET Height = @Height, CurrentWeight = @CurrentWeight, GoalWeight = @GoalWeight, Gender = @Gender, Birthday = @Birthday, WaistMeasure = @WaistMeasure, ArmMeasure = @ArmMeasure, ChestMeasure = @ChestMeasure, Back Measure = @BackMeasure, LegMeasure = @LegMeasure WHERE UserID = @UserID;", conn);
+                        SqlCommand command = new SqlCommand("UPDATE usr.Attributes SET Height = @Height, CurrentWeight = @CurrentWeight, GoalWeight = @GoalWeight, Gender = @Gender, Birthday = @Birthday, WaistMeasure = @WaistMeasure, ArmMeasure = @ArmMeasure, ChestMeasure = @ChestMeasure, BackMeasure = @BackMeasure, LegMeasure = @LegMeasure WHERE UserID = @UserID;", conn);
                         command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
                         command.Parameters["@UserID"].Value = UserID;
                         command.Parameters.Add("@Height", System.Data.SqlDbType.Int);
@@ -156,7 +156,7 @@ namespace gitripped.API
         static SqlConnection OpenSqlConnection()
         {
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = "Server=tcp:gitripped.database.windows.net,1433;Initial Catalog=gitripped;Persist Security Info=False;User ID=joshrobbins;Password=TempPass1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;MultipleActiveResultSets=True";
+            conn.ConnectionString = "Server=tcp:gitripped.database.windows.net,1433;Initial Catalog=gitripped;Persist Security Info=False;User ID=joshrobbins;Password=TempPass1;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;MultipleActiveResultSets=True";
             conn.Open();
             return conn;
         }
@@ -193,7 +193,7 @@ namespace gitripped.API
 
         static bool checkIfAlreadyCreated(int UserID, SqlConnection conn)
         {
-            SqlCommand command = new SqlCommand("SELECT * FROM usr.Attributes WHERE UserID = @UserID;");
+            SqlCommand command = new SqlCommand("SELECT * FROM usr.Attributes WHERE UserID = @UserID;", conn);
             command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
             command.Parameters["@UserID"].Value = UserID;
             SqlDataReader reader = command.ExecuteReader();
