@@ -91,6 +91,45 @@ app.controller('indexCtrl', function ($scope, $http) {
 });
 
 app.controller('ViewAccountCtrl', function ($scope, $http, $cookies, $window, $filter) {
+    $scope.init = function () {
+        $http.get("../api/GetAttributes?tok=" + $scope.SessionToken)
+            .then(function (response) {
+                $scope.attributes.height = response.data.Height;
+                $scope.attributes.currentWeight = response.data.CurrentWeight;
+                $scope.attributes.startingWeight = response.data.StartingWeight;
+                $scope.attributes.goalWeight = response.data.GoalWeight;
+                $scope.attributes.gender = response.data.Gender;
+                $scope.attributes.birthday = $filter('date')(response.data.Birthday, 'MM/dd/yyyy', 'CST');
+                $scope.attributes.waistMeasure = response.data.WaistMeasure;
+                $scope.attributes.armMeasure = response.data.ArmMeasure;
+                $scope.attributes.chestMeasure = response.data.ChestMeasure;
+                $scope.attributes.backMeasure = response.data.BackMeasure;
+                $scope.attributes.legMeasure = response.data.LegMeasure;
+            })
+        $http.get("../api/GetUser?tok=" + $scope.SessionToken)
+            .then(function (response) {
+                $scope.basicInfo.firstName = response.data.FirstName;
+                $scope.basicInfo.lastName = response.data.LastName;
+                $scope.basicInfo.email = response.data.Email;
+                $scope.basicInfo.username = response.data.UserName;
+            })
+    }();
+
+    $scope.attributes = {
+        height: "",
+        startingWeight: "",
+        currentWeight: "",
+        goalWeight: "",
+        gender: "",
+        birthday: "",
+        waistMeasure: "",
+        armMeasure: "",
+        chestMeasure: "",
+        backMeasure: "",
+        legMeasure: "",
+
+    }
+
 	$scope.basicInfo = {
 		firstName : "",
 		lastName : "",
@@ -105,20 +144,7 @@ app.controller('ViewAccountCtrl', function ($scope, $http, $cookies, $window, $f
 
     }
 
-    $scope.attributes = {
-        height: "",
-        startingWeight: "",
-        currentWeight: "",
-        goalWeight: "",
-        gender: "",
-        birthday: new Date(),
-        waistMeasure: "",
-        armMeasure: "",
-        chestMeasure: "",
-        backMeasure: "",
-        legMeasure: "",
-        
-    }
+
 
     $scope.submitAttributesForm = function () {
         //populate the attributes 

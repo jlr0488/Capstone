@@ -36,32 +36,22 @@
                 <div class="form-row mb-4">
                     <div class="col">
                         <!-- First name -->
-                        <input type="text" id="FirstName" ng-model="firstName" class="form-control" placeholder="First name">
+                        <input type="text" id="FirstName" ng-model="basicInfo.firstName" class="form-control" placeholder="First name">
                     </div>
                     <div class="col">
                         <!-- Last name -->
-                        <input type="text" id="LastName" ng-model="lastName" class="form-control" placeholder="Last name">
+                        <input type="text" id="LastName" ng-model="basicInfo.lastName" class="form-control" placeholder="Last name">
                     </div>
                 </div>
                 <div class="form-row">
                     <!-- E-mail -->
-                    <input type="email" id="Email" ng-model="email" class="form-control mb-4" placeholder="E-mail">
+                    <input type="email" id="Email" ng-model="basicInfo.email" class="form-control mb-4" placeholder="E-mail">
                 </div>
 
                 <div class="form-row mb-4">
                     <!--Username-->
-                    <input type="text" id="Username" ng-model="username" class="form-control" placeholder="Username">
+                    <input type="text" id="Username" ng-model="basicInfo.username" class="form-control" placeholder="Username">
                 </div>
-
-                <div class="form-row mb-4">
-                    <!-- Password -->
-                    <input type="password" id="Password" ng-model="password" class="form-control" placeholder="Password" aria-describedby="dPasswordHelpBlock">
-                    <small id="PasswordHelpBlock" class="form-text text-muted mb-4">
-                        At least 8 characters and 1 digit
-                    </small>
-                </div>
-
-
 
                 <!-- Sign up button -->
                 <button class="btn btn-info my-4 btn-block" ng-click="submitBasicInfoForm()" type="submit">Update Profile</button>
@@ -83,44 +73,76 @@
             <form id="AttributesForm" class="text-center border border-light p-5">
 
                 <div class="form-row mb-4">
-                    <input type="text" id="Height" ng-model="attributes.height" class="form-control" placeholder="Height">
+                    <label for="Height" class="col-sm-2 col-form-label">Height:</label>
+                    <div class="col-sm-10">
+                      <input type="text" id="Height" ng-model="attributes.height" class="form-control" placeholder="Height">
+                    </div>
                 </div>
                 <div class="form-row mb-4">
-                    <input type="text" id="StartWeight" ng-model="attributes.startingWeight" class="form-control" placeholder="Starting Weight">
+                    <label for="StartWeight" class="col-sm-2 col-form-label">Starting Weight:</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="StartWeight" ng-model="attributes.startingWeight" class="form-control" placeholder="Starting Weight">
+                    </div>
                 </div>
                 <div class="form-row mb-4">
-                    <input type="text" id="CurrentWeight" ng-model="attributes.currentWeight" class="form-control" placeholder="Current Weight">
+                    <label for="CurrentWeight" class="col-sm-2 col-form-label">Current Weight:</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="CurrentWeight" ng-model="attributes.currentWeight" class="form-control" placeholder="Current Weight">
+                    </div>
                 </div>
                 <div class="form-row mb-4">
-                    <input type="text" id="GoalWeight" ng-model="attributes.goalWeight" class="form-control" placeholder="Goal Weight">
+                    <label for="GoalWeight" class="col-sm-2 col-form-label">Goal Weight:</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="GoalWeight" ng-model="attributes.goalWeight" class="form-control" placeholder="Goal Weight">
+                    </div>
                 </div>
                 <div class="form-row mb-4">
-                    <!--<input type="text" id="Gender" ng-model="attributes.gender" class="form-control" placeholder="Gender">-->
-                    <select name="gender" ng-model="attributes.gender" class="form-control">
-                        <option value="">Choose gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                    </select>
+                    <label for="Gender" class="col-sm-2 col-form-label">Gender:</label>
+                    <div class="col-sm-10">
+                        <select name="gender" id="Gender" ng-model="attributes.gender" class="form-control">
+                            <option value="">Choose gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-row mb-4">
-                    <label for="Birthday">Select your birthday </label>
-                    <input type="date" id="Birthday" ng-model="attributes.birthday" placeholder="mm-dd-yyyy">
+                    <label for="Birthday" class="col-sm-2 col-form-label">Select your birthday:</label>
+                    <div class="col-sm-2">
+                        <input type="date" id="Birthday" ng-model="attributes.birthday" placeholder="mm-dd-yyyy">
+                    </div>
+                    <div class="col-sm-8"></div>
                 </div>
                 <div class="form-row mb-4">
-                    <input type="text" id="Waist" ng-model="attributes.waistMeasure" class="form-control" placeholder="Waist Measure">
+                    <label for="Waist" class="col-sm-2 col-form-label">Waist Measure:</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="Waist" ng-model="attributes.waistMeasure" class="form-control" placeholder="Waist Measure">
+                    </div>
                 </div>
                 <div class="form-row mb-4">
-                    <input type="text" id="Arm" ng-model="attributes.armMeasure" class="form-control" placeholder="Arm Measure">
+                    <label for="Arm" class="col-sm-2 col-form-label">Arm Measure:</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="Arm" ng-model="attributes.armMeasure" class="form-control" placeholder="Arm Measure">
+                    </div>
                 </div>
                 <div class="form-row mb-4">
-                    <input type="text" id="Chest" ng-model="attributes.chestMeasure" class="form-control" placeholder="Chest Measure">
+                    <label for="Chest" class="col-sm-2 col-form-label">Chest Measure:</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="Chest" ng-model="attributes.chestMeasure" class="form-control" placeholder="Chest Measure">
+                    </div>
                 </div>
                 <div class="form-row mb-4">
-                    <input type="text" id="Back" ng-model="attributes.backMeasure" class="form-control" placeholder="Back Measure">
+                    <label for="Back" class="col-sm-2 col-form-label">Back Measure:</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="Back" ng-model="attributes.backMeasure" class="form-control" placeholder="Back Measure">
+                    </div>
                 </div>
                 <div class="form-row mb-4">
-                    <input type="text" id="Leg" ng-model="attributes.legMeasure" class="form-control" placeholder="Leg Measure">
+                    <label for="Let" class="col-sm-2 col-form-label">Leg Measure:</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="Leg" ng-model="attributes.legMeasure" class="form-control" placeholder="Leg Measure">
+                    </div>
                 </div>
 
 
