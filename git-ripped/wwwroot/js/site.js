@@ -142,6 +142,7 @@ app.controller('ViewAccountCtrl', function ($scope, $http, $cookies, $window, $f
 	$scope.submitBasicInfoForm = function () {
 		//validate and send info through a post (after hashing password)
 
+
     }
 
 
