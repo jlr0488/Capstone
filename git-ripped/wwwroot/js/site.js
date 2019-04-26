@@ -99,7 +99,21 @@ app.controller('ViewAccountCtrl', function ($scope, $http, $cookies, $window, $f
 		password: "",
 		password2: ""
 	};
+    
+    //this populates the user info in view account
+    $http.get("../../api/GetUser?tok=" + $scope.SessionToken)
+        .then(function (response) {
+            $scope.basicInfo.firstName = response.data.FirstName;
+            $scope.basicInfo.lastName = response.data.LastName;
+            $scope.basicInfo.email = response.data.Email;
+            $scope.basicInfo.username = response.data.UserName;
 
+        })
+        , function (response) {
+            alert("Cannot get user data.")
+        }
+
+    console.log($scope.basicInfo);
 	$scope.submitBasicInfoForm = function () {
 		//validate and send info through a post (after hashing password)
 
