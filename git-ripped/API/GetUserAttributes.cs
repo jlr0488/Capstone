@@ -27,38 +27,25 @@ namespace gitripped.API
             int UserID;
             try
             {
-                SqlConnection conn = OpenSqlConnection();
-
-                SqlCommand command = new SqlCommand("Select UserID From usr.SessionToken WHERE (SessionToken = @SessionToken) AND (Active = 1)", conn);
-                command.Parameters.Add("@SessionToken", System.Data.SqlDbType.Int);
-                command.Parameters["@SessionToken"].Value = tok;
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
+                SqlConnection conn = OpenSqlConnection();                
+                if((UserID = Helper.CheckSessionToken(tok, conn)) != -1)
                 {
-                    reader.Read();
-                    UserID = (int)reader["UserID"];
-                    reader.Close();
-                }
-                else
-                {
-                    reader.Close();
-                    return StatusCode(404, "Token has no associated UserID");
-                }
 
+                }
 
                 //int UserID;
                 //UserID = CheckLogin(token, conn);
 
 
 
-                if (UserID != -1)
+                if ((UserID = Helper.CheckSessionToken(tok, conn))!= -1)
                 {
                     Attributes attributes = new Attributes();
 
-                    command = new SqlCommand("SELECT Height, StartingWeight, CurrentWeight, GoalWeight, Gender, Birthday, WaistMeasure, ArmMeasure, ChestMeasure, BackMeasure, LegMeasure FROM usr.Attributes WHERE UserID = @UserID", conn);
+                    SqlCommand command = new SqlCommand("SELECT Height, StartingWeight, CurrentWeight, GoalWeight, Gender, Birthday, WaistMeasure, ArmMeasure, ChestMeasure, BackMeasure, LegMeasure FROM usr.Attributes WHERE UserID = @UserID", conn);
                     command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
                     command.Parameters["@UserID"].Value = UserID;
-                    reader = command.ExecuteReader();
+                    SqlDataReader reader = command.ExecuteReader();
                     if (reader.HasRows)
                     {
                         reader.Read();

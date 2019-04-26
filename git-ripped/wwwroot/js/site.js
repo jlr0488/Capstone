@@ -379,7 +379,7 @@ app.controller('FindWorkoutCtrl', function ($scope, $http) {
 	}();
 })
 
-app.controller('StatsCtrl', function ($scope, $http, $location) {
+app.controller('StatsCtrl', function ($scope, $http, $location, $filter) {
 
     //git records card connected to back end
     $scope.initRecords = function () {
@@ -430,6 +430,19 @@ app.controller('StatsCtrl', function ($scope, $http, $location) {
             $http.get("../api/GetNumberWorkouts?tok=" + $scope.SessionToken)
                 .then(function (response) {
                     $scope.NumberWorkouts = response.data.NumberWorkouts;
+                })
+            $http.get("../api/GetAttributes?tok=" + $scope.SessionToken)
+                .then(function (response) {
+                    $scope.CurrentWeight = response.data.CurrentWeight;
+                    height = response.data.Height;
+                    feet = Math.floor(height / 12);
+                    inches = height % 12;
+                    $scope.Height = feet + "\' " + inches + "\"";
+                    birthday = response.data.Birthday;
+                    birthYear = parseInt($filter('date')(birthday, 'yyyy', 'CST').toString());
+                    var d = new Date();
+                    currentYear = parseInt(d.getFullYear());
+                    $scope.Age = currentYear - birthYear;
                 })
         }
         else {

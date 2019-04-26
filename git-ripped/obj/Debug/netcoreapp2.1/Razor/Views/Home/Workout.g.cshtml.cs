@@ -86,7 +86,7 @@ using git_ripped.Models;
             WriteLiteral("e\" id=\"lift{{$index}}\" role=\"tabpanel\" aria-labelledby=\"lift{{$index}}\">\r\n\r\n\t\t\t\t");
             EndContext();
             BeginContext(1190, 772, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "13cd0034612348f4b62e08809f910549", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1dd2e5003a98498d8aec2d524c03177a", async() => {
                 BeginContext(1196, 759, true);
                 WriteLiteral(@"
 
@@ -133,7 +133,7 @@ using git_ripped.Models;
 				");
             EndContext();
             BeginContext(2375, 726, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cade367acb9f4c4a9de2b54120c758d1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9479c9440b2046368b3e46160c9f14ca", async() => {
                 BeginContext(2381, 713, true);
                 WriteLiteral(@"
 					<div class=""md-form ml-4"">
