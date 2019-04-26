@@ -90,7 +90,7 @@ app.controller('indexCtrl', function ($scope, $http) {
 	};
 });
 
-app.controller('ViewAccountCtrl', function ($scope, $http, $cookies, $window) {
+app.controller('ViewAccountCtrl', function ($scope, $http, $cookies, $window, $filter) {
 	$scope.basicInfo = {
 		firstName : "",
 		lastName : "",
@@ -111,7 +111,7 @@ app.controller('ViewAccountCtrl', function ($scope, $http, $cookies, $window) {
         currentWeight: "",
         goalWeight: "",
         gender: "",
-        birthday: "",
+        birthday: new Date(),
         waistMeasure: "",
         armMeasure: "",
         chestMeasure: "",
@@ -129,7 +129,7 @@ app.controller('ViewAccountCtrl', function ($scope, $http, $cookies, $window) {
             CurrentWeight: $scope.attributes.currentWeight,
             GoalWeight: $scope.attributes.goalWeight,
             Gender: $scope.attributes.gender,
-            Birthday: $scope.attributes.birthday,
+            Birthday: $filter('date')($scope.attributes.birthday,'MM/dd/yyyy','CST'),
             WaistMeasure: $scope.attributes.waistMeasure,
             ArmMeasure: $scope.attributes.armMeasure,
             ChestMeasure: $scope.attributes.chestMeasure,
