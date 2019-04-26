@@ -28,16 +28,16 @@ namespace gitripped.API
                     command.Parameters["@UserID"].Value = UserID;
                     SqlDataReader reader = command.ExecuteReader();
                     List<WeekObj> weekList = new List<WeekObj>();
-                    int i = 0;
                     while (reader.Read())
                     {
-                        weekList[i].TotalWeight = (int)reader["TotalWeight"];
+                        WeekObj temp = new WeekObj();
+                        temp.TotalWeight = (int)reader["TotalWeight"];
                         DateTime tempWS = (DateTime)reader["WeekStart"];
                         DateTime tempWE = (DateTime)reader["WeekEnd"];
-                        weekList[i].WeekStart = tempWS.ToString("MM/dd/yyyy");
-                        weekList[i].WeekEnd = tempWE.ToString("MM/dd/yyyy");
-                        weekList[i].LiftName = reader["LiftName"].ToString();
-                        i++;
+                        temp.WeekStart = tempWS.ToString("MM/dd/yyyy");
+                        temp.WeekEnd = tempWE.ToString("MM/dd/yyyy");
+                        temp.LiftName = reader["LiftName"].ToString();
+                        weekList.Add(temp);
                     }
 
                     var message = JsonConvert.SerializeObject(weekList);
