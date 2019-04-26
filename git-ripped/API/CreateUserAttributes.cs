@@ -26,50 +26,99 @@ namespace gitripped.API
                 int UserID;
                 if ((UserID = CheckSessionToken(attributes.SessionToken, conn)) != -1)
                 {
-                    //Create the workout in the database with the max + 1 workoutid
-                    SqlCommand command = new SqlCommand("INSERT INTO usr.Attributes VALUES (@UserID, @Height, @StartingWeight, @CurrentWeight, @GoalWeight, @Gender, @Birthday, @WaistMeasure, @ArmMeasure, @ChestMeasure, @BackMeasure, @LegMeasure);", conn);
-                    command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
-                    command.Parameters["@UserID"].Value = UserID;
-                    command.Parameters.Add("@Height", System.Data.SqlDbType.Int);
-                    command.Parameters["@Height"].Value = attributes.Height;
-                    command.Parameters.Add("@StartingWeight", System.Data.SqlDbType.Decimal);
-                    command.Parameters["@StartingWeight"].Precision = 5;
-                    command.Parameters["@StartingWeight"].Scale = 2;
-                    command.Parameters["@StartingWeight"].Value = attributes.StartingWeight;
-                    command.Parameters.Add("@CurrentWeight", System.Data.SqlDbType.Decimal);
-                    command.Parameters["@CurrentWeight"].Value = attributes.CurrentWeight;
-                    command.Parameters["@CurrentWeight"].Precision = 5;
-                    command.Parameters["@CurrentWeight"].Scale = 2;
-                    command.Parameters.Add("@GoalWeight", System.Data.SqlDbType.Decimal);
-                    command.Parameters["@GoalWeight"].Value = attributes.GoalWeight;
-                    command.Parameters["@GoalWeight"].Precision = 5;
-                    command.Parameters["@GoalWeight"].Scale = 2;
-                    command.Parameters.Add("@Gender", System.Data.SqlDbType.Char);
-                    command.Parameters["@Gender"].Value = attributes.Gender;
-                    command.Parameters.Add("@Birthday", System.Data.SqlDbType.DateTime);
-                    command.Parameters["@Birthday"].Value = attributes.Birthday;
-                    command.Parameters.Add("@WaistMeasure", System.Data.SqlDbType.Decimal);
-                    command.Parameters["@WaistMeasure"].Value = attributes.WaistMeasure;
-                    command.Parameters["@WaistMeasure"].Precision = 5;
-                    command.Parameters["@WaistMeasure"].Scale = 2;
-                    command.Parameters.Add("@ArmMeasure", System.Data.SqlDbType.Decimal);
-                    command.Parameters["@ArmMeasure"].Value = attributes.ArmMeasure;
-                    command.Parameters["@ArmMeasure"].Precision = 5;
-                    command.Parameters["@ArmMeasure"].Scale = 2;
-                    command.Parameters.Add("@ChestMeasure", System.Data.SqlDbType.Decimal);
-                    command.Parameters["@ChestMeasure"].Value = attributes.ChestMeasure;
-                    command.Parameters["@ChestMeasure"].Precision = 5;
-                    command.Parameters["@ChestMeasure"].Scale = 2;
-                    command.Parameters.Add("@BackMeasure", System.Data.SqlDbType.Decimal);
-                    command.Parameters["@BackMeasure"].Value = attributes.BackMeasure;
-                    command.Parameters["@BackMeasure"].Precision = 5;
-                    command.Parameters["@BackMeasure"].Scale = 2;
-                    command.Parameters.Add("@LegMeasure", System.Data.SqlDbType.Decimal);
-                    command.Parameters["@LegMeasure"].Value = attributes.LegMeasure;
-                    command.Parameters["@LegMeasure"].Precision = 5;
-                    command.Parameters["@LegMeasure"].Scale = 2;
-                    SqlDataReader reader = command.ExecuteReader();
-                    reader.Close();
+                    if(!checkIfAlreadyCreated(UserID, conn))
+                    {
+                        //Create the workout in the database with the max + 1 workoutid
+                        SqlCommand command = new SqlCommand("INSERT INTO usr.Attributes VALUES (@UserID, @Height, @StartingWeight, @CurrentWeight, @GoalWeight, @Gender, @Birthday, @WaistMeasure, @ArmMeasure, @ChestMeasure, @BackMeasure, @LegMeasure);", conn);
+                        command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
+                        command.Parameters["@UserID"].Value = UserID;
+                        command.Parameters.Add("@Height", System.Data.SqlDbType.Int);
+                        command.Parameters["@Height"].Value = attributes.Height;
+                        command.Parameters.Add("@StartingWeight", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@StartingWeight"].Precision = 5;
+                        command.Parameters["@StartingWeight"].Scale = 2;
+                        command.Parameters["@StartingWeight"].Value = attributes.StartingWeight;
+                        command.Parameters.Add("@CurrentWeight", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@CurrentWeight"].Value = attributes.CurrentWeight;
+                        command.Parameters["@CurrentWeight"].Precision = 5;
+                        command.Parameters["@CurrentWeight"].Scale = 2;
+                        command.Parameters.Add("@GoalWeight", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@GoalWeight"].Value = attributes.GoalWeight;
+                        command.Parameters["@GoalWeight"].Precision = 5;
+                        command.Parameters["@GoalWeight"].Scale = 2;
+                        command.Parameters.Add("@Gender", System.Data.SqlDbType.Char);
+                        command.Parameters["@Gender"].Value = attributes.Gender;
+                        command.Parameters.Add("@Birthday", System.Data.SqlDbType.DateTime);
+                        command.Parameters["@Birthday"].Value = attributes.Birthday;
+                        command.Parameters.Add("@WaistMeasure", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@WaistMeasure"].Value = attributes.WaistMeasure;
+                        command.Parameters["@WaistMeasure"].Precision = 5;
+                        command.Parameters["@WaistMeasure"].Scale = 2;
+                        command.Parameters.Add("@ArmMeasure", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@ArmMeasure"].Value = attributes.ArmMeasure;
+                        command.Parameters["@ArmMeasure"].Precision = 5;
+                        command.Parameters["@ArmMeasure"].Scale = 2;
+                        command.Parameters.Add("@ChestMeasure", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@ChestMeasure"].Value = attributes.ChestMeasure;
+                        command.Parameters["@ChestMeasure"].Precision = 5;
+                        command.Parameters["@ChestMeasure"].Scale = 2;
+                        command.Parameters.Add("@BackMeasure", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@BackMeasure"].Value = attributes.BackMeasure;
+                        command.Parameters["@BackMeasure"].Precision = 5;
+                        command.Parameters["@BackMeasure"].Scale = 2;
+                        command.Parameters.Add("@LegMeasure", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@LegMeasure"].Value = attributes.LegMeasure;
+                        command.Parameters["@LegMeasure"].Precision = 5;
+                        command.Parameters["@LegMeasure"].Scale = 2;
+                        SqlDataReader reader = command.ExecuteReader();
+                        reader.Close();
+                    }
+                    else
+                    {
+                        SqlCommand command = new SqlCommand("UPDATE usr.Attributes SET Height = @Height, CurrentWeight = @CurrentWeight, GoalWeight = @GoalWeight, Gender = @Gender, Birthday = @Birthday, WaistMeasure = @WaistMeasure, ArmMeasure = @ArmMeasure, ChestMeasure = @ChestMeasure, Back Measure = @BackMeasure, LegMeasure = @LegMeasure WHERE UserID = @UserID;", conn);
+                        command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
+                        command.Parameters["@UserID"].Value = UserID;
+                        command.Parameters.Add("@Height", System.Data.SqlDbType.Int);
+                        command.Parameters["@Height"].Value = attributes.Height;
+                        command.Parameters.Add("@StartingWeight", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@StartingWeight"].Precision = 5;
+                        command.Parameters["@StartingWeight"].Scale = 2;
+                        command.Parameters["@StartingWeight"].Value = attributes.StartingWeight;
+                        command.Parameters.Add("@CurrentWeight", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@CurrentWeight"].Value = attributes.CurrentWeight;
+                        command.Parameters["@CurrentWeight"].Precision = 5;
+                        command.Parameters["@CurrentWeight"].Scale = 2;
+                        command.Parameters.Add("@GoalWeight", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@GoalWeight"].Value = attributes.GoalWeight;
+                        command.Parameters["@GoalWeight"].Precision = 5;
+                        command.Parameters["@GoalWeight"].Scale = 2;
+                        command.Parameters.Add("@Gender", System.Data.SqlDbType.Char);
+                        command.Parameters["@Gender"].Value = attributes.Gender;
+                        command.Parameters.Add("@Birthday", System.Data.SqlDbType.DateTime);
+                        command.Parameters["@Birthday"].Value = attributes.Birthday;
+                        command.Parameters.Add("@WaistMeasure", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@WaistMeasure"].Value = attributes.WaistMeasure;
+                        command.Parameters["@WaistMeasure"].Precision = 5;
+                        command.Parameters["@WaistMeasure"].Scale = 2;
+                        command.Parameters.Add("@ArmMeasure", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@ArmMeasure"].Value = attributes.ArmMeasure;
+                        command.Parameters["@ArmMeasure"].Precision = 5;
+                        command.Parameters["@ArmMeasure"].Scale = 2;
+                        command.Parameters.Add("@ChestMeasure", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@ChestMeasure"].Value = attributes.ChestMeasure;
+                        command.Parameters["@ChestMeasure"].Precision = 5;
+                        command.Parameters["@ChestMeasure"].Scale = 2;
+                        command.Parameters.Add("@BackMeasure", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@BackMeasure"].Value = attributes.BackMeasure;
+                        command.Parameters["@BackMeasure"].Precision = 5;
+                        command.Parameters["@BackMeasure"].Scale = 2;
+                        command.Parameters.Add("@LegMeasure", System.Data.SqlDbType.Decimal);
+                        command.Parameters["@LegMeasure"].Value = attributes.LegMeasure;
+                        command.Parameters["@LegMeasure"].Precision = 5;
+                        command.Parameters["@LegMeasure"].Scale = 2;
+                        SqlDataReader reader = command.ExecuteReader();
+                        reader.Close();
+                    }
                 }
                 else
                 {
@@ -138,6 +187,23 @@ namespace gitripped.API
             {
                 reader.Close();
                 return -1;
+            }
+
+        }
+
+        static bool checkIfAlreadyCreated(int UserID, SqlConnection conn)
+        {
+            SqlCommand command = new SqlCommand("SELECT * FROM usr.Attributes WHERE UserID = @UserID;");
+            command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
+            command.Parameters["@UserID"].Value = UserID;
+            SqlDataReader reader = command.ExecuteReader();
+            if(reader.HasRows)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
 
         }
