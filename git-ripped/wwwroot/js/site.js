@@ -467,19 +467,37 @@ app.controller('StatsCtrl', function ($scope, $http, $location, $filter) {
 })
 
 app.controller('ProgressCtrl', function ($scope, $http, $location) {
+
+    $scope.initRecords = function () {
+        if ($scope.loggedIn) {
+            $http.get("../api/TotalWeightByWeekByLift?tok=" + $scope.SessionToken)
+                .then(function (response) {
+                    $scope.progressList = response.data;
+                    console.log($scope.progressList);
+
+
+
+                })
+                , function (error) {
+                    alert("An error has occured getting Lift Records");
+                }
+        }
+    }();
+
+
     //filling graph with dummy data in order to show in demo
     var myChart = document.getElementById('myChart').getContext('2d');
     var benchChart = new Chart(myChart, {
         type: 'line',
         data: {
-            labels: ['January', 'February', 'March', 'April'],
+            labels: ['', 'Week of 3/31', 'Week of 4/07', 'Week of 4/14', 'Week of 4/21'],
             datasets: [{
                 label: 'Bench Press',
                 data: [
                     0,
-                    95,
-                    105,
-                    165,
+                    1440,
+                    200,
+                    400,
                 ],
                 borderColor: 'rgb(102, 178, 255)',
                 backgroundColor: 'rgb(102,178,255)',
@@ -489,13 +507,10 @@ app.controller('ProgressCtrl', function ($scope, $http, $location) {
 
             },
                {
-                   label: 'Military Press',
+                   label: 'Bent-over Row',
                    data: [
-                       20,
-                       45,
-                       85,
-                       95,
-                       135,
+                       0,
+                       980,
                    
                    ],
                    borderColor: 'rgb(0, 204, 102)',
@@ -507,12 +522,8 @@ app.controller('ProgressCtrl', function ($scope, $http, $location) {
                 {
                     label: 'Incline Press',
                     data: [
-                        45,
-                        65,
-                        95,
-                        115,
-                        135,
-                        165,
+                        0,
+                        480,
 
                     ],
                     borderColor: 'rgb(255,178,102)',
@@ -523,17 +534,27 @@ app.controller('ProgressCtrl', function ($scope, $http, $location) {
                 },
 
                 {
-                    label: 'Squat',
+                    label: 'Seated Row',
                     data: [
-                        45, 
-                        95,
-                        135,
-                        185,
-                        225,
+                        0, 
+                        1050,
 
                     ],
                     borderColor: 'rgb(204,153,255)',
                     backgroundColor: 'rgb(204,153,255)',
+                    fill: false,
+                    lineTension: 0,
+
+                },
+                {
+                    label: 'Squat',
+                    data: [
+                        0,
+                        2025,
+
+                    ],
+                    borderColor: 'rgb(255,0,0)',
+                    backgroundColor: 'rgb(255,0,0)',
                     fill: false,
                     lineTension: 0,
 
@@ -542,6 +563,58 @@ app.controller('ProgressCtrl', function ($scope, $http, $location) {
         options: {}
     });
 
+    /*
+                    for (var i = 1; i < $scope.progressList.length+1; i++) {
+                        $scope.eList[i] = $scope.progressList[i-1].LiftName;
+                        $scope.wList[i] = $scope.progressList[i-1].WeekStart;
+                   
+                    }
+                    $scope.eList[1] = 0;
+                    $scope.wList[0] = '';
+                    $scope.exerciseList = $scope.eList.filter(function (elem, index, self){
+                    return index == self.indexOf(elem);
+                    })
+
+                    $scope.WeekStartList = $scope.wList.filter(function (elem, index, self) {
+                        return index == self.indexOf(elem);
+                    })
+
+                    for (var i = 0; i < 7; i++){
+                            $scope.exerciseList[i] = [0];
+                        if ($scope.progressList[i].LiftName == $scope.exerciseList[i]) {
+                            $scope.exerciseList[i].splice(i, 0, $scope.progressList[i].TotalWeight);
+                            console.log($scope.exerciseList[i][i]);
+                        }
+                    }
+                    console.log($scope.exerciseList[1][1]);
+                    for (var i = 0; i < $scope.exerciseList.length; i++) {
+                       
+                        $scope.exerciseList[1].splice(i, 0, i + 1);
+                        console.log($scope.exerciseList[1][i]);
+                        
+                   
+                    }
+                   
+                    
+                    $scope.exerciseList[1] = [25];
+                    console.log($scope.exerciseList[1][0]);
+                    $scope.exerciseList[1].append(2);
+                    console.log($scope.exerciseList[1][1]);
+                    
+
+                    var myChart = document.getElementById('myChart').getContext('2d');
+                    var benchChart = new Chart(myChart, {
+                        type: 'line',
+                        data: {
+                            labels: $scope.WeekStartList,
+                            datasets: []
+                        },
+                       
+                    });
+            
+
+                    //benchChart.data.datasets[0].label = "ok";
+                    */
 
 
 })
