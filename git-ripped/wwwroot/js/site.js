@@ -427,6 +427,10 @@ app.controller('StatsCtrl', function ($scope, $http, $location) {
                 , function (error) {
                     alert("An error has occured getting Lift Records");
                 }
+            $http.get("../api/GetNumberWorkouts?tok=" + $scope.SessionToken)
+                .then(function (response) {
+                    $scope.NumberWorkouts = response.data.NumberWorkouts;
+                })
         }
         else {
             $scope.max1Avail = false;
