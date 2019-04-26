@@ -21,24 +21,44 @@ namespace gitripped.API
     {
         // GET api/Workout
         [HttpGet]
-        public IActionResult GET([FromBody]JObject json)
+        //public IActionResult GET([FromBody]JObject json)
+        public IActionResult GET(int tok)
         {
-
-            dynamic jsonResponse = json;
-            int token = jsonResponse.SessionToken;
-
+            int UserID;
             try
             {
                 SqlConnection conn = OpenSqlConnection();
-                int UserID;
-                if ((UserID = CheckLogin(token, conn)) != -1)
+
+                SqlCommand command = new SqlCommand("Select UserID From usr.SessionToken WHERE (SessionToken = @SessionToken) AND (Active = 1)", conn);
+                command.Parameters.Add("@SessionToken", System.Data.SqlDbType.Int);
+                command.Parameters["@SessionToken"].Value = tok;
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    UserID = (int)reader["UserID"];
+                    reader.Close();
+                }
+                else
+                {
+                    reader.Close();
+                    return StatusCode(404, "Token has no associated UserID");
+                }
+
+
+                //int UserID;
+                //UserID = CheckLogin(token, conn);
+
+
+
+                if (UserID != -1)
                 {
                     Attributes attributes = new Attributes();
 
-                    SqlCommand command = new SqlCommand("SELECT Height, StartingWeight, CurrentWeight, GoalWeight, Gender, Birthday, WaistMeasure, ArmMeasure, ChestMeasure, BackMeasure, LegMeasure FROM usr.Attributes WHERE UserID = @UserID", conn);
+                    command = new SqlCommand("SELECT Height, StartingWeight, CurrentWeight, GoalWeight, Gender, Birthday, WaistMeasure, ArmMeasure, ChestMeasure, BackMeasure, LegMeasure FROM usr.Attributes WHERE UserID = @UserID", conn);
                     command.Parameters.Add("@UserID", System.Data.SqlDbType.Int);
                     command.Parameters["@UserID"].Value = UserID;
-                    SqlDataReader reader = command.ExecuteReader();
+                    reader = command.ExecuteReader();
                     if (reader.HasRows)
                     {
                         reader.Read();
@@ -89,27 +109,27 @@ namespace gitripped.API
             return conn;
         }
 
-        static int CheckLogin(int token, SqlConnection conn)
-        {
-            SqlCommand command = new SqlCommand("Select UserID From usr.SessionToken WHERE (SessionToken = @SessionToken) AND (Active = 1)", conn);
-            command.Parameters.Add("@SessionToken", System.Data.SqlDbType.Int);
-            command.Parameters["@SessionToken"].Value = token;
-            SqlDataReader reader = command.ExecuteReader();
-            if (reader.HasRows)
-            {
-                reader.Read();
-                int UserID = (int)reader["UserID"];
-                reader.Close();
+        //public int CheckLogin(int token1, SqlConnection conn)
+        //{
+        //    SqlCommand command = new SqlCommand("Select UserID From usr.SessionToken WHERE (SessionToken = @SessionToken) AND (Active = 1)", conn);
+        //    command.Parameters.Add("@SessionToken", System.Data.SqlDbType.Int);
+        //    command.Parameters["@SessionToken"].Value = token1;
+        //    SqlDataReader reader = command.ExecuteReader();
+        //    if (reader.HasRows)
+        //    {
+        //        reader.Read();
+        //        int ID = (int)reader["UserID"];
+        //        reader.Close();
 
-                return UserID;
-            }
-            else
-            {
-                reader.Close();
-                return -1;
-            }
+        //        return ID;
+        //    }
+        //    else
+        //    {
+        //        reader.Close();
+        //        return -1;
+        //    }
 
-        }
+        //}
 
         static string ErrorCreator(string error)
         {
@@ -121,11 +141,13 @@ namespace gitripped.API
 
 class Attributes
 {
+    //public int SessionToken { get; set; }
     public decimal Height { get; set; }
     public decimal StartingWeight { get; set; }
     public decimal CurrentWeight { get; set; }
     public decimal GoalWeight { get; set; }
     public string Gender { get; set; }
+    //sql date is in this format: YYY-MM-DD, but can recieve date in the DD-MM-YYYY format as well
     public DateTime Birthday { get; set; }
     public decimal WaistMeasure { get; set; }
     public decimal ArmMeasure { get; set; }
@@ -134,5 +156,4 @@ class Attributes
     public decimal LegMeasure { get; set; }
 
 }
-
 
