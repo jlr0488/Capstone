@@ -30,15 +30,15 @@
 
 					<div class="md-form row ml-1" ng-repeat="set in lift.SetList">
 						<div class="col-3 px-0">
-							<input mdbInput type="number" step="5" ng-class="ng-touched : lift.LiftNameId != '' " id="weight{{lift.LiftNameID}}:{{set.SetID}}" ng-model="set.Weight" class="form-control" required />
-							<label for="weight{{lift.LiftNameID}}:{{set.SetID}}">Weight</label>
+							<input type="number" step="5" id="weight{{lift.LiftNameID}}:{{set.SetID}}" ng-model="set.Weight" class="form-control" required />
+							<label for="weight{{lift.LiftNameID}}:{{set.SetID}}" ng-class="{active : lift.LiftNameId != ''}">Weight</label>
 						</div>
 						<div class="col-1 text-center">
 							<p>&times;</p>
 						</div>
 						<div class="col-3 px-0">
 							<input type="number" id="reps{{lift.LiftNameID}}:{{set.SetID}}" ng-model="set.Repetitions" class="form-control" required />
-							<label for="reps{{lift.LiftNameID}}:{{set.SetID}}">Reps</label>
+							<label for="reps{{lift.LiftNameID}}:{{set.SetID}}" ng-class="{active : set.Repetitions != ''}">Reps</label>
 						</div>
 					</div>
 				</form>
