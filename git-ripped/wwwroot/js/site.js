@@ -581,9 +581,17 @@ app.controller('LayoutCtrl', function ($scope, $http, $cookies, $location, $wind
         var test = 2 + 3;
     }
 
-    $scope.signOut = function () {
-        $cookies.remove("GRsessionToken", { path: '/' });
-        $window.location.href = "/home";
+	$scope.signOut = function () {
+		$http.get("../../api/logout?tok=" + $scope.SessionToken)
+			.then(function (response) {
+				alert("you have logged out.");
+				$cookies.remove("GRsessionToken", { path: '/' });
+
+				$window.location.href = "/home";
+			}, function (response) {
+				alert("logout failed, Please try again.")
+			})
+	
     }
 
 	$scope.clearBasicUserInfo = function () {
