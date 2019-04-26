@@ -213,6 +213,7 @@ app.controller('WorkoutCtrl', function ($scope, $http, $window) {
 				$scope.LiftList = response.data;
 				$scope.OrigionalLiftList = response.data;
 				console.log($scope.LiftList);
+				$scope.activeTab = $scope.LiftList[0].LiftNameID;
 			})
 			, function (response) {
 				alert("An error has occured getting Lift List" + response.data);

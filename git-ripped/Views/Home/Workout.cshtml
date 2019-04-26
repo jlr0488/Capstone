@@ -57,7 +57,7 @@
 						<label for="searchText">Search for a Workout</label>
 						<ul>
 							<li ng-repeat="lift in LiftList | filter:searchText">
-								<a ng-click="addLift(lift.LiftNameID)">{{lift.LiftName}}</a>
+								<a ng-click="addLift(lift.LiftNameID)" data-toggle="tooltip" title="Click to Add Lift">{{lift.LiftName}}</a>
 							</li>
 
 						</ul>
@@ -78,5 +78,5 @@
 		</div>
 	
 	<br />
-	<button class="btn btn-dark-green col-12 w-100" ng-disabled="workoutForm.$invalid || finishWorkoutProcessing || workout.Lifts.length == 0" ng-click="finishWorkout()"> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ng-if="finishWorkoutProcessing"></span> Workout</button>
+	<button class="btn btn-dark-green col-12 w-100" ng-disabled="workoutForm.$invalid || finishWorkoutProcessing || workout.Lifts.length == 0" ng-click="finishWorkout()"> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ng-if="finishWorkoutProcessing"></span>Finish Workout</button>
 </div>
