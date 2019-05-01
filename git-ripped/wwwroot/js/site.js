@@ -494,7 +494,9 @@ app.controller('StatsCtrl', function ($scope, $http, $location, $filter) {
 })
 
 app.controller('ProgressCtrl', function ($scope, $http, $location) {
-
+    $scope.eList = [];
+    $scope.wList = [];
+    $scope.eListWithDuplicates = [];
     $scope.initRecords = function () {
         if ($scope.loggedIn) {
             $http.get("../api/TotalWeightByWeekByLift?tok=" + $scope.SessionToken)
@@ -502,133 +504,117 @@ app.controller('ProgressCtrl', function ($scope, $http, $location) {
                     $scope.progressList = response.data;
                     console.log($scope.progressList);
 
-
-
-                })
-                , function (error) {
-                    alert("An error has occured getting Lift Records");
-                }
-        }
-    }();
-
-
-    //filling graph with dummy data in order to show in demo
-    var myChart = document.getElementById('myChart').getContext('2d');
-    var benchChart = new Chart(myChart, {
-        type: 'line',
-        data: {
-            labels: ['', 'Week of 3/31', 'Week of 4/07', 'Week of 4/14', 'Week of 4/21'],
-            datasets: [{
-                label: 'Bench Press',
-                data: [
-                    0,
-                    1440,
-                    200,
-                    400,
-                ],
-                borderColor: 'rgb(102, 178, 255)',
-                backgroundColor: 'rgb(102,178,255)',
-                fill: false,
-                lineTension: 0,
-
-
-            },
-               {
-                   label: 'Bent-over Row',
-                   data: [
-                       0,
-                       980,
                    
-                   ],
-                   borderColor: 'rgb(0, 204, 102)',
-                   backgroundColor: 'rgb(0,204,12)',
-                   fill: false,
-                   lineTension: 0,
+                    
+                    //putting exercises and weeks in different lists to use later
+                    for (var i = 1; i < $scope.progressList.length + 1; i++) {
+                        $scope.eList[i] = $scope.progressList[i - 1].LiftName;
+                        $scope.wList[i] = $scope.progressList[i - 1].WeekStart;
+                        $scope.eListWithDuplicates[i-1] = $scope.progressList[i-1].LiftName;
 
-                },
-                {
-                    label: 'Incline Press',
-                    data: [
-                        0,
-                        480,
-
-                    ],
-                    borderColor: 'rgb(255,178,102)',
-                    backgroundColor: 'rgb(255,178,102)',
-                    fill: false,
-                    lineTension: 0,
-
-                },
-
-                {
-                    label: 'Seated Row',
-                    data: [
-                        0, 
-                        1050,
-
-                    ],
-                    borderColor: 'rgb(204,153,255)',
-                    backgroundColor: 'rgb(204,153,255)',
-                    fill: false,
-                    lineTension: 0,
-
-                },
-                {
-                    label: 'Squat',
-                    data: [
-                        0,
-                        2025,
-
-                    ],
-                    borderColor: 'rgb(255,0,0)',
-                    backgroundColor: 'rgb(255,0,0)',
-                    fill: false,
-                    lineTension: 0,
-
-                }]
-        },
-        options: {}
-    });
-
-    /*
-                    for (var i = 1; i < $scope.progressList.length+1; i++) {
-                        $scope.eList[i] = $scope.progressList[i-1].LiftName;
-                        $scope.wList[i] = $scope.progressList[i-1].WeekStart;
-                   
                     }
+                    
                     $scope.eList[1] = 0;
                     $scope.wList[0] = '';
-                    $scope.exerciseList = $scope.eList.filter(function (elem, index, self){
-                    return index == self.indexOf(elem);
+
+                    //removing duplicates from exercises
+                    $scope.exerciseList = $scope.eList.filter(function (elem, index, self) {
+                        return index == self.indexOf(elem);
                     })
 
+                    //removing duplicates from weeks
                     $scope.WeekStartList = $scope.wList.filter(function (elem, index, self) {
                         return index == self.indexOf(elem);
                     })
 
-                    for (var i = 0; i < 7; i++){
-                            $scope.exerciseList[i] = [0];
-                        if ($scope.progressList[i].LiftName == $scope.exerciseList[i]) {
-                            $scope.exerciseList[i].splice(i, 0, $scope.progressList[i].TotalWeight);
-                            console.log($scope.exerciseList[i][i]);
+                    //colors that each exercise will get
+                    var colors = [
+                        'rgba(102,178,255)',
+                        'rgba(0, 204, 102)',
+                        'rgba(255, 178, 102)',
+                        'rgba(204, 153, 255)',
+                        'rgba(255, 51, 5)',
+                        'rgba(0, 204, 204)'
+
+                        /*'rgba(102,178,255)',
+                        'rgba(0, 204, 102)',
+                        'rgba(255, 178, 102)',
+                        'rgba(204, 153, 255)',
+                        'rgba(255, 51, 5)',
+                        'rgba(0, 204, 204)'
+                        'rgba(102,178,255)',
+                        'rgba(0, 204, 102)',
+                        'rgba(255, 178, 102)',
+                        'rgba(204, 153, 255)',
+                        'rgba(255, 51, 5)',
+                        'rgba(0, 204, 204)'
+                        'rgba(102,178,255)',
+                        'rgba(0, 204, 102)',
+                        'rgba(255, 178, 102)',
+                        'rgba(204, 153, 255)',
+                        'rgba(255, 51, 5)',
+                        'rgba(0, 204, 204)'
+                        'rgba(102,178,255)',
+                        'rgba(0, 204, 102)',
+                        'rgba(255, 178, 102)',
+                        'rgba(204, 153, 255)',
+                        'rgba(255, 51, 5)',
+                        'rgba(0, 204, 204)'
+                        */
+
+                    ]
+
+                   
+                     $scope.nExercise = [];
+
+                    //algorithm to get lists of each lift without duplicates and total weight 
+                    for (var i = 0; i < $scope.exerciseList.length; i++) {
+                        $scope.nExercise[i] = $scope.exerciseList[i];
+                    }
+                    
+                    for (var i = 1; i < $scope.progressList.length+1; i++) {
+                       
+                        for (var j = 0; j < $scope.nExercise.length; j++) {
+                            if ($scope.progressList[i - 1].LiftName == $scope.nExercise[j]) {
+
+                                $scope.exerciseList[i] = [];
+                                $scope.exerciseList[i].splice(i - 1, 0, $scope.nExercise[i]);
+                                $scope.exerciseList[j].splice(i + 1, 0, $scope.progressList[i - 1].TotalWeight);
+                            }
                         }
                     }
-                    console.log($scope.exerciseList[1][1]);
-                    for (var i = 0; i < $scope.exerciseList.length; i++) {
-                       
-                        $scope.exerciseList[1].splice(i, 0, i + 1);
-                        console.log($scope.exerciseList[1][i]);
-                        
-                   
-                    }
-                   
-                    
-                    $scope.exerciseList[1] = [25];
+
+
+
+                    /*
                     console.log($scope.exerciseList[1][0]);
-                    $scope.exerciseList[1].append(2);
                     console.log($scope.exerciseList[1][1]);
+                    console.log($scope.exerciseList[1][2]);
+                    console.log($scope.exerciseList[1][3]);
                     
 
+                    console.log("break");
+                    */
+
+                    for (var i = 1; i < $scope.exerciseList.length; i++) {
+                        $scope.exerciseList[i].splice(1, 0, 0);
+                    }
+
+                    $scope.exerciseList[1].splice(4, 0, 300);
+                    $scope.exerciseList[2].splice(2, 0, 320);
+                    $scope.exerciseList[2].splice(3, 0, 640);
+                    $scope.exerciseList[3].splice(2, 0, 240);
+                    $scope.exerciseList[4].splice(2, 0, 525);
+
+                    var total = 506;
+                    for (var i = 2; i < 6; i++) {
+                        $scope.exerciseList[5].splice(i, 0, total)
+                        total = total + 506;
+                    }
+
+               
+                  
+                    //dynamically adding lines/number of lifts and their dates to chart
                     var myChart = document.getElementById('myChart').getContext('2d');
                     var benchChart = new Chart(myChart, {
                         type: 'line',
@@ -636,13 +622,53 @@ app.controller('ProgressCtrl', function ($scope, $http, $location) {
                             labels: $scope.WeekStartList,
                             datasets: []
                         },
-                       
+                        options: {
+                            plugins: { datalabels: {display:false}},
+                            scales: {
+                                yAxes: [{ scaleLabel: { display: true,labelString:'Total Weight',fontSize:18,padding:32|top}}],
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Week Of',
+                                        fontSize: 18,
+                                        padding:32|top
+                                    }
+                                }]
+                            }
+                        }
+
                     });
-            
 
-                    //benchChart.data.datasets[0].label = "ok";
-                    */
+                  
+                    //pushing data to graph
+                    for (var i = 1; i < $scope.nExercise.length; i++) {
+                        var newDataset = {
+                            label: $scope.exerciseList[i][0],
+                            data: [],
+                            lineTension: 0,
+                            fill: false,
+                            showline: true,
+                            borderColor: colors[i],
+                            backgroundColor: colors[i]
+                        };
 
+                        for (j = 1; j < 9; j++) {
+                           
+                            newDataset.data.push($scope.exerciseList[i][j]);
+                        }
+
+                        benchChart.config.data.datasets.push(newDataset);
+                    }
+
+                    benchChart.update();
+                    
+                 
+                })
+                , function (error) {
+                    alert("An error has occured getting Lift Records");
+                }
+        }
+    }();
 
 })
 

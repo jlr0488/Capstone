@@ -86,11 +86,7 @@ using git_ripped.Models;
             WriteLiteral("e\" id=\"lift{{$index}}\" role=\"tabpanel\" aria-labelledby=\"lift{{$index}}\">\r\n\r\n\t\t\t\t");
             EndContext();
             BeginContext(1190, 772, false);
-<<<<<<< HEAD
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bc70edda7a7c4b49b87f834e51432eab", async() => {
-=======
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "371a6c6886f44b04af348af3863c7cb5", async() => {
->>>>>>> front-end
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2caf980ff7b64d69823da7ca1967810b", async() => {
                 BeginContext(1196, 759, true);
                 WriteLiteral(@"
 
@@ -137,11 +133,7 @@ using git_ripped.Models;
 				");
             EndContext();
             BeginContext(2375, 726, false);
-<<<<<<< HEAD
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1335b7f5847c4309848302cf2d5a11d5", async() => {
-=======
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4a7ffe8dd10342329f1930062122f8b7", async() => {
->>>>>>> front-end
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71dce98ca8cc484ea0e595966a1912a8", async() => {
                 BeginContext(2381, 713, true);
                 WriteLiteral(@"
 					<div class=""md-form ml-4"">
